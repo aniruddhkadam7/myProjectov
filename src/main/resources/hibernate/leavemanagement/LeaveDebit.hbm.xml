@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 Sep, 2014 3:23:56 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.leavemanagement.business.LeaveDebit"
+		table="LeaveDebits">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		<version name="version" column="Version" />
+		<many-to-one name="leaveCategory" lazy="false"
+			class="com.raybiztech.leavemanagement.business.LeaveCategory" column="Category_Id"
+			not-null="true" />
+
+		<component class="com.raybiztech.date.DateRange" name="period">
+
+			<property name="minimum" type="DateType" access="field">
+				<column name="FromDate" />
+			</property>
+			<property name="maximum" type="DateType" access="field">
+				<column name="ToDate" />
+			</property>
+		</component>
+
+		<property name="employeeComments" type="java.lang.String">
+			<column name="EmployeeComments" length="10000000" />
+		</property>
+		<property name="managerComments" type="java.lang.String">
+			<column name="ManagerComments" length="10000000" />
+		</property>
+
+		<property name="leaveAppliedOn" type="DateType">
+			<column name="LeaveAppliedOn" />
+		</property>
+		<property name="numberOfDays" type="java.lang.Double">
+			<column name="NumberOfDays" />
+		</property>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" column="employeeId"
+			not-null="true" cascade="none" lazy="false" />
+
+
+
+		<property name="status">
+			<column name="STATUS" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.leavemanagement.business.LeaveStatus</param>
+			</type>
+		</property>
+
+	<!-- <many-to-one name="approvedBy" class="com.raybiztech.appraisals.business.Employee" 
+		column="approvedBy" cascade="none" lazy="false" /> -->
+
+
+		<property name="approvedBy" type="java.lang.String">
+			<column name="approvedBy" />
+		</property>
+
+
+
+
+
+
+	</class>
+</hibernate-mapping>

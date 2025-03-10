@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.separation.business.ClearanceCertificate"
+		table="Separation_ClearanceCertificate">
+
+		<id name="ccId" type="java.lang.Long">
+			<column name="Certificate_Id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			name="employee" lazy="false">
+			<column name="Employee" />
+		</many-to-one>
+
+		<property name="comments" type="java.lang.String">
+			<column name="Comments"></column>
+		</property>
+
+		<property name="isDue" type="java.lang.Boolean">
+			<column name="Is_Due"></column>
+		</property>
+
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date"></column>
+		</property>
+		<property name="addedBy" type="java.lang.String">
+			<column name="Added_By" />
+		</property>
+	</class>
+</hibernate-mapping>

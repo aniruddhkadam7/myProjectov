@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.projecttailoring.business.ProcessSubHeadData"
+		table="ProcessSubHeadData">
+		<id name="id" type="java.lang.Long">
+			<column name="ProcessSubHeadData_ID"></column>
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="processSubHead" column="ProcessSubHead_ID"
+			class="com.raybiztech.projecttailoring.business.ProcessSubHead"></many-to-one>
+
+		<property name="specificToProject" column="Specific_To_Project"
+			type="java.lang.String"></property>
+		<property name="comments" column="Comments" type="text"></property>
+		<property name="sqaComments" column="SQAComments" type="text"></property>
+		<property name="sqaApproval" column="SQAApproval" type="java.lang.String"></property>
+	</class>
+</hibernate-mapping>

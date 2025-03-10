@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 Sep, 2014 3:23:56 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.leavemanagement.business.CarryForwardLeave"
+		table="CarryForwardLeaves">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="daysCredited" type="java.lang.Double">
+			<column name="DaysCredited" />
+		</property>
+
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" />
+		</property>
+
+		<property name="leaveCreditedOn" type="DateType">
+			<column name="LeaveCreditedOn" />
+		</property>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" column="employeeId" lazy="false"
+			not-null="true" cascade="none" />
+			
+		<property name="leaveType">
+			<column name="LeaveType" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.leavemanagement.business.LeaveType</param>
+			</type>
+		</property>		
+			
+	</class>
+</hibernate-mapping>

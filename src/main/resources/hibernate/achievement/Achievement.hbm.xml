@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.achievement.business.Achievement"
+		table="Achievement">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		 <many-to-one class="com.raybiztech.achievement.business.AchievementType"
+			lazy="false" name="achievementType">
+			<column name="Achievement_Type" />
+		</many-to-one> 
+		<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			name="employee" lazy="false">
+			<column name="Employee_ID" />
+		</many-to-one>
+		<property name="timePeriod" type="java.lang.String">
+			<column name="Time_Period" />
+		</property>
+		<property name="startDate" type="DateType">
+			<column name="Start_Date" />
+		</property>
+		<property name="endDate" type="DateType">
+			<column name="End_Date" />
+		</property>
+		<property name="description" type="text">
+			<column name="Description" />
+		</property>
+		<property name="thumbPicture" type="java.lang.String">
+			<column length="250" name="Thumb_Picture" />
+		</property>
+		
+		
+		<property name="profilePicture" type="java.lang.String">
+			<column length="250" name="Profile_Picture" />
+		</property>
+		
+		<property name="showOnDashBoard" type="java.lang.Boolean">
+			<column name="Show_On_DashBoard" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="Updated_By" />
+		</property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property>
+	</class>
+</hibernate-mapping>

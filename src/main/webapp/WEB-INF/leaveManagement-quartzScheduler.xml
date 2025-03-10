@@ -1,0 +1,148 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean name="leaveManagementUtils"
+		class="com.raybiztech.leavemanagement.utils.LeaveManagementUtils" />
+
+	<bean name="pendingApprovalMailAlert"
+		class="com.raybiztech.leavemanagement.quartz.PendingApprovalMailAlert" />
+
+	<bean name="weeklyStatusReportReminder"
+		class="com.raybiztech.leavemanagement.quartz.WeeklyStatusReportReminder" />
+
+
+	<bean name="weeklyStatusReportReminderService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.leavemanagement.service.WeeklyStatusReportReminderService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="weeklyStatusReportReminder" value-ref="weeklyStatusReportReminder" />
+			</map>
+		</property>
+
+	</bean>
+
+
+	<bean name="pendingLeaveAlertService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.leavemanagement.service.PendingLeaveAlertService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="pendingApprovalMailAlert" value-ref="pendingApprovalMailAlert" />
+				<entry key="leaveManagementUtils" value-ref="leaveManagementUtils" />
+			</map>
+		</property>
+
+	</bean>
+
+	<bean name="clearReportsCache"
+		class="com.raybiztech.leavemanagement.quartz.ClearReportsCache" />
+
+	<bean name="clearCacheService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.leavemanagement.service.ClearCacheService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="clearReportsCache" value-ref="clearReportsCache" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean name="invoiceReminder"
+		class="com.raybiztech.projectmanagement.invoice.quartz.InvoiceReminder" />
+
+	<bean name="invoiceReminderService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.projectmanagement.invoice.service.InvoiceReminderService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="invoiceReminder" value-ref="invoiceReminder" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="invoiceReminderTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="invoiceReminderService" />
+		<property name="cronExpression" value="0 0 11 1/1 * ? *" />
+
+	</bean>
+
+
+	<bean id="clearCacheReminder" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="clearCacheService" />
+		<property name="cronExpression" value="0 0 13 1/1 * ? *" />
+
+	</bean>
+
+	<bean id="cronTriggerForweeklyStatusReportReminder" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="weeklyStatusReportReminderService" />
+		<!-- <property name="cronExpression" value="0/30 * * * * ?" /> -->
+		<property name="cronExpression" value="0 0 10 ? * FRI *" />
+
+	</bean>
+
+
+	<!--it should trigger last day of every month -->
+	<bean id="cronTriggerForPendingLeaveAlerts" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="pendingLeaveAlertService" />
+		<!-- <property name="cronExpression" value="0/30 * * * * ?" /> -->
+		<!-- <property name="cronExpression" value="0 0 16 L * ?" /> -->
+		<!-- <property name="cronExpression" value="0 0 16 4/5 * ?" /> -->
+
+		<!-- For Every month from 26th to month end date at 4 PM -->
+		 <property name="cronExpression" value="0 0 16 22,23,24 * ?" />  
+		<!--  <property name="cronExpression" value="0 */5 * * * ?" />   -->
+
+
+
+	</bean>
+
+	<bean id="scheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+
+				<ref bean="pendingLeaveAlertService" />
+				<ref bean="weeklyStatusReportReminderService" />
+				<ref bean="clearCacheService" />
+				<ref bean="invoiceReminderService" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="cronTriggerForPendingLeaveAlerts" />
+				<ref bean="cronTriggerForweeklyStatusReportReminder" />
+				<ref bean="clearCacheReminder" />
+				<ref bean="invoiceReminderTrigger" />
+			</list>
+		</property>
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+	</bean>
+
+
+	<bean id="leavesCarryForwardService"
+		class="com.raybiztech.leavemanagement.service.LeavesCarryForwardService"
+		init-method="carryForward">
+		<property name="scheduler" ref="scheduler" />
+	</bean>
+
+</beans>

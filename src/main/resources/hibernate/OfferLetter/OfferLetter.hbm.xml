@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.raybiztech.offerLetter.business.OfferLetter" table="OfferLetter">
+        <id name="id" type="java.lang.Long">
+            <column name="OfferLetterId" />
+            <generator class="native" />
+        </id>
+        <property name="offerLetterdoc" type="java.lang.String">
+            <column name="offerLetterPath" />
+        </property>
+        <property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="createdDate"></column>
+		</property>
+        <many-to-one name="createdBy"
+			class="com.raybiztech.appraisals.business.Employee" lazy="false">
+			<column name="CreatedBy"></column>
+		</many-to-one>
+    </class>
+</hibernate-mapping>

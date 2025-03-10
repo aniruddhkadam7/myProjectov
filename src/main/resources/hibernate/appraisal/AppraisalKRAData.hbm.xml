@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.appraisalmanagement.business.AppraisalKRAData"
+		table="AppraisalKRAData" lazy="false">
+		<id name="id" type="java.lang.Long">
+			<column name="APPRAISALKRA_ID" />
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" />
+		</property>
+		<property name="description" type="text">
+			<column name="DESCRIPTION" />
+		</property>
+		<set name="kpis" cascade="all">
+			<key column="APPRAISALKRA_ID" />
+			<one-to-many
+				class="com.raybiztech.appraisalmanagement.business.AppraisalKPIData" />
+		</set>
+		<many-to-one name="appraisalForm" cascade="all"
+			column="APPRAISALFORM_ID" class="com.raybiztech.appraisalmanagement.business.AppraisalForm">
+		</many-to-one>
+		<property name="designationKraPercentage" type="java.lang.Double">
+			<column name="Desig_KraPercentage" />
+		</property>
+
+	</class>
+</hibernate-mapping>

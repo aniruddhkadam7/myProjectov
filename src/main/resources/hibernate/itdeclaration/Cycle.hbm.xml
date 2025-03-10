@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.raybiztech.itdeclaration.business.FinanceCycle" table="it_cycle">
+        <id name="cycleId" type="java.lang.Long">
+            <column name="cycle_id" />
+            <generator class="native" />
+        </id>
+         <property name="cycleName" type="java.lang.String">
+            <column name="cycle_name" />
+        </property>
+        <property name="startDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+            <column name="from_date" />
+        </property>
+        <property name="endDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+            <column name="to_date" />
+        </property>
+        <property name="active" type="java.lang.Boolean">
+            <column name="is_active" />
+        </property>      
+		<property name="createdBy" type="java.lang.Long">
+            <column name="create_by" />
+        </property>
+        <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="create_date" />
+        </property>
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="updated_date" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

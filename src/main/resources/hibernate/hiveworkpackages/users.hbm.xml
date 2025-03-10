@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.users"
+		table="users">
+		<id name="id" type="java.lang.Long">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+
+
+		<property name="login" type="java.lang.String">
+			<column name="login"></column>
+		</property>
+		<property name="firstname" type="java.lang.String">
+			<column name="firstname"></column>
+		</property>
+		<property name="lastname" type="java.lang.String">
+			<column name="lastname"></column>
+		</property>
+		<property name="mail" type="java.lang.String">
+			<column name="mail"></column>
+		</property>
+		<property name="admin" type="java.lang.Integer">
+			<column name="admin"></column>
+		</property>
+		<property name="status" type="java.lang.Integer">
+			<column name="status"></column>
+		</property>
+		<property name="last_login_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="last_login_on"></column>
+		</property>
+		<property name="language" type="java.lang.String">
+			<column name="language"></column>
+		</property>
+		<property name="auth_source_id" type="java.lang.Integer">
+			<column name="auth_source_id"></column>
+		</property>
+
+		<property name="created_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_on"></column>
+		</property>
+		<property name="updated_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_on"></column>
+		</property>
+		<property name="type" type="java.lang.String">
+			<column name="type"></column>
+		</property>
+		<property name="identity_url" type="java.lang.String">
+			<column name="identity_url"></column>
+		</property>
+		<property name="mail_notification" type="java.lang.String">
+			<column name="mail_notification"></column>
+		</property>
+
+		<property name="first_login" type="java.lang.Integer">
+			<column name="first_login"></column>
+		</property>
+
+		<property name="force_password_change" type="java.lang.Integer">
+			<column name="force_password_change"></column>
+		</property>
+
+		<property name="failed_login_count" type="java.lang.Long">
+			<column name="failed_login_count"></column>
+		</property>
+		<property name="last_failed_login_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="last_failed_login_on"></column>
+		</property>
+
+
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.appraisals.business.VisaDetails"
+		table="VisaDetails">
+		<id name="id" type="java.lang.Long">
+			<column name="VisaId" />
+			<generator class="native" />
+		</id>
+		<many-to-one class="com.raybiztech.appraisals.business.VisaLookUp"
+			lazy="false" name="visaLookUp">
+			<column name="visaLookUpId" />
+		</many-to-one>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" lazy="false" fetch="join" >
+			<column name="EmployeeId" />
+		</many-to-one>
+		<property name="dateOfIssue" type="DateType">
+			<column length="19" name="DateOfIssue" />
+		</property>
+		<property name="dateOfExpire" type="DateType">
+			<column length="19" name="DateOfExpire" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="CreatedBy" />
+		</property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="UpdatedBy" />
+		</property>
+
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property>
+		<property name="visaDetailsPath" type="java.lang.String">
+			<column name="Visa_Details_Path" />
+		</property>
+		<property name="visaThumbPicture" type="java.lang.String">
+			<column length="250" name="Visa_Thumb_Picture" />
+		</property>
+
+	</class>
+
+
+
+</hibernate-mapping>

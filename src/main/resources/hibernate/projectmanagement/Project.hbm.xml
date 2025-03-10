@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Dec, 2014 6:30:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.projectmanagement.business.Project"
+		table="PROJECT">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="projectName" type="java.lang.String">
+			<column name="PROJECTNAME" />
+		</property>
+		<component class="com.raybiztech.date.DateRange" name="period">
+			<property name="minimum" type="DateType" access="field">
+				<column name="FromDate" />
+			</property>
+			<property name="maximum" type="DateType" access="field">
+				<column name="ToDate" />
+			</property>
+		</component>
+
+		<property name="description" type="java.lang.String">
+			<column name="DESCRIPTION" />
+		</property>
+		<property name="status">
+			<column name="STATUS" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.projectmanagement.business.ProjectStatus</param>
+			</type>
+		</property>
+		<many-to-one name="projectManager" lazy="false"
+			class="com.raybiztech.appraisals.business.Employee">
+		</many-to-one>
+
+
+		<set name="milestones" table="Milestone" fetch="join" inverse="false"
+			lazy="true">
+			<key>
+				<column name="ID" />
+			</key>
+			<one-to-many class="com.raybiztech.projectmanagement.business.Milestone" />
+		</set>
+
+		<set name="statusReports" table="StatusReport" inverse="false"
+			lazy="true">
+			<key>
+				<column name="ID" />
+			</key>
+			<one-to-many class="com.raybiztech.projectmanagement.business.StatusReport" />
+		</set>
+
+		<property name="health" type="java.lang.String">
+			<column name="HEALTH" />
+		</property>
+
+		<many-to-one name="client" fetch="join"
+			class="com.raybiztech.projectmanagement.business.Client">
+			<column name="Client" not-null="true" />
+		</many-to-one>
+		<property name="type">
+			<column name="Type" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.projectmanagement.business.ProjectType</param>
+			</type>
+		</property>
+		<property name="createdDate" type="DateType">
+			<column name="CREATED_DATE" />
+		</property>
+		<property name="internalOrNot" type="java.lang.Boolean">
+			<column name="INTERNAL_TYPE" />
+		</property>
+
+		<property name="hiveProjectName" type="java.lang.String">
+			<column name="HiveProjectName" />
+		</property>
+		
+		<property name="model">
+			<column name="Project_Model"/>
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.projectmanagement.business.ProjectModel</param>
+			</type>
+		
+		</property>
+		<property name="projectCode" type="java.lang.String">
+		<column name="Project_Code"/>
+		</property>
+		
+		<property name="projectContactPerson" type="java.lang.String">
+		<column name="Project_Contact_Person"></column>
+		</property>
+		<property name="projectContactEmail" type="java.lang.String">
+		<column name="Project_Contact_Person_Email"></column>
+		</property>
+		<property name="billingContactPerson" type="java.lang.String">
+		<column name="Billing_Contact_Person"></column>
+		</property>
+		<property name="billingContactPersonEmail" type="java.lang.String">
+		<column name="Billing_Contact_Person_Email"></column>
+		</property>
+		<property name="platform" type="java.lang.String">
+		<column name="Platform"></column>
+		</property>
+		<property name="domain" type="java.lang.String">
+		<column name="Domain"></column>
+		</property>
+		<property name="hiveProjectFlag" type="java.lang.Boolean">
+			<column name="Hive_Project_Flag" default="false"/>
+		</property>
+		
+
+		<!-- <one-to-one name="projectManager" class="com.raybiztech.appraisals.business.Employee" 
+			cascade="none" lazy="false"/> -->
+			<many-to-one name="projectRequest" unique="true" fetch="join" cascade="all"  lazy="false"
+			 class="com.raybiztech.projectmanagement.business.ProjectRequest">
+			<column name="ProjectRequest_Id"/>
+			</many-to-one>
+	</class>
+</hibernate-mapping>

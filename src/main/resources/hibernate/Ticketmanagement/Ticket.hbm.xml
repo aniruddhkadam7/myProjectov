@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Sep, 2015 4:45:45 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.ticketmanagement.business.Ticket"
+		table="Ticket">
+		<id name="TicketNumber" type="java.lang.Long">
+			<column name="TicketNumber" />
+			<generator class="native" />
+		</id>
+		<property name="raisedDate" type="DateType">
+			<column name="RaisedDate" />
+		</property>
+		<property name="genarateType" type="java.lang.Boolean">
+			<column name="genarateType" />
+		</property>
+		
+		<property name="isApproved" type="java.lang.String">
+			<column name="isApproved" />
+		</property>
+		
+
+
+		<property name="ticketStatus">
+			<column name="TicketStatus" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.ticketmanagement.business.TicketStatus</param>
+			</type>
+		</property>
+		<many-to-one name="mealLookUp"
+			class="com.raybiztech.ticketmanagement.business.MealLookUp" fetch="select">
+			<column name="mealid" />
+		</many-to-one>
+		<property name="authorEmpId" type="java.lang.Long">
+			<column name="authorEmpId" />
+		</property>
+
+
+
+
+
+
+	</class>
+</hibernate-mapping>

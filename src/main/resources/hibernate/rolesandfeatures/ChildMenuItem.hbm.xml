@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Nov, 2014 11:46:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.rolefeature.business.ChildMenuItem" table="CHILDMENUITEM">
+        <id name="id" type="java.lang.Long">
+            <column name="CHILDMENU_ID" />
+            <generator class="native" />
+        </id>
+        <property name="menuUrl" type="java.lang.String">
+            <column name="MenuUrl" />
+        </property>
+        <property name="menuName" type="java.lang.String">
+            <column name="MenuName" />
+        </property>
+        <property name="menuClass" type="java.lang.String">
+            <column name="MenuClass" />
+        </property>
+        <property name="orderNum" type="java.lang.Integer">
+            <column name="ORDERNUM" />
+        </property>
+       
+    </class>
+</hibernate-mapping>

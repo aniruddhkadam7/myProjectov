@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.Enumerations"
+		table="enumerations">
+
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+		
+		<property name="position" type="java.lang.Long">
+			<column name="position" />
+		</property>
+		
+		<property name="isDefault" type="java.lang.Integer">
+			<column name="is_default" />
+		</property>
+		
+		<property name="type" type="java.lang.String">
+			<column name="type" />
+		</property>
+		
+		<property name="active" type="java.lang.Integer">
+			<column name="active" />
+		</property>
+		
+		<property name="projectId" type="java.lang.Long">
+			<column name="project_id" />
+		</property>
+		
+		<property name="parentId" type="java.lang.Long">
+			<column name="parent_id" />
+		</property>
+		
+	</class>
+
+
+
+
+
+
+
+
+
+
+</hibernate-mapping>

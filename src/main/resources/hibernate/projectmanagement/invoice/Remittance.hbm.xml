@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+
+<hibernate-mapping>
+
+	<class name="com.raybiztech.projectmanagement.invoice.business.Remittance"
+		table="Remittance" lazy="false">
+
+		<id name="id">
+			<column name="RemittanceID" unique="true" />
+			<generator class="native" />
+		</id>
+		<property name="bankName">
+			<column name="BankName" />
+		</property>
+		<property name="currencyType">
+			<column name="CurrencyType" />
+		</property>
+		<property name="location">
+			<column name="location" />
+		</property>
+		<property name="wireTransferInstructions">
+			<column name="WireTransferInstructions"></column>
+		</property>
+
+		<property name="client" type="java.lang.Long">
+			<column name="Client"></column>
+		</property>
+
+
+	</class>
+
+</hibernate-mapping>

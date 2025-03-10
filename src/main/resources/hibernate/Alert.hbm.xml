@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+             name="DateType" />
+    <typedef class="com.raybiztech.date.hibernate.type.SecondUserType"
+		name="SecondType" />
+    <class name="com.raybiztech.appraisals.alerts.business.Alert" table="ALERT">
+        <id name="id" type="java.lang.Long">
+            <column name="ALERTID" />
+            <generator class="native" />
+        </id>
+        <property name="msg" type="java.lang.String">
+            <column name="alertMsg" />
+        </property>
+        
+        <many-to-one name="employee" class="com.raybiztech.appraisals.business.Employee" fetch="join">
+            <column name="EmployeeId" />
+        </many-to-one>
+        
+        <property name="msgDate" type="SecondType">
+            <column length="19" name="MsgDate" />
+        </property>
+        <property name="alertType" type="java.lang.String">
+            <column name="AlertType" />
+        </property>
+        
+        <property name="alertStatus" type="java.lang.Boolean">
+            <column name="AlertStatus" />
+        </property>
+        
+        <property name="latestSatatus" type="java.lang.Boolean">
+            <column name="LatestSatatus" />
+        </property>
+        
+        <property name="insertOn" type="SecondType">
+            <column length="19" name="InsertDate" />
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

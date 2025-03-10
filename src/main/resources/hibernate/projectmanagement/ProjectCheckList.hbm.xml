@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.projectmanagement.business.ProjectCheckList"
+		table="CHECKLIST">
+
+		<id name="Id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		<property name="name" type="java.lang.String">
+			<column name="NAME"></column>
+		</property>
+
+		<property name="status" type="java.lang.Boolean">
+			<column name="STATUS"></column>
+		</property>
+
+		<property name="type" type="java.lang.String">
+			<column name="TYPE"></column>
+		</property>
+
+		<many-to-one name="checklistSection"
+			class="com.raybiztech.checklist.business.ChecklistSection" fetch="join">
+			<column name="SECTION_ID" />
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

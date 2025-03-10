@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.CustomizableJournals"
+		table="customizable_journals">
+		<id name="id" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="journal_id" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.Journals">
+			<column name="journal_id"></column>
+		</many-to-one>
+
+		<property name="custom_field_id" type="java.lang.Long">
+			<column name="custom_field_id"></column>
+		</property>
+
+		<property name="value" type="java.lang.String">
+			<column name="value"></column>
+		</property>
+
+
+	</class>
+
+</hibernate-mapping>

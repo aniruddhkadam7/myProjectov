@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.leavemanagement.business.LeaveSettingsLookup"
+		table="LeaveSettings">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="assigned" />
+		</id>
+		<property name="probationPeriod" type="java.lang.Integer">
+			<column not-null="true" name="ProbationPeriod" />
+		</property>
+
+		<property name="maxLeavesEarned" type="java.lang.Integer">
+			<column name="MaxLeavesEarned" />
+		</property>
+
+		<property name="payrollCutoffDate" type="java.lang.Integer">
+			<column name="PayrollCutoffDate" />
+		</property>
+		<property name="leaveCycleMonth">
+			<column name="LeaveCycleMonth" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.leavemanagement.business.LeaveCycleMonth</param>
+			</type>
+		</property>
+		<property name="leavesPerYear" type="java.lang.Double">
+			<column name="LeavesPerYear" />
+		</property>
+		<property name="maxAccrualPerYear" type="java.lang.Integer">
+			<column name="MaxAccrualPerYear" />
+		</property>
+
+	</class>
+</hibernate-mapping>
+

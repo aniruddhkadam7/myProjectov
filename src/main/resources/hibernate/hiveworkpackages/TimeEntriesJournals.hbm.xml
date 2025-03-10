@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.TimeEntryJournals"
+		table="time_entry_journals">
+
+		<id name="id" type="java.lang.Long">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="journal_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.Journals">
+			<column name="journal_id"></column>
+		</many-to-one>
+		
+		<many-to-one name="project_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.projects">
+			<column name="project_id"></column>
+		</many-to-one>
+		
+			<many-to-one name="user_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.users">
+			<column name="user_id"></column>
+		</many-to-one>
+		
+		<many-to-one name="work_package_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.work_packages">
+			<column name="work_package_id"></column>
+		</many-to-one>
+
+
+		<property name="hours" type="java.lang.Float">
+			<column name="hours"></column>
+		</property>
+
+		<property name="comments" type="java.lang.String">
+			<column name="comments"></column>
+		</property>
+		
+			<many-to-one name="activity_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.Enumerations">
+			<column name="activity_id"></column>
+		</many-to-one>
+		
+			<property name="spent_on"
+			type="java.util.Date">
+			<column name="spent_on"></column>
+		</property>
+	<property name="tyear" type="java.lang.Long">
+			<column name="tyear"></column>
+		</property>
+		<property name="tmonth" type="java.lang.Long">
+			<column name="tmonth"></column>
+		</property>
+		<property name="tweek" type="java.lang.Integer">
+			<column name="tweek"></column>
+		</property>
+		
+
+	<property name="overridden_costs" type="java.lang.Double">
+			<column name="overridden_costs"></column>
+		</property>
+		<property name="costs" type="java.lang.Double">
+			<column name="costs"></column>
+		</property>
+<property name="rate_id" type="java.lang.Long">
+			<column name="rate_id"></column>
+		</property>
+	</class>
+</hibernate-mapping>

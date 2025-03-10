@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+
+<hibernate-mapping>
+	<class name="com.raybiztech.projectmanagement.business.ProjectNumbers"
+		table="ProjectNumbers">
+
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="project"
+			class="com.raybiztech.projectmanagement.business.Project" fetch="join"
+			unique="true">
+			<column name="ProjectId" />
+		</many-to-one>
+
+		<many-to-one name="changeRequest"
+			class="com.raybiztech.projectmanagement.business.ChangeRequest"
+			fetch="join" unique="true">
+			<column name="ChangeRequestId" />
+		</many-to-one>
+
+		<property name="projectAmount" type="text">
+			<column name="ProjectAmount" />
+		</property>
+
+		<property name="currency" type="text">
+			<column name="Currency" />
+		</property>
+
+		<property name="hourlyRate" type="text">
+			<column name="HourlyRate" />
+		</property>
+
+		<property name="description" type="text">
+			<column name="Description" />
+		</property>
+
+		<property name="poNumber" type="text">
+			<column name="PONumber" />
+		</property>
+
+
+
+
+		<property name="saltKey" type="text">
+			<column name="Saltkey" />
+		</property>
+
+	</class>
+</hibernate-mapping>

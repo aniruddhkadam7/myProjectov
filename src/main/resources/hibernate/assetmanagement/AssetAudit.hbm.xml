@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.assetmanagement.business.AssetAudit"
+		table="ASSETAUDIT">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<many-to-one class="com.raybiztech.assetmanagement.business.Asset"
+			name="asset" lazy="false">
+			<column name="Asset_ID" />
+		</many-to-one>
+		<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			lazy="false" name="employee">
+			<column name="Employee_ID" />
+		</many-to-one>
+		<property name="referenceNumber" type="java.lang.String">
+			<column name="Reference_Number" />
+		</property>
+		<property name="description" type="text">
+			<column name="Description" />
+		</property>
+		<property name="location" type="java.lang.String">
+			<column name="Location" />
+		</property>
+<!--		<property name="assinedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Assined_Date" />
+		</property>-->
+		<property name="status" type="java.lang.String">
+			<column name="Status" />
+		</property>
+		<property name="date" type="DateType">
+			<column name="Date" />
+		</property>
+		<!-- <many-to-one class="com.raybiztech.assetmanagement.business.VendorDetails"
+			lazy="false" name="vendorDetails">
+			<column name="Vendor_ID" />
+		</many-to-one> -->
+		<property name="vendorName" type="java.lang.String">
+			<column name="Vendor_Name" />
+		</property>
+		<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			lazy="false" name="updatedBy">
+			<column name="Updated_By" />
+		</many-to-one>
+                <property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property>
+          <many-to-one name="empDepartment"
+              class="com.raybiztech.appraisals.business.EmpDepartment" 
+              lazy="false">
+            <column name="DEPT_ID" />
+        </many-to-one>
+	</class>
+
+
+</hibernate-mapping>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 March, 2016 10:03:00 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.assetmanagement.business.VendorDetails" table="VENDOR">
+        <id name="vendorId" type="java.lang.Long">
+            <column name="Vendor_ID" />
+            <generator class="native" />
+        </id>
+        <property name="vendorName" type="java.lang.String">
+            <column name="Vendor_Name" />
+        </property>
+        <property name="vendorAddress" type="java.lang.String">
+            <column length="250" name="Vendor_Address" />
+        </property>
+        <property name="vendorCity" type="java.lang.String">
+            <column length="250" name="Vendor_City" />
+        </property>
+        <property name="vendorState" type="java.lang.String">
+            <column length="250" name="Vendor_State" />
+        </property>
+        <property name="vendorPincode" type="java.lang.String">
+            <column length="250" name="Vendor_Pincode" />
+        </property>
+        <property name="vendorCountry" type="java.lang.String">
+            <column name="country" />
+        </property>
+        <property name="vendorEmailId" type="java.lang.String">
+            <column length="50" name="Vendor_EmailId" not-null="true" />
+        </property>
+        <property name="vendorPhoneNumber" type="java.lang.String">
+            <column length="250" name="vendor_PhoneNumber"  />
+        </property>
+        <property name="vendorFaxNumber" type="java.lang.String">
+            <column length="250" name="Vendor_FaxNumber"  />
+        </property>
+        <!--       <many-to-one class="com.raybiztech.rolefeature.business.Role" lazy="false" name="roleId">
+                      <column name="Role_ID"/>
+        </many-to-one>-->
+        <!--        <property name="departmentName" type="java.lang.String">
+            <column name="DepartmentName"/>
+        </property>-->
+        <many-to-one name="empDepartment"
+                     class="com.raybiztech.appraisals.business.EmpDepartment" 
+                     lazy="false">
+            <column name="DEPT_ID" />
+        </many-to-one>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+       
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>
+        
+        <property name="isExpenseVendor" type="java.lang.Boolean">
+        	<column name="Expense_Vendor" default="false" not-null="true"></column>
+        </property>
+    
+    	<property name="vendorBankDetails" type="java.lang.String">
+            <column length="250" name="Vendor_BankDetails" />
+        </property>
+        
+        <property name="vendorGSTNumber" type="java.lang.String">
+            <column length="250" name="Vendor_GST_Number" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

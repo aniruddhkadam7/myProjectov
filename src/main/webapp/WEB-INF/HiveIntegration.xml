@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	<!-- Data Source Declaration -->
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+		<property name="locations">
+			<set>
+				<value>classpath:database.properties</value>
+			</set>
+		</property>
+	</bean>
+
+<bean id="dataSource1"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.251/openproject?zeroDateTimeBehavior=convertToNull" />
+		<property name="username" value="sowmya" />
+		<property name="password" value="raytech1@3" />
+	</bean>
+
+	<!-- Session Factory Declaration -->
+	<bean id="sessionFactory1"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource1" />
+		<property name="mappingResources">
+			<list>
+			
+			<value>hibernate/hiveworkpackages/work_packages.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/types.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/categories.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/project_types.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/users.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/statuses.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/versions.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/projects.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/Enumerations.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/Time_Entries.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/Journals.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/WorkPackageJournals.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/CustomOptions.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/TimeEntriesJournals.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/CustomizableJournals.hbm.xml</value>
+			<value>hibernate/hiveworkpackages/CustomValues.hbm.xml</value>
+				
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				  <!-- <prop key="hibernate.show_sql">true</prop> <prop key="hibernate.format_sql">true</prop>   --> 
+			<!-- 	<prop key="hibernate.hbm2ddl.auto">update</prop> -->
+
+
+			</props>
+		</property>
+	</bean>
+
+
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="hiveTransactionManager" />
+
+	<!-- Transaction Manager is defined -->
+<bean id="hiveTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="globalRollbackOnParticipationFailure" value="false" />
+		<property name="sessionFactory" ref="sessionFactory1" />
+	</bean>
+
+
+</beans>

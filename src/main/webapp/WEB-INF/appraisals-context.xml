@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	<!-- Data Source Declaration -->
+
+	<bean id="parentDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		abstract="true">
+		<property name="driverClassName" value="${jdbc.drivername}" />
+		
+	</bean>
+
+	<bean id="concreteDataSourceOne" parent="parentDataSource">
+		<property name="url" value="${jdbc.url1}" />
+		<property name="username" value="${db.username1}" />
+		<property name="password" value="${db.password1}" />
+	</bean>
+
+	<bean id="concreteDataSourceTwo" parent="parentDataSource">
+		<property name="url" value="${jdbc.url2}" />
+		<property name="username" value="${db.username2}" />
+		<property name="password" value="${db.password2}" />
+	</bean>
+	
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+		<property name="locations">
+			<set>
+				<value>classpath:database.properties</value>
+			</set>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.raybiztech.multitenancy.MyRoutingDataSource">
+		<property name="targetDataSources">
+			<map key-type="com.raybiztech.multitenancy.TenantTypes">
+				<entry key="RAYBIZTECH" value-ref="concreteDataSourceOne" />
+				<entry key="AIBRIDGEML" value-ref="concreteDataSourceTwo" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="concreteDataSourceOne" />
+	</bean>
+	
+	
+	<!-- Session Factory Declaration -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+
+		<property name="mappingResources">
+			<list>
+
+				<value>hibernate/employee/Employee.hbm.xml</value>
+				<value>hibernate/employee/EmpDepartment.hbm.xml</value>
+				<value>hibernate/DesignationKras.hbm.xml</value>
+
+				<value>hibernate/recruitment/VacancyLookUp.hbm.xml</value>
+				<value>hibernate/recruitment/SourceLookUp.hbm.xml</value>
+				<value>hibernate/employee/SkillLookUp.hbm.xml</value>
+				<value>hibernate/recruitment/JobVacancy.hbm.xml</value>
+				<value>hibernate/Address.hbm.xml</value>
+				<value>hibernate/recruitment/Person.hbm.xml</value>
+				<value>hibernate/Document.hbm.xml</value>
+				<value>hibernate/recruitment/Candidate.hbm.xml</value>
+				<value>hibernate/recruitment/Interview.hbm.xml</value>
+				<value>hibernate/recruitment/Panel.hbm.xml</value>
+				<value>hibernate/recruitment/Schedule.hbm.xml</value>
+				<value>hibernate/recruitment/Gender.hbm.xml</value>
+				<value>hibernate/recruitment/BloodGroup.hbm.xml</value>
+				<value>hibernate/recruitment/MaritalStatus.hbm.xml</value>
+				<value>hibernate/recruitment/Relations.hbm.xml</value>
+				<value>hibernate/recruitment/QualificationCategory.hbm.xml</value>
+				<value>hibernate/recruitment/EmploymentType.hbm.xml</value>
+				<value>hibernate/recruitment/JobType.hbm.xml</value>
+
+				<value>hibernate/leavemanagement/LeaveCategory.hbm.xml</value>
+				<value>hibernate/leavemanagement/LeaveDebit.hbm.xml</value>
+				<value>hibernate/leavemanagement/CarryForwardLeave.hbm.xml</value>
+				<value>hibernate/leavemanagement/LeaveSettingsLookup.hbm.xml</value>
+				<value>hibernate/leavemanagement/ProbationPeriod.hbm.xml</value>
+				<value>hibernate/leavemanagement/PayrollCutOffDates.hbm.xml</value>
+				<value>hibernate/dashboard/FeedPost.hbm.xml</value>
+				<value>hibernate/dashboard/FeedPostComments.hbm.xml</value>
+
+
+
+				<value>hibernate/employee/EmployeeSkill.hbm.xml</value>
+				<value>hibernate/employee/Category.hbm.xml</value>
+				<value>hibernate/employee/EmployeeSkillLookUp.hbm.xml</value>
+				<value>hibernate/recruitment/CandidateInterviewCycle.hbm.xml</value>
+				<value>hibernate/timeandattendance/BioAttendance.hbm.xml</value>
+				<value>hibernate/employee/EmployeeFamilyDetails.hbm.xml</value>
+				<value>hibernate/dashboard/Holidays.hbm.xml</value>
+				<value>hibernate/employee/EmployeeBankInformation.hbm.xml</value>
+				<value>hibernate/Department.hbm.xml</value>
+				<value>hibernate/rolesandfeatures/Feature.hbm.xml</value>
+				<value>hibernate/rolesandfeatures/Role.hbm.xml</value>
+				<value>hibernate/rolesandfeatures/User.hbm.xml</value>
+				<value>hibernate/HandbookItem.hbm.xml</value>
+				<value>hibernate/HandbookCountry.hbm.xml</value>
+				<value>hibernate/timeandattendance/SpentTime.hbm.xml</value>
+				<value>hibernate/projectmanagement/AllocationDetails.hbm.xml</value>
+				<value>hibernate/projectmanagement/Project.hbm.xml</value>
+				<value>hibernate/projectmanagement/Audit.hbm.xml</value>
+				<!--<value>hibernate/projectmanagement/AllocationDetails_Audit.hbm.xml</value> -->
+				<!--<value>hibernate/projectmanagement/Project_Audit.hbm.xml</value> -->
+				<value>hibernate/projectmanagement/ProjectRequest.hbm.xml</value>
+				<value>hibernate/projectmanagement/ProjectRequestMilestone.hbm.xml
+				</value>
+				<value>hibernate/PersistLogin.xml</value>
+				<value>hibernate/employee/EmployeeHiveActivity.hbm.xml</value>
+
+
+				<value>hibernate/timeandattendance/TimeInOffice.hbm.xml</value>
+				<value>hibernate/leavemanagement/BusinessCalendar.hbm.xml</value>
+				<value>hibernate/performancemanagement/Observation.hbm.xml</value>
+				<value>hibernate/Alert.hbm.xml</value>
+				<value>hibernate/employee/TimeSlot.hbm.xml</value>
+				<value>hibernate/projectmanagement/Milestone.hbm.xml</value>
+
+				<value>hibernate/projectmanagement/MilestonePeople.hbm.xml</value>
+				<value>hibernate/projectmanagement/MilestonePeople_Audit.hbm.xml
+				</value>
+
+				<value>hibernate/projectmanagement/StatusReport.hbm.xml</value>
+				<value>hibernate/projectmanagement/ProjectFeedPostComments.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/ProjectFeedPost.hbm.xml</value>
+				<value>hibernate/recruitment/NewJoinee.hbm.xml</value>
+				<value>hibernate/employee/Certification.hbm.xml</value>
+
+				<!-- project initiation check list -->
+				<value>hibernate/projectmanagement/ProjectCheckList.hbm.xml</value>
+				<value>hibernate/projectmanagement/ProjectInitiationChecklist.hbm.xml
+				</value>
+
+				<value>hibernate/appraisal/Frequency_Lookup.hbm.xml</value>
+				<value>hibernate/appraisal/ReviewAudit.hbm.xml</value>
+				<value>hibernate/appraisal/AppraisalCycle.hbm.xml</value>
+				<value>hibernate/appraisal/AppraisalForm.hbm.xml</value>
+				<value>hibernate/appraisal/AppraisalFormAvgRatings.hbm.xml</value>
+				<value>hibernate/appraisal/AppraisalKPIData.hbm.xml</value>
+				<value>hibernate/appraisal/AppraisalKRAData.hbm.xml</value>
+				<value>hibernate/appraisal/Designation.hbm.xml</value>
+				<value>hibernate/appraisal/DesignationKRAMapping.hbm.xml</value>
+				<value>hibernate/appraisal/KPI_Lookup.hbm.xml</value>
+				<value>hibernate/appraisal/KRA_Lookup.hbm.xml</value>
+				<value>hibernate/projectmanagement/Client.hbm.xml</value>
+				<value>hibernate/payroll/PaySlip.hbm.xml</value>
+				<value>hibernate/projectmanagement/Country.hbm.xml</value>
+				<value>hibernate/projectmanagement/Organization.hbm.xml</value>
+				<value>hibernate/employee/Finance.hbm.xml</value>
+
+
+
+				<value>hibernate/projectmanagement/InvoiceReminderLog.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/Remittance.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/BankNames.hbm.xml</value>
+				<value>hibernate/projectmanagement/invoice/Currency.hbm.xml</value>
+				<value>/hibernate/projectmanagement/invoice/RemittanceLocation.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/Discount.hbm.xml</value>
+				<value>hibernate/projectmanagement/invoice/DiscountTypeLookup.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/DurationLookup.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/Invoice.hbm.xml</value>
+				<value>hibernate/projectmanagement/invoice/InvoiceStatusLookup.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/LineItem.hbm.xml</value>
+				<value>hibernate/projectmanagement/invoice/PaymentTermLookup.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/Tax.hbm.xml</value>
+				<value>hibernate/projectmanagement/invoice/TaxTypeLookup.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/CountryLookUp.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/PDFCrowdToken.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/InvoiceSummary.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/SentInvoiceSummary.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/ReceivedInvoiceSummary.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/ReceivedInvoiceAmount.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/InvoiceTracker.hbm.xml
+				</value>
+
+				<value>hibernate/projectmanagement/invoice/TaxAudit.hbm.xml</value>
+				<value>hibernate/projectmanagement/invoice/ReceivedInvoiceAmountAudit.hbm.xml
+				</value>
+
+				<value>/hibernate/projectmanagement/invoice/CurrencyToINR.xml
+				</value>
+
+				<value>/hibernate/projectmanagement/invoice/CountryAddress.hbm.xml
+				</value>
+				<value>hibernate/rolesandfeatures/MenuItem.hbm.xml</value>
+				<value>hibernate/rolesandfeatures/ChildMenuItem.hbm.xml</value>
+				<value>hibernate/rolesandfeatures/Permission.hbm.xml</value>
+				<value>hibernate/projectmanagement/milestone_audit.hbm.xml</value>
+				<value>hibernate/rolesandfeatures/ParentFeature.hbm.xml</value>
+				<value>hibernate/recruitment/Technology.hbm.xml</value>
+				<!-- below company table is used for saving current employee previous 
+					company -->
+				<value>hibernate/recruitment/Company.hbm.xml</value>
+				<value>hibernate/rolesandfeatures/URIAndFeatures.hbm.xml</value>
+				<value>hibernate/Bank.hbm.xml</value>
+				<value>hibernate/Ticketmanagement/MealLookup.hbm.xml</value>
+				<value>hibernate/Ticketmanagement/Ticket.hbm.xml</value>
+				<value>hibernate/Ticketmanagement/TicketHistory.hbm.xml</value>
+
+				<value>hibernate/meetingrequest/Location.hbm.xml</value>
+				<value>hibernate/meetingrequest/meetingattendees.hbm.xml</value>
+				<value>hibernate/meetingrequest/MeetingRequest.hbm.xml</value>
+				<value>hibernate/meetingrequest/EventType.hbm.xml</value>
+				<value>hibernate/meetingrequest/Room.hbm.xml</value>
+				<value>hibernate/meetingrequest/FeedbackForm.hbm.xml</value>
+				<value>hibernate/projectmanagement/invoice/InvoiceAudit.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/invoice/LineItemAudit.xml</value>
+
+				<value>hibernate/projectmanagement/ProjectNumbers.hbm.xml
+				</value>
+				<value>hibernate/projectmanagement/ChangeRequest.hbm.xml
+				</value>
+				<value>hibernate/assetmanagement/VendorDetails.hbm.xml</value>
+				<value>hibernate/assetmanagement/Product.hbm.xml</value>
+				<value>hibernate/assetmanagement/Manufacturer.hbm.xml</value>
+				<value>hibernate/assetmanagement/ProductSpecifications.hbm.xml
+				</value>
+				<value>hibernate/assetmanagement/Asset.hbm.xml</value>
+				<value>hibernate/assetmanagement/AssetAudit.hbm.xml</value>
+				<value>hibernate/assetmanagement/AssetType.hbm.xml</value>
+
+
+				<!-- For Support management -->
+				<value>hibernate/supportmanagement/SupportTickets.hbm.xml</value>
+				<value>hibernate/supportmanagement/TicketsCategory.hbm.xml</value>
+				<value>hibernate/supportmanagement/TicketsSubCategory.hbm.xml
+				</value>
+
+				<value>hibernate/supportmanagement/Tracker.hbm.xml</value>
+				<!-- <value>hibernate/appraisal/DesignationWiseKRA.hbm.xml</value> -->
+				<!-- <value>hibernate/supportmanagement/SupportTicketsWatchers.hbm.xml</value> -->
+
+				<!-- For PIP management -->
+				<value>hibernate/performancemanagement/PIP.hbm.xml</value>
+				<value>hibernate/performancemanagement/PerformanceRatings.hbm.xml
+				</value>
+
+				<!-- For Achievement -->
+				<value>hibernate/achievement/AchievementType.hbm.xml</value>
+				<value>hibernate/achievement/Achievement.hbm.xml</value>
+				<value>hibernate/achievement/Leadership.hbm.xml</value>
+				<value>hibernate/achievement/LeadershipAudit.hbm.xml</value>
+
+				<!-- For Nomination -->
+				<value>hibernate/nominationManagement/InitiateNomination.hbm.xml
+				</value>
+				<value>hibernate/nominationManagement/Nomination.hbm.xml</value>
+				<value>hibernate/nominationManagement/NominationCycle.hbm.xml
+				</value>
+				<value>hibernate/nominationManagement/NominationQuestion.hbm.xml
+				</value>
+				<value>hibernate/nominationManagement/NominationQuestionsData.hbm.xml
+				</value>
+
+
+				<!-- Mail Templates -->
+				<value>hibernate/mailTemplates/mailTemplateType.hbm.xml</value>
+				<value>hibernate/mailTemplates/mailTemplate.hbm.xml</value>
+				<value>hibernate/mailTemplates/acccountEmail.hbm.xml</value>
+
+				<!-- Qualification -->
+				<value>hibernate/employee/Qualification.hbm.xml</value>
+				<value>hibernate/employee/QualificationLookUp.hbm.xml</value>
+
+				<!-- Project Proposals -->
+				<value>hibernate/projectmanagement/ProjectProposals.hbm.xml</value>
+				<value>hibernate/projectmanagement/Platform.hbm.xml</value>
+				<value>hibernate/projectmanagement/Domain.hbm.xml</value>
+
+
+				<!-- SMS -->
+				<value>hibernate/sms/sms.hbm.xml</value>
+
+				<value>hibernate/projectmanagement/ProjectRequestMail.hbm.xml
+				</value>
+
+				<!-- Seperation -->
+				<value>hibernate/separation/separation.hbm.xml</value>
+				<value>hibernate/separation/separationcomments.hbm.xml</value>
+				<value>hibernate/separation/primaryreason.hbm.xml</value>
+				<value>hibernate/separation/clearancecertificate.hbm.xml</value>
+				<value>hibernate/separation/ExitFeedBack.hbm.xml</value>
+
+				<!-- ITDeclaration -->
+				<value>hibernate/itdeclaration/Cycle.hbm.xml</value>
+				<value>hibernate/itdeclaration/Investment.hbm.xml</value>
+				<value>hibernate/itdeclaration/Section.hbm.xml</value>
+				<value>hibernate/itdeclaration/ITDeclarationForm.hbm.xml</value>
+				<value>hibernate/itdeclaration/ITDeclarationFormSection.hbm.xml
+				</value>
+				<value>hibernate/itdeclaration/ITDeclarationFormInvestment.hbm.xml
+				</value>
+
+				<!-- Checklist -->
+				<value>hibernate/checklist/ChecklistSection.hbm.xml</value>
+				<value>hibernate/checklist/DepartmentSection.hbm.xml</value>
+				<value>hibernate/checklist/DepartmentChecklist.hbm.xml</value>
+
+				<!-- ProjectTailoring -->
+				<value>hibernate/projectTailoring/ProcessHead.hbm.xml</value>
+				<value>hibernate/projectTailoring/ProcessSubHead.hbm.xml</value>
+				<value>hibernate/projectTailoring/ProjectTailoring.hbm.xml</value>
+				<value>hibernate/projectTailoring/ProcessHeadData.hbm.xml</value>
+				<value>hibernate/projectTailoring/ProcessSubHeadData.hbm.xml</value>
+				<value>hibernate/projectTailoring/ProcessArea.hbm.xml</value>
+
+				<!-- Project Metrics -->
+				<value>hibernate/projectMetrics/ProjectSprints.hbm.xml</value>
+				<value>hibernate/projectMetrics/ProjectSprintsAudit.hbm.xml</value>
+				<value>hibernate/projectMetrics/EffortVariance.hbm.xml</value>
+				<value>hibernate/projectMetrics/ScheduleVariance.hbm.xml</value>
+				<value>hibernate/projectmanagement/AllocationEffort.hbm.xml</value>
+
+
+				<!-- Visa -->
+				<value>hibernate/employee/VisaLookUp.hbm.xml</value>
+				<value>hibernate/employee/VisaDetail.hbm.xml</value>
+
+				<!-- Compliance -->
+				<value>hibernate/compliance/Compliance.hbm.xml</value>
+				<value>hibernate/compliance/ComplianceTask.hbm.xml</value>
+				<value>hibernate/compliance/ComplianceTaskSubmit.hbm.xml</value>
+
+				<!-- Expense Management -->
+				<value>hibernate/ExpenseManagement/ExpenseCategory.hbm.xml</value>
+				<value>hibernate/ExpenseManagement/ExpenseSubCategory.hbm.xml
+				</value>
+				<value>hibernate/ExpenseManagement/ExpenseForm.hbm.xml</value>
+				<value>hibernate/ExpenseManagement/PaymentMode.hbm.xml</value>
+				<value>hibernate/ExpenseManagement/ExpenseFormAudit.hbm.xml</value>
+				<value>hibernate/ExpenseManagement/CreditCard.hbm.xml</value>
+				<value>hibernate/ExpenseManagement/PaymentForm.hbm.xml</value>
+
+				<!-- offerLetter -->
+
+				<value>hibernate/OfferLetter/OfferLetter.hbm.xml</value>
+
+				<!-- Hive related Data -->
+				<value>hibernate/HiveProjectDetails/hiveDetails.hbm.xml</value>
+
+				<value>hibernate/employee/CertificateType.hbm.xml</value>
+
+				<!-- SQA Audit -->
+				<value>hibernate/SQAAudit/SQAAuditForm.hbm.xml</value>
+				<value>hibernate/SQAAudit/SQAAuditors.hbm.xml</value>
+				<value>hibernate/SQAAudit/SQAAuditees.hbm.xml</value>
+				<value>hibernate/SQAAudit/SQAAuditTimeline.hbm.xml</value>
+				
+				<!-- pattern -->
+
+				<value>hibernate/pattern/pattern.hbm.xml</value>
+                  <!-- contact information -->
+                <value>hibernate/contact/ContactInfo.hbm.xml</value>
+
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!-- <prop key="hibernate.show_sql">true</prop> <prop key="hibernate.format_sql">true</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.multiTenancy">DATABASE</prop> <prop key="hibernate.tenant_identifier_resolver">com.raybiztech.multitenancy.CurrentTenantIdentifierResolverImpl</prop> 
+					<prop key="hibernate.multi_tenant_connection_provider">com.raybiztech.multitenancy.MultiTenantConnectionProviderImpl</prop> -->
+
+
+
+			</props>
+		</property>
+
+
+	</bean>
+
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="globalRollbackOnParticipationFailure" value="false" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+
+</beans>

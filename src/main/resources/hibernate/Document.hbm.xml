@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.recruitment.business.Document" table="DOCUMENT">
+        <id name="documentId" type="java.lang.Long">
+            <column name="DOCUMENTID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="candidateID" class="com.raybiztech.recruitment.business.Candidate" fetch="join">
+            <column name="PERSONID" />
+        </many-to-one>
+        <property name="docType">
+            <column name="DOCTYPE" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.raybiztech.recruitment.business.DocType</param>
+            </type>
+        </property>
+        <property name="doctokenId" type="java.lang.String">
+            <column name="DOCTOKENID" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+    </class>
+</hibernate-mapping>

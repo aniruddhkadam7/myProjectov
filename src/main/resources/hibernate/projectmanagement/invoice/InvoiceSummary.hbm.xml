@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="com.raybiztech.projectmanagement.invoice.business.InvoiceSummary"
+		table="INVOICE_SUMMARY">
+
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="client" lazy="false"
+			class="com.raybiztech.projectmanagement.business.Client">
+			<column name="Client" />
+		</many-to-one>
+
+		<many-to-one name="project" lazy="false"
+			class="com.raybiztech.projectmanagement.business.Project">
+			<column name="Project" />
+		</many-to-one>
+
+		<many-to-one name="changeRequest" lazy="false"
+			class="com.raybiztech.projectmanagement.business.ChangeRequest">
+			<column name="ChangeRequest" />
+		</many-to-one>
+
+		<property name="totalAmount" type="java.lang.String">
+			<column name="TotalAmount" />
+		</property>
+
+		<property name="sentAmount" type="java.lang.String">
+			<column name="SentAmount" />
+		</property>
+
+		<set name="sentInvoices" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Invoice_Summary_Id" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.invoice.business.SentInvoiceSummary" />
+		</set>
+
+		<property name="receivedAmount" type="java.lang.String">
+			<column name="ReceivedAmount" />
+		</property>
+
+		<set name="receivedinvoices" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Invoice_Summary_Id" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.invoice.business.ReceivedInvoiceSummary" />
+		</set>
+
+		<property name="pendingAmount" type="java.lang.String">
+			<column name="PendingAmount" />
+		</property>
+
+		<property name="currency" type="java.lang.String">
+			<column name="Currency" />
+		</property>
+
+		<property name="saltKey" type="java.lang.String">
+			<column name="SaltKey" />
+		</property>
+
+	</class>
+</hibernate-mapping>

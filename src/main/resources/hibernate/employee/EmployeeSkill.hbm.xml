@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.appraisals.business.Skill" table="EMPLOYEESKILL">
+        <id name="skillId" type="java.lang.Long">
+            <column name="SkillId" />
+            <generator class="native" />
+        </id>
+
+        <property name="categoryType" type="java.lang.String">
+            <column name="CATEGORYTYPE" />
+        </property>
+        <property name="categoryTypeId" type="java.lang.String">
+            <column name="CATEGORYTYPEID" />
+        </property>
+        
+        <property name="skillType" type="java.lang.String">
+            <column name="SKILLTYPE" />
+        </property>
+        
+        <property name="expYear" type="java.lang.String">
+            <column name="EXPYEAR" />
+        </property>
+        <property name="expMonth" type="java.lang.String">
+            <column name="EXPMONTH" />
+        </property>
+        <property name="competency" type="java.lang.String">
+            <column name="COMPETENCY" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+        
+        <many-to-one name="employee" class="com.raybiztech.appraisals.business.Employee" fetch="join">
+            <column name="EmployeeId" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

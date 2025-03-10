@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 March, 2016 12:55:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <class name="com.raybiztech.assetmanagement.business.Asset" table="ASSET">
+    <id name="id" type="java.lang.Long">
+      <column name="ID"/>
+      <generator class="native"/>
+    </id>
+    <property name="poNumber" type="java.lang.String">
+      <column name="PO_Number"/>
+    </property>
+    <many-to-one class="com.raybiztech.assetmanagement.business.VendorDetails" lazy="false" name="vendorDetails">
+      <column name="Vender_ID"/>
+    </many-to-one>
+     <many-to-one class="com.raybiztech.assetmanagement.business.ProductSpecifications" lazy="false" name="productSpecifications">
+      <column name="Specification_ID"/>
+    </many-to-one>
+    <property name="assetNumber" type="java.lang.String">
+      <column name="Asset_Number"/>
+    </property>
+    <property name="otherAssetNumber" type="java.lang.String">
+        <column name="OtherAsset_Number"/>
+    </property>
+   
+    
+    <property name="invoiceNumber" type="java.lang.String">
+      <column name="Invoice_Number"/>
+    </property>
+    <property name="purchasedDate" type="DateType">
+      <column name="Purchased_Date"/>
+    </property>
+    <property name="receivedDate" type="DateType">
+      <column name="Received_Date"/>
+    </property>
+      <property name="warrantyStartDate" type="DateType">
+      <column name="WarrantyStart_Date"/>
+    </property>
+    <property name="warrantyEndDate" type="DateType">
+      <column name="WarrantyEnd_Date"/>
+    </property>
+     <property name="location" type="java.lang.String">
+        <column name="Location"/>
+    </property>
+    <property name="notes" type="text">
+      <column name="Notes"/>
+    </property>
+     <property name="status" type="java.lang.String">
+      <column name="Status"/>
+    </property>
+    <many-to-one class="com.raybiztech.appraisals.business.Employee" lazy="false" name="employee">
+        <column name="Employee_ID"/>
+    </many-to-one>
+      <many-to-one class="com.raybiztech.assetmanagement.business.AssetType" lazy="false" name="assetType">
+                    <column name="AssetType_ID"/>
+      </many-to-one>
+      <property name="allocatedStatus" type="java.lang.String">
+          <column name="AllocatedStatus"/>
+      </property>
+<!--      <many-to-one class="com.raybiztech.rolefeature.business.Role" lazy="false" name="roleId">
+                    <column name="Role_ID"/>
+      </many-to-one>-->
+<!--      <property name="departmentName" type="java.lang.String">
+        <column name="DepartmentName"/>
+    </property>-->
+    <many-to-one name="empDepartment"
+              class="com.raybiztech.appraisals.business.EmpDepartment" 
+              lazy="false">
+            <column name="DEPT_ID" />
+        </many-to-one>
+         <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+       
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>
+        <property name="referenceNumber" type="java.lang.String">
+			<column name="Reference_Number" />
+		</property>
+		<property name="amount" type="java.lang.String">
+      <column name="Amount"/>
+    </property>
+    <many-to-one class="com.raybiztech.projectmanagement.invoice.lookup.CountryLookUp"
+			fetch="join" name="country">
+			<column name="Country_Id" />
+		</many-to-one>
+  </class>
+</hibernate-mapping>

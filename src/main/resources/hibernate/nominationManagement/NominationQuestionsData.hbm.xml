@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="com.raybiztech.achievementNomination.business.NominationQuestionsData"
+		table="NominationQuestionData">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="questions" type="text">
+			<column name="Questions" />
+		</property>
+		<property name="feedBack" type="text">
+			<column name="FeedBack" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+      <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+    <class name="com.raybiztech.recruitment.business.Schedule" table="SCHEDULE">
+        <id name="scheduleId" type="java.lang.Long">
+            <column name="SCHEDULEID" />
+            <generator class="native" />
+        </id>
+        <property name="scheduleTime" type="java.lang.String">
+            <column name="SCHEDULETIME" />
+        </property>
+        <property name="scheduleDate" type="DateType">
+            <column name="SCHEDULEDATE" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <many-to-one name="venue" class="com.raybiztech.recruitment.business.Address" fetch="join" cascade="all">
+            <column name="VENUE" />
+        </many-to-one>
+        <many-to-one name="interview" class="com.raybiztech.recruitment.business.Interview" fetch="join" cascade="all">
+            <column name="INTERVIEW" />
+        </many-to-one>
+        <property name="contactDetails" type="java.lang.String">
+            <column name="Contact_Details" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

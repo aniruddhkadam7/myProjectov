@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+
+<hibernate-mapping>
+	<class name="com.raybiztech.projectmanagement.business.ProjectProposals"
+		table="ProjectProposals">
+
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+
+		<property name="post" type="string" column="Post" />
+
+		<many-to-one name="postedBy"
+			class="com.raybiztech.appraisals.business.Employee">
+		</many-to-one>
+
+
+		<many-to-one name="project" column="Project"
+			class="com.raybiztech.projectmanagement.business.Project"></many-to-one>
+
+		<property name="postedOn"
+			type="com.raybiztech.date.hibernate.type.SecondUserType" column="PostedOn" />
+
+
+	</class>
+</hibernate-mapping>

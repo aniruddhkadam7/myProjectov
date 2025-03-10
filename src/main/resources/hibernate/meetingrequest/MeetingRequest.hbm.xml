@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+
+	<typedef class="com.raybiztech.date.hibernate.type.SecondUserType"
+		name="SecondType" />
+
+	<class name="com.raybiztech.meetingrequest.business.MeetingRequest"
+		table="MeetingRequest">
+
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="agenda" type="text">
+			<column name="Agenda" />
+		</property>
+
+
+		<property name="description" type="text">
+			<column name="Description" />
+		</property>
+
+
+		<many-to-one name="room" lazy="false"
+			class="com.raybiztech.meetingrequest.business.Room">
+		</many-to-one>
+
+		<property name="fromDate" type="DateType">
+			<column name="StartDate" />
+		</property>
+
+		<property name="toDate" type="DateType">
+			<column name="EndDate" />
+		</property>
+
+		<property name="startTime" type="SecondType">
+			<column name="startTime" />
+		</property>
+
+		<property name="endTime" type="SecondType">
+			<column name="endTime" />
+		</property>
+
+		<property name="projectName" type="java.lang.String">
+			<column name="ProjectName" />
+		</property>
+
+		<property name="authorName" type="java.lang.String">
+			<column name="AuthorName" />
+		</property>
+		<property name="reservedBy" type="java.lang.Long">
+			<column name="RESERVEDBY" />
+		</property>
+		<property name="meetingStatus" type="java.lang.String">
+			<column name="STATUS" />
+		</property>
+
+
+		<many-to-one name="eventType" lazy="false"
+			class="com.raybiztech.meetingrequest.business.EventType">
+		</many-to-one>
+
+		<!-- <property name="eventType" type="java.lang.String"> <column name="EventType" 
+			/> </property> -->
+
+		<property name="conferenceType" type="java.lang.String">
+			<column name="ConferenceType" />
+		</property>
+
+		<many-to-one name="location" lazy="false"
+			class="com.raybiztech.meetingrequest.business.Location">
+		</many-to-one>
+
+		<property name="eventId" type="java.lang.Long">
+			<column name="EventId" />
+		</property>
+
+
+		<property name="eventLocation" type="java.lang.String">
+			<column name="EventLocation" />
+		</property>
+	
+		<property name="trainerName" type="java.lang.Long">
+			<column name="TrainerId" />
+		</property>
+
+
+
+	</class>
+</hibernate-mapping>
+		

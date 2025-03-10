@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Nov, 2014 11:46:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.rolefeature.business.URIAndFeatures"
+		table="URIAndFeatures">
+		<id name="id" type="java.lang.Long">
+			<generator class="native" />
+		</id>
+
+		<property name="featureUrl" type="java.lang.String">
+			<column name="Feature_Url" />
+		</property>
+
+		<property name="urlMethod" type="java.lang.String">
+			<column name="Url_Method" />
+		</property>
+		
+		<property name="accessType" type="java.lang.String">
+			<column name="Access_Type" />
+		</property>
+
+		<many-to-one cascade="all"
+			class="com.raybiztech.rolefeature.business.Feature" fetch="join"
+			name="feature">
+			<column name="Feature_Id" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

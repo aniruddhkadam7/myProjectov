@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class
+		name="com.raybiztech.projectnewsfeed.business.ProjectFeedPostComments"
+		table="ProjectFeedPostComments">
+		<id name="id" type="java.lang.Long" column="Id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="employeeComment" column="Emploee_Comments"
+			class="com.raybiztech.appraisals.business.Employee"></many-to-one>
+		<property name="comments" type="string" column="comments" />
+		<property name="commentDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType" column="commentDate" />
+		<many-to-one name="feedPost" column="Feedpost_Id"
+			class="com.raybiztech.projectnewsfeed.business.ProjectFeedPost"></many-to-one>
+	</class>
+</hibernate-mapping>
+ 	

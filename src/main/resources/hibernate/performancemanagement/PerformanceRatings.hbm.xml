@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Feb, 2015 3:01:35 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class
+		name="com.raybiztech.appraisals.observation.business.PerformanceRatings"
+		table="PerformanceRatings">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="rating" type="java.lang.Integer">
+			<column name="Rating" />
+		</property>
+
+		<property name="label" type="java.lang.String">
+			<column name="Label" />
+		</property>
+
+	</class>
+</hibernate-mapping>

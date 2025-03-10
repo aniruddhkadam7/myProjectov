@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+            name="DateType" />
+    <class name="com.raybiztech.projectmanagement.business.Audit"
+           table="AUDIT">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        
+        <property name="tableName" type="java.lang.String">
+            <column name="TableName"/>
+        </property>
+        
+        <property name="columnName" type="java.lang.String">
+            <column name="ColumnName"/>
+        </property>
+        
+        <property name="oldValue" type="text">
+            <column name="OldValue"/>
+        </property>
+        
+        <property name="newValue" type="text">
+            <column name="NewValue"/>
+        </property>
+        <property name="additionalInfo" type="java.lang.String">
+            <column name="AdditionalInfo"/>
+        </property>
+        
+        <property name="modifiedDate"
+                   type="com.raybiztech.date.hibernate.type.SecondUserType" column="ModifiedDate" />
+
+        <property name="modifiedBy" type="java.lang.Long">
+            <column name="Modified_By" />
+        </property>
+
+        <property name="persistType" type="java.lang.String">
+            <column name="Persist_Type" />
+        </property>
+        <property name="referenceId" type="java.lang.Long">
+            <column name="Reference_ID" />
+        </property>
+    </class>
+
+</hibernate-mapping>

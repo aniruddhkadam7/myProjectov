@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.appraisalmanagement.business.DesignationKRAMapping" table="DesignationKRAMapping" lazy="false">
+        <id name="id" type="java.lang.Long">
+            <column name="DESIGNATIONKRA_ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="designation" class="com.raybiztech.appraisalmanagement.business.Designation" fetch="join">
+            <column name="designation_id" />
+        </many-to-one>	
+        
+            <many-to-one name="cycle" class="com.raybiztech.appraisalmanagement.business.AppraisalCycle" fetch="join">
+            <column name="cycle_id" />
+        </many-to-one>	
+        
+        <set name="kraLookups" cascade="all"  table="KRALookup_DesignationMaping" >
+            <key column="DESIGNATIONKRA_ID"  />
+            <many-to-many class="com.raybiztech.appraisalmanagement.business.KRA"  column="KRA_ID"  />
+        </set>
+    </class>
+</hibernate-mapping>

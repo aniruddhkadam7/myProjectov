@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.projecttailoring.business.ProcessHeadData"
+		table="ProcessHeadData">
+		<id name="id" type="java.lang.Long">
+			<column name="ProcessHeadData_ID"></column>
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="processHead" column="ProcessHead_ID"
+			class="com.raybiztech.projecttailoring.business.ProcessHead"></many-to-one>
+		<set name="processSubHeadData" cascade="all">
+			<key column="ProcessHeadData_ID"></key>
+			<one-to-many
+				class="com.raybiztech.projecttailoring.business.ProcessSubHeadData" />
+		</set>
+
+		<property name="processSubHeadCount" type="java.lang.String">
+			<column name="Process_SubHead_Count" />
+		</property>
+
+		<property name="processCount" type="java.lang.String">
+			<column name="Process_Count" />
+		</property>
+	</class>
+</hibernate-mapping>

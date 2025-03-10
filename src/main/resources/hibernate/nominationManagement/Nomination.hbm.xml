@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.achievementNomination.business.Nomination"
+		table="Nominations">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			name="employee" lazy="false">
+			<column name="Employee_ID" />
+		</many-to-one>
+		<many-to-one class="com.raybiztech.achievement.business.AchievementType"
+			name="achievementType" lazy="false">
+			<column name="Achievement_ID" />
+		</many-to-one>
+		<many-to-one
+			class="com.raybiztech.achievementNomination.business.NominationCycle"
+			lazy="false" name="nominationCycleId">
+			<column name="Nomination_Cycle" />
+		</many-to-one>
+		<set name="nominationQuestionsData" cascade="all">
+			<key column="Nomination_ID" />
+			<one-to-many
+				class="com.raybiztech.achievementNomination.business.NominationQuestionsData" />
+		</set>
+
+
+		<property name="rating" type="java.lang.Long">
+			<column name="Rating" />
+		</property>
+
+		<property name="finalComments" type="text">
+			<column name="FinalComments" />
+		</property>
+
+		<property name="nominationStatus" type="java.lang.String">
+			<column name="NominationStatus" />
+		</property>
+
+
+
+
+
+
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+	</class>
+</hibernate-mapping>

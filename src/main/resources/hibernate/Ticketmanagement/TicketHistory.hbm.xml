@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Sep, 2015 4:45:45 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+	<class name="com.raybiztech.ticketmanagement.business.TicketHistory"
+		table="TicketHistory">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+
+
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="select">
+			<column name="EmployeeId" />
+		</many-to-one>
+
+
+		<many-to-one name="ticket"
+			class="com.raybiztech.ticketmanagement.business.Ticket" fetch="select">
+			<column name="TicketNumber" />
+		</many-to-one>
+
+
+
+
+
+	</class>
+</hibernate-mapping>

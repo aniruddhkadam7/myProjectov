@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.checklist.business.ChecklistSection"
+		table="checklist_section">
+		<id name="checklistsectionId" type="java.lang.Long">
+			<column name="checklist_section_id" />
+			<generator class="native" />
+		</id>
+		<property name="sectionName" type="java.lang.String">
+			<column name="Section_Name" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+		 <property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property> 
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="Updated_By" />
+		</property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property> 
+		<many-to-one name="department" class="com.raybiztech.appraisals.business.EmpDepartment">
+            <column name="department_id" />
+        </many-to-one>
+        <set name="checkList" cascade="all" lazy="false">
+			<key>
+				<column name="SECTION_ID"></column>
+			</key>
+			<one-to-many class="com.raybiztech.projectmanagement.business.ProjectCheckList"></one-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

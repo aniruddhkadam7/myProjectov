@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Sep, 2015 4:45:45 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+
+	<!-- <typedef class="com.raybiztech.date.hibernate.type.DateUserType" name="DateType" 
+		/> -->
+	<class
+		name="com.raybiztech.projectmanagement.invoice.business.InvoiceReminderLog"
+		table="INVOICE_REMINDERlOG">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		<property name="to" type="java.lang.String">
+			<column name="ToMail" />
+		</property>
+		<property name="from" type="java.lang.String">
+			<column name="FromMail" />
+		</property>
+
+		<property name="subject" type="java.lang.String">
+			<column name="Subject" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="CreatedBy" />
+		</property>
+
+		<property name="invoiceId" type="java.lang.String">
+			<column name="Invoices" />
+		</property>
+
+		<property name="details" type="java.lang.String">
+			<column name="Details" />
+		</property>
+
+		<property name="description" type="java.lang.String">
+			<column name="Description" />
+		</property>
+
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType" column="CreatedDate" />
+
+		<property name="cc" type="java.lang.String">
+			<column name="Cc" />
+		</property>
+		<property name="bcc" type="java.lang.String">
+			<column name="Bcc" />
+		</property>
+	</class>
+</hibernate-mapping>

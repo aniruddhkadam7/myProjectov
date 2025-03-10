@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.projects"
+		table="projects">
+		<id name="id" type="java.lang.Long">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		<property name="name" type="java.lang.String">
+			<column name="name"></column>
+		</property>
+		<property name="description" type="text">
+			<column name="description"></column>
+		</property>
+		<property name="is_public" type="java.lang.Integer">
+			<column name="is_public"></column>
+		</property>
+		<property name="parent_id" type="java.lang.Long">
+			<column name="parent_id"></column>
+		</property>
+		<property name="created_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_on"></column>
+		</property>
+		<property name="updated_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_on"></column>
+		</property>
+		<property name="identifier" type="java.lang.String">
+			<column name="identifier"></column>
+		</property>
+		<property name="status" type="java.lang.Long">
+			<column name="status"></column>
+		</property>
+		<property name="lft" type="java.lang.Long">
+			<column name="lft"></column>
+		</property>
+		<property name="rgt" type="java.lang.Long">
+			<column name="rgt"></column>
+		</property>
+
+		<many-to-one name="project_type_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.project_types">
+			<column name="project_type_id"></column>
+		</many-to-one>
+
+		<!-- <many-to-one name="responsible_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.users">
+			<column name="responsible_id"></column>
+		</many-to-one>
+		
+		<property name="work_packages_responsible_id" type ="java.lang.Long">
+		<column name="work_packages_responsible_id"></column>
+		</property> -->
+
+
+	</class>
+
+</hibernate-mapping>

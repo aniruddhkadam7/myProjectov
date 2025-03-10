@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="com.raybiztech.projectmanagement.invoice.business.CountryAddress"
+		table="Company_Address" lazy="false">
+		<id name="id"  type="java.lang.Long">
+			<column name="AddressId" unique="true"></column>
+			<generator class="native"></generator>
+		</id>
+		<property name="country" type="java.lang.String">
+			<column name="Country"></column>
+		</property>
+		<property name="companyName" type="java.lang.String">
+			<column name="CompanyName"></column>
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="Address"></column>
+		</property>
+		<many-to-one name="countryLookUp"
+			class="com.raybiztech.projectmanagement.invoice.lookup.CountryLookUp">
+			<column name="CountryId" />
+		</many-to-one>
+		
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.raybiztech.appraisals.business.VisaLookUp" table="VisaLookUp">
+        <id name="id" type="java.lang.Long">
+      <column name="ID"/>
+      <generator class="native"/>
+    </id>
+    <property name="visaType" type="java.lang.String">
+      <column name="VisaType"/>
+    </property>
+
+    <many-to-one name="country"
+              class="com.raybiztech.projectmanagement.invoice.lookup.CountryLookUp" 
+              lazy="false">
+            <column name="Country" />
+        </many-to-one>
+    </class>
+
+</hibernate-mapping>

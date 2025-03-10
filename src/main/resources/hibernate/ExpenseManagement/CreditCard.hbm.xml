@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.expenseManagement.business.CreditCard"
+		table="CreditCard">
+
+		<id name="cardId" type="java.lang.Long">
+			<column name="Card_Id" />
+			<generator class="native" />
+		</id>
+
+		<property name="cardName" type="java.lang.String">
+			<column name="Card_Name" />
+		</property>
+		
+		<property name="cardNumber" type="text">
+			<column name="Card_Number" />
+		</property>
+		
+		<property name="saltKey" type="text">
+			<column name="SaltKey" />
+		</property>
+
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="Updated_By" />
+		</property>
+
+		<property name="createdDate"
+			type="DateType">
+			<column length="19" name="Created_Date" />
+		</property>
+
+		<property name="updatedDate"
+			type="DateType">
+			<column length="19" name="Updated_Date" />
+		</property>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,44 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.raybiztech.appraisals.business.TimeSlot"
+		table="Time_Slot">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		<property name="name" type="java.lang.String">
+			<column length="30" name="Name" not-null="true"
+				unique="true" />
+		</property>
+
+		<property name="startTime" type="java.lang.String">
+			<column name="Start_Time" />
+		</property>
+		<property name="endTime" type="java.lang.String">
+			<column name="End_Time" not-null="true"
+			 />
+		</property>
+
+		<property name="graceTime" type="java.lang.String">
+			<column  name="GraceTime" />
+		</property>
+		
+		 <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+       
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>
+		
+
+	</class>
+</hibernate-mapping>

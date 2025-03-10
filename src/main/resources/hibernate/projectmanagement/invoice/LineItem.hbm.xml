@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Sep, 2015 4:45:45 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.projectmanagement.invoice.business.LineItem"
+		table="INVOICELINEITEM">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<!-- <property name="item" type="java.lang.String"> <column name="ITEM" 
+			/> </property> <many-to-one name="employee" class="com.raybiztech.appraisals.business.Employee" 
+			fetch="join"> <column name="EMPLOYEE" /> </many-to-one> -->
+		<property name="item" type="serializable" length="50000">
+			<column name="item"></column>
+		</property>
+		<property name="description" type="text">
+			<column name="DESCRIPTION" />
+		</property>
+		<property name="duration">
+			<column name="DURATION" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.projectmanagement.invoice.business.Duration</param>
+			</type>
+		</property>
+		<!-- <property name="role" type="text"> <column name="ROLE" /> </property> -->
+		<property name="count" type="text">
+			<column name="COUNT" />
+		</property>
+		<property name="rate" type="text">
+			<column name="RATE" />
+		</property>
+		<property name="amount" type="text">
+			<column name="Amount" />
+		</property>
+		<property name="status" type="text">
+			<column name="Status" />
+		</property>
+		<property name="fromDate" type="DateType">
+			<column name="FromDate" />
+		</property>
+		<property name="endDate" type="DateType">
+			<column name="EndDate" />
+		</property>
+
+		<property name="monthWorkingDays" type="text">
+			<column name="MonthWorkingDays" />
+		</property>
+		<property name="holidays" type="text">
+			<column name="Holidays" />
+		</property>
+		<property name="leaves" type="text">
+			<column name="Leaves" />
+		</property>
+		<property name="comments" type="text">
+			<column name="Comments" />
+		</property>
+		<property name="hours" type="text">
+			<column name="Hours" />
+		</property>
+		<property name="totalValue" type="text">
+			<column name="TotalValue" />
+		</property>
+		
+		<property name="billableDays" type="text">
+			<column name="BillableDays" />
+		</property>
+		<!-- added one more column as lineItemAmount in lineItem Table  -->
+		<property name="lineItemAmount" type="text">
+			<column name="LineItemAmount" />
+		</property>
+		
+		<property name="saltkey" type="text">
+			<column name="saltkey" />
+		</property>
+	</class>
+</hibernate-mapping>

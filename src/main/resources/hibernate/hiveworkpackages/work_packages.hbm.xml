@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.work_packages"
+		table="work_packages">
+
+		<id name="id" type="java.lang.Long">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="type_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.types">
+			<column name="type_id"></column>
+		</many-to-one>
+
+		<many-to-one name="project_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.projects">
+			<column name="project_id"></column>
+		</many-to-one>
+
+		<property name="subject" type="java.lang.String">
+			<column name="subject"></column>
+		</property>
+
+		<property name="description" type="text">
+			<column name="description"></column>
+		</property>
+
+		<property name="due_date" type="java.util.Date">
+			<column name="due_date"></column>
+		</property>
+
+		<many-to-one name="category_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.categories">
+			<column name="category_id"></column>
+		</many-to-one>
+
+		<many-to-one name="status_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.statuses">
+			<column name="status_id"></column>
+		</many-to-one>
+
+		<many-to-one name="assigned_to_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.users">
+			<column name="assigned_to_id"></column>
+		</many-to-one>
+
+		<many-to-one name="priority_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.Enumerations">
+			<column name="priority_id"></column>
+		</many-to-one>
+
+		<many-to-one name="fixed_version_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.versions">
+			<column name="fixed_version_id"></column>
+		</many-to-one>
+
+		<many-to-one name="author_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.users">
+			<column name="author_id"></column>
+		</many-to-one>
+
+		<property name="lock_version" type="java.lang.Long">
+			<column name="lock_version"></column>
+		</property>
+
+		<property name="done_ratio" type="java.lang.Long">
+			<column name="done_ratio"></column>
+		</property>
+
+		<property name="estimated_hours" type="java.lang.Float">
+			<column name="estimated_hours"></column>
+		</property>
+
+		<property name="created_at"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_at"></column>
+		</property>
+		<property name="updated_at"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_at"></column>
+		</property>
+
+		<property name="start_date" type="java.util.Date">
+			<column name="start_date"></column>
+		</property>
+
+		<property name="parent_id" type="java.lang.Long">
+			<column name="parent_id"></column>
+		</property>
+
+		<many-to-one name="responsible_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.users">
+			<column name="responsible_id"></column>
+		</many-to-one>
+
+		<property name="root_id" type="java.lang.Long">
+			<column name="root_id"></column>
+		</property>
+
+		<property name="lft" type="java.lang.Long">
+			<column name="lft"></column>
+		</property>
+
+		<property name="rgt" type="java.lang.Long">
+			<column name="rgt"></column>
+		</property>
+
+		<property name="position" type="java.lang.Long">
+			<column name="position"></column>
+		</property>
+
+		<property name="story_points" type="java.lang.Long">
+			<column name="story_points"></column>
+		</property>
+
+		<property name="remaining_hours" type="java.lang.Float">
+			<column name="remaining_hours"></column>
+		</property>
+
+		<property name="cost_object_id" type="java.lang.Long">
+			<column name="cost_object_id"></column>
+		</property>
+
+
+	</class>
+</hibernate-mapping>

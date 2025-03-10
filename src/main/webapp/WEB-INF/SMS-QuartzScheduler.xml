@@ -1,0 +1,182 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+
+	<!-- COMPONENTS -->
+	<bean name="sendBirthdayWishes" class="com.raybiztech.sms.util.SendBirthdayWishes" />
+
+	<!-- <bean name="sendMeetingReminder" class="com.raybiztech.sms.util.SendMeetingReminder" 
+		/> -->
+
+	<bean name="sendInterviewReminder" class="com.raybiztech.sms.util.SendInterviewReminder" />
+
+	<bean name="sendRelivingDate" class="com.raybiztech.separation.quartz.SendRelivingDate"></bean>
+
+	<bean name="deleteFiles" class="com.raybiztech.serverLog.quartz.DeleteFiles"></bean>
+
+	<bean id="complianceMail" class="com.raybiztech.compliance.quartz.ComplianceMail" />
+	
+	<bean name="employeeExperience" class="com.raybiztech.employee.quartz.EmployeeExperience"></bean>
+	
+	
+	<!-- SERVICES -->
+	<bean name="complianceMailService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass" value="com.raybiztech.compliance.quartz.ComplianceMailService" />
+
+		<property name="jobDataAsMap">
+		  <map>
+			<entry key="complianceMail" value-ref="complianceMail" />
+		  </map>
+		</property>
+
+	</bean>
+	<bean name="birthdayGreetingsService" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.raybiztech.sms.service.BirthdayGreetingsService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sendBirthdayWishes" value-ref="sendBirthdayWishes" />
+
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- <bean name="meetingReminderService" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.raybiztech.sms.service.MeetingReminderService" 
+		/> <property name="jobDataAsMap"> <map> <entry key="sendMeetingReminder" 
+		value-ref="sendMeetingReminder" /> </map> </property> </bean> -->
+
+	<bean name="interviewReminderService" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.raybiztech.sms.service.InterviewReminderService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sendInterviewReminder" value-ref="sendInterviewReminder" />
+
+			</map>
+		</property>
+	</bean>
+
+	<bean name="sendRelivingDateService" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.raybiztech.separation.quartz.SendRelivingDateService">
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sendRelivingDate" value-ref="sendRelivingDate"></entry>
+			</map>
+		</property>
+
+	</bean>
+	
+	<bean name="employeeExperienceService" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.raybiztech.employee.quartz.EmployeeExperienceService">
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="employeeExperience" value-ref="employeeExperience"></entry>
+			</map>
+		</property>
+
+	</bean>
+
+	<bean name="deleteFilesService" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.raybiztech.serverLog.quartz.DeleteFilesService">
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="deleteFiles" value-ref="deleteFiles"></entry>
+			</map>
+		</property>
+
+	</bean>
+
+
+	<!-- CRONS -->
+	<bean id="cronTriggerComplianceMails"
+                class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="complianceMailService" />
+		<property name="cronExpression" value="0 03 18 * * ? " />
+
+	</bean>
+	
+	<bean id="crontriggerForBirthdayGreetings" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="birthdayGreetingsService" />
+		<property name="cronExpression" value="0 0 8 * * ? " />
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? " /> -->
+
+	</bean>
+
+	<!-- <bean id="crontriggerForMeetingReminder" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="meetingReminderService" /> <property name="cronExpression" 
+		value="0 0/15 * * * ? " /> </bean> -->
+
+	<bean id="crontriggerForInterviewReminder" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="interviewReminderService" />
+		<property name="cronExpression" value="0 0/15 * * * ? " />
+	</bean>
+
+	<bean id="crontriggerForRelivingDate" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="sendRelivingDateService"></property>
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? "></property> -->
+		<property name="cronExpression" value="0 0 9 * * ? " />
+
+	</bean>
+	
+	<bean id="crontriggerForEmployeeExperience" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="employeeExperienceService"></property>
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? "></property> -->
+		<property name="cronExpression" value="0 0 2 * * ? "/>
+
+	</bean>
+
+	<bean id="crontriggerForDeletingServerLog" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="deleteFilesService"></property>
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? "></property> -->
+	 <property name="cronExpression" value="0 0 7 15 * ? " /> 
+
+	</bean>
+
+	<!-- CONFIG -->
+	<bean id="smsscheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="birthdayGreetingsService" />
+				<!-- <ref bean="meetingReminderService" /> -->
+				<ref bean="interviewReminderService" />
+				<ref bean="sendRelivingDateService" />
+				<ref bean="deleteFilesService" />
+				<ref bean="complianceMailService"/>
+				<ref bean="employeeExperienceService"/>
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="crontriggerForBirthdayGreetings" />
+				<!-- <ref bean="crontriggerForMeetingReminder" /> -->
+				<ref bean="crontriggerForInterviewReminder" />
+				<ref bean="crontriggerForRelivingDate" />
+				<ref bean="crontriggerForDeletingServerLog" />
+				<ref bean="cronTriggerComplianceMails"/>
+				<ref bean="crontriggerForEmployeeExperience"/>
+			</list>
+		</property>
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+	</bean>
+
+
+</beans>

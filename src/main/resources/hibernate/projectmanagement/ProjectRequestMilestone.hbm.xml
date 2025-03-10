@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+
+	<class name="com.raybiztech.projectmanagement.business.ProjectRequestMilestone"
+		table="ProjectRequestMilestone">
+
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		
+
+		<property name="milestoneTitle" type="java.lang.String">
+			<column name="Milestone_Title" />
+		</property>
+		
+		
+		<property name="effort" type="java.lang.String">
+			<column name="Effort" />
+		</property>
+		
+		<component class="com.raybiztech.date.DateRange" name="period">
+			<property name="minimum" type="DateType" access="field">
+				<column name="FromDate" />
+			</property>
+			<property name="maximum" type="DateType" access="field">
+				<column name="ToDate" />
+			</property>
+		</component>
+		
+		
+		
+		<property name="billable" type="java.lang.Boolean">
+			<column name="Billable" />
+		</property>
+		
+		<property name="milestonePercentage" type="java.lang.String">
+			<column name="milestonePercentage" />
+		</property>
+		
+		
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" />
+		</property>
+
+	</class>
+
+
+</hibernate-mapping>

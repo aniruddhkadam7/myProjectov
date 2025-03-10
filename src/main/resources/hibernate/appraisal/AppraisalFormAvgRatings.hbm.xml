@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.raybiztech.appraisalmanagement.business.AppraisalFormAvgRatings" table="AppraisalFormAvgRatings" lazy="false">       
+        <id name="id" type="java.lang.Long">
+            <column name="ID"/>
+            <generator class="native"/>
+            
+        </id>
+        <property name="level" type="java.lang.Integer">
+            <column name="Level"/>
+        </property>
+        <property name="employeeId" type="java.lang.Long">
+            <column name="EmployeeId"/>
+        </property>
+        <property name="departmentName" type="java.lang.String">
+            <column name="Emp_DepartmentName"/>
+        </property>
+        <property name="designationName" type="java.lang.String">
+            <column name="Emp_DesignationName"/>
+        </property>
+        <property name="defaultAvgRating" type="java.lang.Double">
+            <column name="DefaultAvgRating"/>
+        </property>
+        <property name="adjustedAvgRating" type="java.lang.Double">
+            <column name="AdjustedAvgRating"/>
+        </property>
+        <property name="finalFeedback" type="text">
+            <column name="FinalFeedback"/>
+        </property>
+        <property name="iAgree" type="java.lang.Boolean">
+            <column name="IAgree"/>
+        </property>
+        <property name="employeeName" type="java.lang.String">
+            <column name="EmployeeName"/>
+        </property>
+        <property name="discussionSummary" type="text">
+            <column name="Discussion_Summary"/>
+        </property>
+    </class>
+
+</hibernate-mapping>

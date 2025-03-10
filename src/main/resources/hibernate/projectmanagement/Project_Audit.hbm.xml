@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+           name="DateType" />
+    <class name="com.raybiztech.projectmanagement.business.ProjectAudit"
+               table="PROJECT_AUDIT">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="projectName" type="java.lang.String">
+            <column name="PROJECTNAME" />
+        </property>
+        <component class="com.raybiztech.date.DateRange" name="period">
+            <property name="minimum" type="DateType" access="field">
+                <column name="FromDate" />
+            </property>
+            <property name="maximum" type="DateType" access="field">
+                <column name="ToDate" />
+            </property>
+        </component>
+
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="status">
+            <column name="STATUS" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.raybiztech.projectmanagement.business.ProjectStatus</param>
+            </type>
+        </property>
+        <many-to-one name="projectManager"  lazy="false"
+                             class="com.raybiztech.appraisals.business.Employee">
+        </many-to-one>
+
+
+
+
+        <property name="health" type="java.lang.String">
+            <column name="HEALTH" />
+        </property>
+
+        <many-to-one name="client" fetch="join"
+                             class="com.raybiztech.projectmanagement.business.Client">
+            <column name="Client" not-null="true"/>
+        </many-to-one>
+        <property name="type">
+            <column name="Type" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.raybiztech.projectmanagement.business.ProjectType</param>
+            </type>
+        </property>
+
+
+        <property name="modifiedDate"
+                          type="com.raybiztech.date.hibernate.type.SecondUserType" column="postDate" />
+
+        <property name="modifiedBy" type="java.lang.String">
+            <column name="Modified_By" />
+        </property>
+
+        <property name="persistType" type="java.lang.String">
+            <column name="Persist_Type" />
+        </property>
+        <property name="projectId" type="java.lang.Long">
+            <column name="Project_Id" />
+        </property>
+<!--        <set name="allocationDetailsAudit" inverse="false" cascade="all" lazy="false">
+            <key>
+                <column name="ProjectAudit_ID" />
+            </key>
+            <one-to-many
+                class="com.raybiztech.projectmanagement.business.AllocationDetailsAudit" />
+        </set>-->
+
+    </class>
+
+</hibernate-mapping>

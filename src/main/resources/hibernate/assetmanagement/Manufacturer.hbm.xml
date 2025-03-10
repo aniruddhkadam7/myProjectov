@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.raybiztech.assetmanagement.business.Manufacturer" table="MANUFACTURER">
+        <id name="manufacturerId" type="java.lang.Long">
+            <column name="Manufacturer_ID"/>
+            <generator class="native"/>
+            
+        </id>
+        <property name="manufacturerName" type="java.lang.String">
+            <column name="Manufacturer_Name"/>
+            
+        </property>
+         <many-to-one class="com.raybiztech.assetmanagement.business.Product" lazy="false" name="product">
+                    <column name="productType_ID"/>
+      </many-to-one>
+<!--      <many-to-one class="com.raybiztech.rolefeature.business.Role" lazy="false" name="roleId">
+                    <column name="Role_ID"/>
+      </many-to-one>-->
+<!--      <property name="departmentName" type="java.lang.String">
+        <column name="DepartmentName"/>
+    </property>-->
+    <many-to-one name="empDepartment"
+              class="com.raybiztech.appraisals.business.EmpDepartment" 
+              lazy="false">
+            <column name="DEPT_ID" />
+        </many-to-one>
+         <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+       
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>
+        
+    </class>
+            
+  
+
+</hibernate-mapping>

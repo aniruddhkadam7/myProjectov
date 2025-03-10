@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.raybiztech.projectmanagement.invoice.lookup.CurrencyToINR"
+		table="Currency_To_INR">
+
+		<id name="id">
+			<column name="Id" unique="true" />
+			<generator class="native" />
+		</id>
+		<property name="currenyType" type="java.lang.String"></property>
+		<property name="inrAmount" type="java.lang.Long"></property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType"></property>
+		<property name="createdBy" type="java.lang.Long"></property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType"></property>
+		<property name="updatedBy" type="java.lang.Long"></property>
+
+	</class>
+
+
+</hibernate-mapping>

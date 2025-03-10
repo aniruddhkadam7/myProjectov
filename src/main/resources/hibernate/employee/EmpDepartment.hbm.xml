@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.raybiztech.appraisals.business.EmpDepartment"
+		table="EMPDEPARTMENT">
+		<id name="departmentId" type="java.lang.Long">
+			<column name="DEPT_ID" />
+			<generator class="native" />
+		</id>
+		<property name="departmentName" type="java.lang.String">
+			<column name="DEPT_NAME" />
+		</property>
+		<property name="supportManagementFlag" type="java.lang.Boolean">
+			<column name="SUPPORTMANAGEMENTFLAG" />
+		</property>
+         <property name="allocationSupportFlag" type="java.lang.Boolean">
+			<column name="ALLOCATIONSUPPORTFLAG" />
+		</property>
+
+	</class>
+
+</hibernate-mapping>

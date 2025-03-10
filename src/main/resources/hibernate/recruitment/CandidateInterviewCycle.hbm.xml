@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+             name="DateType" />
+    <class name="com.raybiztech.recruitment.business.CandidateInterviewCycle" table="CANDIDATE_INTERVIEW_CYCLE">
+        <id name="interviewCycleId" type="java.lang.Long">
+            <column name="CYCLEID" />
+            <generator class="native" />
+        </id>
+        <!--         <property name="candidateId" type="java.lang.String">
+            <column name="CANDIDATEID" />
+        </property>
+        -->
+        <many-to-one name="candidate" class="com.raybiztech.recruitment.business.Candidate" fetch="join" cascade="all">
+            <column name="CANDIDATEID" />
+        </many-to-one>
+        <property name="interviewDate" type="DateType">
+            <column name="INTERVIEWDATE" length="19" />
+        </property>
+        <property name="interviewTime" type="java.lang.String">
+            <column name="INTERVIEWTIME" />
+        </property>
+        <property name="interviewComments" type="java.lang.String">
+            <column name="INTERVIEWCOMMENTS" />
+        </property>
+        <property name="interviewRound" type="java.lang.Long">
+            <column name="INTERVIEWROUND" />
+        </property>
+        <property name="interviewStatus" type="java.lang.String">
+            <column name="INTERVIEWSTATUS" />
+        </property>
+        <property name="interviewers" type="java.lang.String">
+            <column name="INTERVIEWERS" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="status" />
+        </property>
+        
+        <property name="rating" type="java.lang.String">
+            <column name="rating" />
+        </property>
+        
+          <property name="description" type="java.lang.String">
+            <column name="description" />
+        </property>
+         <property name="interviewResultStatus" type="java.lang.String">
+            <column name="interviewResultStatus" />
+        </property>
+        
+     
+        <!-- <set name="employeeList" table="CANDIDATE_ROUND" inverse="false" lazy="true" fetch="select">
+                    <key>
+                        <column name="CYCLEID" not-null="true"/>
+                    </key>
+                    <many-to-many entity-name="com.raybiztech.appraisals.business.Employee">
+                        <column name="EmployeeId" not-null="true" />
+                    </many-to-many>
+                </set>
+        -->
+
+        <set name="employeeList" table="CANDIDATE_ROUND"  cascade="all" inverse="false" lazy="false">
+            <key column="CYCLEID"></key>
+            <many-to-many column="EmployeeId" class="com.raybiztech.appraisals.business.Employee"></many-to-many>
+        </set>
+        
+        <property name="updatedBy" type="java.lang.String">
+                	<column name="updatedBy" />
+        </property>
+        <property name="recruiter" type="java.lang.String">
+        <column name ="Recruiter"/>
+        </property>
+           <property name="commentedDate" type="DateType">
+            <column name="Commented_Date" length="19" />
+        </property>
+        <property name="commentedTime" type="java.lang.String">
+            <column name="Commented_Time"/>
+        </property>
+
+    </class>
+</hibernate-mapping>

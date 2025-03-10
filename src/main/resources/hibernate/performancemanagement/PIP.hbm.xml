@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.raybiztech.appraisals.PIPManagement.business.PIP" table="PIP">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			name="employee" lazy="false">
+			<column name="Employee_ID" />
+		</many-to-one>
+		<property name="startDate" type="DateType">
+			<column name="StartDate" />
+		</property>
+		<property name="endDate" type="DateType">
+			<column name="EndDate" />
+		</property>
+		<property name="extendDate" type="DateType">
+			<column name="ExtendDate" />
+		</property>
+		<property name="rating" type="java.lang.String">
+            <column name="Rating"/>
+        </property>
+        <property name="remarks" type="text">
+            <column name="Remarks"/>
+        </property>
+         <property name="improvement" type="text">
+            <column name="Improvement"/>
+        </property>
+         <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+        <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="CreatedDate"/>
+        </property>
+         <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+         <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="UpdatedDate"/>
+        </property>
+        <property name="PIPFlag" type="java.lang.Boolean">
+			<column name="PIPFlag" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

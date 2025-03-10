@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.itdeclaration.business.Investment"
+		table="it_investment" >
+		<id name="investmentId" type="java.lang.Long" >
+			<column name="investment_id" />
+			<generator class="native" />
+		</id>
+		<property name="investmentName" type="java.lang.String">
+			<column name="investment_name" />
+		</property>
+		<property name="maxLimit" type="java.lang.Long">
+			<column name="maximum_limit" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="description" />
+		</property>
+		<property name="requiredDocs" type="java.lang.String">
+			<column name="required_docs" />
+			</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="created_By" />
+		</property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_date" />
+		</property>
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="updated_by" />
+		</property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_Date" />
+		</property>
+		<many-to-one name="section" class="com.raybiztech.itdeclaration.business.Section" fetch="join">
+            <column name="section_id" />
+        </many-to-one>
+	</class>
+</hibernate-mapping>

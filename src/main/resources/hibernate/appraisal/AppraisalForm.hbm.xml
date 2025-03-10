@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.appraisalmanagement.business.AppraisalForm"
+           table="AppraisalForm" lazy="false">
+        <id name="id" type="java.lang.Long">
+            <column name="APPRAISALFORM_ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="appraisalCycle" cascade="all" column="CYCLE_ID"
+                     class="com.raybiztech.appraisalmanagement.business.AppraisalCycle">
+        </many-to-one>
+        <many-to-one name="employee"  class="com.raybiztech.appraisals.business.Employee" cascade="all" fetch="join">
+            <column name="EmployeeId" />
+        </many-to-one>
+        <set name="kra" cascade="all">
+            <key column="APPRAISALFORM_ID" />
+            <one-to-many
+                class="com.raybiztech.appraisalmanagement.business.AppraisalKRAData" />
+        </set>
+        <property name="formStatus" column="FormStatus" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.raybiztech.appraisalmanagement.business.FormStatus</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property name="managesList" type="java.lang.String">
+            <column name="ListOf_Manager"/>
+        </property>
+        <set name="formAvgRatings" cascade="all">
+            <key column="APPRAISALFORM_ID"/>
+            <one-to-many class="com.raybiztech.appraisalmanagement.business.AppraisalFormAvgRatings"/>
+        </set>
+      
+        <property name="finalRAting" type="java.lang.Long">
+            <column name="FinalRAting"/>
+        </property>
+        <property name="discussionOn" type="DateType">
+            <column name="Discussion_On"/>
+        </property>
+        
+         <property name="closedOn" type="DateType">
+            <column name="Closed_On"/>
+        </property>
+        <property name="closedSummary" type="text">
+            <column name="Closed_Summary"/>
+        </property>
+        <property name="closedStatus" type="java.lang.String">
+            <column name="Closed_Status"/>
+        </property>
+        <property name="closedBy" type="java.lang.Long">
+            <column name="Closed_By"/>
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+             
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>
+        <property name="requestDiscussion" type="java.lang.Boolean">
+        <column name="RequestDiscussion"></column>
+        </property>
+    </class>
+</hibernate-mapping>

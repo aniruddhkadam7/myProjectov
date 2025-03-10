@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<joined-subclass extends="com.raybiztech.recruitment.business.Person"
+		lazy="false" name="com.raybiztech.recruitment.business.Candidate"
+		table="CANDIDATE" dynamic-update="true">
+		<key>
+			<column name="PERSONID" />
+		</key>
+		<property name="experience" type="java.lang.String">
+			<column name="EXPERIENCE" />
+		</property>
+		<property name="resumePath" type="java.lang.String">
+			<column name="RESUME_PATH" />
+		</property>
+		<property name="otherDocumentPath" type="java.lang.String">
+			<column name="OTHERDOC_PATH" />
+		</property>
+
+		<property name="technology" type="java.lang.String">
+			<column name="TECHNOLOGY" />
+		</property>
+		<property name="recruiter" type="java.lang.String">
+			<column name="RECRUITER" />
+		</property>
+
+		<property name="candidateInterviewStatus">
+			<column name="CANDIDATE_INTERVIEW_STATUS" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.appraisals.business.Status</param>
+			</type>
+		</property>
+		<property name="candidateJoinDate" type="DateType">
+			<column name="CANDIDATE_JOININGDATE" />
+		</property>
+		<property name="skill" type="java.lang.String">
+			<column name="CANDIDATE_SKILL" />
+		</property>
+
+		<many-to-one cascade="all" 
+			class="com.raybiztech.recruitment.business.JobVacancy" fetch="join"
+			name="appliedFor">
+			<column name="APPLIEDFOR" />
+		</many-to-one>
+		<many-to-one cascade="all"
+			class="com.raybiztech.lookup.business.SourceLookUp" fetch="join"
+			name="sourcelookUp">
+			<column name="SOURCELOOKUP" />
+		</many-to-one>
+		<set cascade="all" fetch="select" inverse="true" lazy="true"
+			name="documentList" table="DOCUMENT">
+			<key>
+				<column name="PERSONID" />
+			</key>
+			<one-to-many class="com.raybiztech.recruitment.business.Document" />
+		</set>
+		<property name="appliedForLookUp" type="java.lang.String">
+			<column name="APPLIEDFORLOOKUP" />
+		</property>
+		<many-to-one cascade="all"
+			class="com.raybiztech.recruitment.business.Interview" fetch="join"
+			name="interview">
+			<column name="INTERVIEWID" />
+		</many-to-one>
+		<property name="status" type="java.lang.String">
+			<column name="STATUS" />
+		</property>
+		<property name="statusComments" type="text">
+			<column name="STATUSCOMMENTS" />
+		</property>
+		<property name="timelineStatus" type="java.lang.String">
+			<column name="TIMELINESTATUS" />
+		</property>
+		<property name="joineeComments" type="java.lang.String">
+			<column name="JOINEE_COMMENTS" />
+		</property>
+		<property name="initialComments" type="java.lang.String">
+			<column name="INITIAL_COMMENTS" />
+		</property>
+		<property name="holdSubStatus" type="java.lang.String">
+			<column name="HOLD_SUBSTATUS" />
+		</property>
+		<property name="statusChangeTime" type="java.lang.String">
+			<column name="Status_Chanenge_Time" />
+		</property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property>
+		<property name="jobTypeName" type="java.lang.String">
+		<column name="Job_Type"/>
+		</property>
+		<property name="addedDate" type="DateType">
+		<column name="Candidate_Added_Date"/>
+		</property>
+		<property name="pan" type="java.lang.String">
+			<column name="PAN_Number"/>
+		</property>
+		<property name="adhar" type="java.lang.String">
+			<column name="Adhar_Number"/>
+		</property>
+		<property name="linkedin" type="java.lang.String">
+			<column name="LinkedIn_ID"/>
+		</property>
+		<many-to-one class="com.raybiztech.projectmanagement.invoice.lookup.CountryLookUp"
+			fetch="join" name="country">
+			<column name="Country_Id" />
+		</many-to-one>
+		<property name="notifications" type="java.lang.String">
+			<column name="WhatsApp_Alerts"/>
+		</property>
+		<property name="countryCode" type="java.lang.Integer">
+			<column name="countryCode"/>
+		</property>
+
+	</joined-subclass>
+</hibernate-mapping>

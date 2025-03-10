@@ -1,0 +1,144 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- Pending Audit FollowUp Date Alert -->
+		
+	<bean name="pendingAuditFollowUpDateAlert"
+		class="com.raybiztech.SQAAudit.quartz.PendingAuditFollowUpDateAlert"></bean>	
+		
+	<bean name="timeSheetAleart"
+			class="com.raybiztech.TimeActivity.quartz.TimeSheetAleart"></bean>
+			
+	<bean name="monthlyTimeSheetNotificationToManager"
+			class="com.raybiztech.TimeActivity.quartz.MonthlyTimeSheetNotificationToManager"></bean>
+		
+	<!-- Pending Audit FollowUp Date Alert -->
+		
+	<bean name="pendingAuditFollowUpDateService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+
+			value="com.raybiztech.SQAAudit.service.PendingFollowUpDateService" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="pendingAuditFollowUpDateAlert" value-ref="pendingAuditFollowUpDateAlert" />
+
+			</map>
+		</property>
+
+	</bean>
+	
+	<bean name="timeSheetActivityMailAleartService" class="org.springframework.scheduling.quartz.JobDetailBean">
+	
+			<property name="jobClass" value="com.raybiztech.TimeActivity.service.TimeSheetActivityMailAleartService" />
+			<property name="jobDataAsMap">
+				<map>
+					<entry key="timeSheetAleart" value-ref="timeSheetAleart" />
+
+				</map>
+		</property>
+	</bean>
+	
+	<bean name="monthlytimeSheetActivityMailAleartService" class="org.springframework.scheduling.quartz.JobDetailBean">
+	
+			<property name="jobClass" value="com.raybiztech.TimeActivity.service.MonthlyTimeSheetNotificationToManagerService" />
+			<property name="jobDataAsMap">
+				<map>
+					<entry key="monthlyTimeSheetNotificationToManager" value-ref="monthlyTimeSheetNotificationToManager" />
+
+				</map>
+		</property>
+	</bean>
+	<bean name="DayReminderService" class="org.springframework.scheduling.quartz.JobDetailBean">
+	
+			<property name="jobClass" value="com.raybiztech.dayreminder.service.DayReminderService" />
+			<property name="jobDataAsMap">
+				<map>
+					<entry key="DayReminderUtil" value-ref="DayReminderUtil" />
+
+				</map>
+		</property>
+	</bean>
+	<bean name="TomorrowReminderService" class="org.springframework.scheduling.quartz.JobDetailBean">
+	
+			<property name="jobClass" value="com.raybiztech.tomorrowreminder.service.TomorrowReminderService" />
+			<property name="jobDataAsMap">
+				<map>
+					<entry key="TomorrowReminderUtil" value-ref="TomorrowReminderUtil" />
+
+				</map>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<!-- Follow up date -->	
+	
+	<bean id="followUPcronTrigger" 
+                class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="pendingAuditFollowUpDateService" />
+		<property name="cronExpression" value="0 0 10 * * ?" />
+
+	</bean>
+	
+	<bean id="TimeSheetAleartCronTrigger" 
+                class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="timeSheetActivityMailAleartService" />
+		<property name="cronExpression" value="0 20 11 ? * FRI" />
+
+	</bean>
+	
+	<bean id="MonthlyTimeSheetAleartCronTrigger" 
+                class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="monthlytimeSheetActivityMailAleartService" />
+		<property name="cronExpression" value="0 0 11 L * ?" />
+
+	</bean>
+	<bean id="DayReminderCronTrigger" 
+                class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="DayReminderService" />
+		<property name="cronExpression" value="0 0 17 ? * *" />
+
+	</bean>
+	<bean id="TomorrowReminderCronTrigger" 
+                class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="TomorrowReminderService" />
+		<property name="cronExpression" value="0 0 17 ? * *" />
+
+	</bean>
+	
+	
+	
+	<bean id="sqascheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+			<ref bean="pendingAuditFollowUpDateService"/>
+			<ref bean="timeSheetActivityMailAleartService"/>
+			<ref bean="monthlytimeSheetActivityMailAleartService"/>
+			<ref bean="DayReminderService"/>
+			<ref bean ="TomorrowReminderService"/>
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+			<ref bean="followUPcronTrigger"/>
+			<ref bean="TimeSheetAleartCronTrigger"/>
+			<ref bean="MonthlyTimeSheetAleartCronTrigger"/>
+			<ref bean="DayReminderCronTrigger"/>
+			<ref bean="TomorrowReminderCronTrigger"/>
+			</list>
+		</property>
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+	</bean>
+	
+</beans>

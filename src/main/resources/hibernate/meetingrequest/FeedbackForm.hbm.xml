@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.meetingrequest.business.FeedbackForm"
+		table="MeetingRequestFeedbackForm">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="event" class="com.raybiztech.meetingrequest.business.MeetingRequest">
+			<column name="EventId" />
+		</many-to-one>
+		<property name="feedbackFormPath" type="java.lang.String">
+            <column name="Path" />
+        </property>
+        <property name="feedBackFormName" type="java.lang.String">
+            <column name="FormName" />
+        </property>
+        <property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="createdDate"></column>
+		</property>
+        <many-to-one name="createdBy"
+			class="com.raybiztech.appraisals.business.Employee" lazy="false">
+			<column name="CreatedBy"></column>
+		</many-to-one>
+		</class>
+		</hibernate-mapping>

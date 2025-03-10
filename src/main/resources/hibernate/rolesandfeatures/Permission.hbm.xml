@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Nov, 2014 11:46:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.rolefeature.business.Permission" table="Permission">
+        <id name="id" type="java.lang.Long">
+            <column name="PERMISSION_ID" />
+            <generator class="native" />
+        </id>
+        <property name="view" type="java.lang.Boolean">
+            <column name="view_action" />
+        </property>
+        <property name="create" type="java.lang.Boolean">
+            <column name="create_action" />
+        </property>
+        <property name="update" type="java.lang.Boolean">
+            <column name="update_action" />
+        </property>
+        <property name="delete" type="java.lang.Boolean">
+            <column name="delete_action" />
+        </property>
+        <many-to-one cascade="all" class="com.raybiztech.rolefeature.business.Feature" fetch="join" name="feature">
+            <column name="Feature_Id"/>
+        </many-to-one>
+        <many-to-one cascade="all" class="com.raybiztech.rolefeature.business.Role" fetch="join" name="role">
+            <column name="Role_Id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

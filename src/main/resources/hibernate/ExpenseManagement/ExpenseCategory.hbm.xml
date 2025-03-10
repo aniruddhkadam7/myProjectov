@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.expenseManagement.business.ExpenseCategory"
+		table="ExpenseCategory">
+
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+
+		<property name="categoryName" type="java.lang.String">
+			<column name="Category" />
+		</property>
+
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="Updated_By" />
+		</property>
+
+		<property name="createdDate"
+			type="DateType">
+			<column length="19" name="Created_Date" />
+		</property>
+
+		<property name="updatedDate"
+			type="DateType">
+			<column length="19" name="Updated_Date" />
+		</property>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+                 name="DateType" />
+    <class name="com.raybiztech.appraisalmanagement.business.AppraisalCycle"
+               table="AppraisalCycle" lazy="false">
+        <id name="id" type="java.lang.Long">
+            <column name="CYCLE_ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" unique="true" not-null="true"/>
+        </property>
+        <property name="appraisalType" type="java.lang.String">
+            <column name="Appraisal_Type" />
+        </property>
+        <property name="appraisalDuration" type="java.lang.String">
+            <column name="Appraisal_Duration" />
+        </property>
+        <property name="description" type="text">
+            <column name="DESCRIPTION" />
+        </property>
+
+        <component class="com.raybiztech.date.DateRange" name="appraisalPeriod">
+            <property name="minimum" type="DateType" access="field">
+                <column name="FROM_DATE" />
+            </property>
+            <property name="maximum" type="DateType" access="field">
+                <column name="TO_DATE" />
+            </property>
+        </component>
+         <component class="com.raybiztech.date.DateRange" name="configurationPeriod">
+            <property name="minimum" type="DateType" access="field">
+                <column name="START_DATE" />
+            </property>
+            <property name="maximum" type="DateType" access="field">
+                <column name="END_DATE" />
+            </property>
+        </component>
+
+        <property name="active" type="boolean">
+            <column name="Active" />
+        </property>
+        <set name="appraisalForms" cascade="all">
+            <key column="CYCLE_ID"></key>
+            <one-to-many
+                class="com.raybiztech.appraisalmanagement.business.AppraisalForm" />
+        </set>
+        <property name="levelOfHierarchy" type="java.lang.Integer">
+            <column name="LevelOfHierarchy"  />
+        </property>
+        <property name="servicePeriod" type="java.lang.Integer">
+            <column name="Min_ServicePeriod"  />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+       
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>
+
+    </class>
+</hibernate-mapping>

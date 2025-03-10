@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.projectMetrics.business.EffortVariance"
+		table="Effort_Variance">
+		<id name="id" type="java.lang.Long">
+			<column name="Id"></column>
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="project"
+		class="com.raybiztech.projectmanagement.business.Project">
+		<column name="Project_Id"></column>
+		</many-to-one>
+		<property name="baselineEffort" type="java.lang.String">
+			<column name="Baseline_Effort"></column>
+		</property>
+		<property name="actualEffort" type="java.lang.String">
+			<column name="Actual_Effort"></column>
+		</property>
+		<property name="percentageOfCompletion" type="java.lang.String">
+			<column name="Percentage_Of_Completion"></column>
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="Status"></column>
+		</property>
+		<property name="effortVariance" type="java.lang.Double">
+			<column name="Effort_Variance"></column>
+		</property>
+		<property name="effortsConsumed" type="java.lang.Double">
+			<column name="Efforts_consumed"></column>
+		</property>
+		<property name="comments" type="java.lang.String">
+			<column name="Comments"></column>
+		</property>
+		<many-to-one name="createdBy"
+			class="com.raybiztech.appraisals.business.Employee" fetch="join">
+			<column name="Created_By" />
+		</many-to-one>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date"></column>
+		</property>
+		
+	</class>
+
+</hibernate-mapping>

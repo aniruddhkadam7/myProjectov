@@ -1,0 +1,62 @@
+	public void processAndStoreFileAsPdf(MultipartFile file, String userId, String year) throws Exception {
+	    String content = extractContentFromFile(file);
+	    byte[] pdfContent = generatePdf(content);
+	    storePdfInDatabase(pdfContent, userId, year);
+	}
+
+	private String extractContentFromFile(MultipartFile file) throws IOException {
+	    String content = "";
+	    String fileName = file.getOriginalFilename();
+
+	    if (fileName != null && fileName.endsWith(".txt")) {
+	        content = new String(file.getBytes(), "UTF-8");
+	    } else if (fileName != null && fileName.endsWith(".xlsx")) {
+	        content = extractContentFromExcel(file);
+	    } else {
+	        throw new IOException("Unsupported file type: " + fileName);
+	    }
+
+	    return content;
+	}
+
+	private String extractContentFromExcel(MultipartFile file) throws IOException {
+	    StringBuilder content = new StringBuilder();
+	    try (InputStream fis = file.getInputStream()) {
+	        Workbook workbook = new XSSFWorkbook(fis);
+	        Sheet sheet = workbook.getSheetAt(0);
+	        for (Row row : sheet) {
+	            for (Cell cell : row) {
+	                content.append(cell.toString()).append(" ");
+	            }
+	            content.append("\n");
+	        }
+	    }
+	    return content.toString();
+	}
+
+	private byte[] generatePdf(String content) throws DocumentException, IOException {
+	    Document document = new Document();
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    PdfWriter.getInstance(document, baos);
+	    document.open();
+	    document.add(new Paragraph(content));
+	    document.close();
+	    return baos.toByteArray();
+	}
+
+	private void storePdfInDatabase(byte[] pdfContent, String userId, String year) throws SQLException {
+	    String sql = "INSERT INTO file_data (user_id, year, pdf_data) VALUES (?, ?, ?)";
+	    try (Connection connection = getConnection();
+	         java.sql.PreparedStatement statement = connection.prepareStatement(sql)) {
+	        statement.setString(1, userId);
+	        statement.setString(2, year);
+	        statement.setBytes(3, pdfContent);
+	        statement.executeUpdate();
+	    } catch (SQLException e) {
+	        throw new SQLException("Error storing PDF in database", e);
+	    }
+	}
+
+	private Connection getConnection() throws SQLException {
+	    return null;
+	}

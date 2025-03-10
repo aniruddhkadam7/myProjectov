@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.itdeclaration.business.Section"
+		table="it_section">
+		<id name="sectionId" type="java.lang.Long">
+			<column name="section_id" />
+			<generator class="native" />
+		</id>
+		<property name="sectionName" type="java.lang.String">
+			<column name="Section_Name" />
+		</property>
+		<property name="sectionLimit" type="java.lang.Long">
+			<column name="Section_Limit" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+		 <property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property> 
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="Updated_By" />
+		</property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property> 
+		 <set name="invests" lazy="false" cascade="all">
+        	<key column="section_id"/>
+        	<one-to-many class="com.raybiztech.itdeclaration.business.Investment"/>
+        </set>
+	</class>
+</hibernate-mapping>

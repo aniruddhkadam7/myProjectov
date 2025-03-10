@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Sep, 2015 4:45:45 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.projectmanagement.invoice.business.Invoice"
+		table="INVOICE">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		
+		<!-- below number column number is serial number -->
+
+		<property name="number" type="java.lang.String">
+			<column name="Number" />
+		</property>
+
+		<property name="referenceNumber" type="java.lang.String">
+			<column name="ReferenceNumber" />
+		</property>
+
+		<many-to-one name="milsestone"
+			class="com.raybiztech.projectmanagement.business.Milestone">
+			<column name="Milestone" />
+		</many-to-one>
+
+
+
+		<property name="countTypeToDisplay" type="java.lang.String">
+			<column name="CountTypeToDisplay" />
+		</property>
+
+		<many-to-one name="remittance"
+			class="com.raybiztech.projectmanagement.invoice.business.Remittance">
+			<column name="Remittance" />
+		</many-to-one>
+
+		<property name="notes" type="text">
+			<column name="Notes" />
+		</property>
+
+		<property name="showNotesOnInvoice" type="java.lang.Boolean">
+			<column name="ShowNotesOnInvoice" />
+		</property>
+
+
+
+		<set name="lineItems" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Invoice_id" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.invoice.business.LineItem" />
+		</set>
+
+
+		<set name="tax" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Invoice_id" />
+			</key>
+			<one-to-many class="com.raybiztech.projectmanagement.invoice.business.Tax" />
+		</set>
+
+
+		<set name="receivedAmountList" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Invoice_id" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.invoice.business.ReceivedInvoiceAmount" />
+		</set>
+
+
+
+
+		<property name="subTotal" type="java.lang.String">
+			<column name="SubTotal" />
+		</property>
+
+		<property name="amount" type="java.lang.String">
+			<column name="Amount" />
+		</property>
+
+		<property name="discountType" type="java.lang.String">
+			<column name="DiscountType" />
+		</property>
+
+		<property name="discountRate" type="java.lang.String">
+			<column name="DiscountRate" />
+		</property>
+
+		<property name="discount" type="java.lang.String">
+			<column name="Discount" />
+		</property>
+
+
+		<property name="amountAfterDiscount" type="java.lang.String">
+			<column name="AmountAfterDiscount" />
+		</property>
+
+		<!-- <many-to-one name="discount" insert="true" cascade="all" class="com.raybiztech.projectmanagement.invoice.business.Discount" 
+			fetch="join"> <column name="DISCOUNT" /> </many-to-one> -->
+
+		<!-- <many-to-one name="tax" insert="true" cascade="all" class="com.raybiztech.projectmanagement.invoice.business.Tax" 
+			fetch="join"> <column name="Tax" /> </many-to-one> -->
+
+		<property name="totalAmount" type="java.lang.String">
+			<column name="TotalAmount" />
+		</property>
+		<property name="paymentTerm" type="java.lang.String">
+			<column name="PaymentTerm" />
+		</property>
+		<property name="invoiceDate" type="DateType">
+			<column name="InvoiceDate" />
+		</property>
+		<property name="dueDate" type="DateType">
+			<column name="DueDate" />
+		</property>
+		<property name="invoiceAmountReceviedDate" type="DateType">
+			<column name="InvoiceAmountReceviedDate" />
+		</property>
+		<property name="invoiceAmountSentDate" type="DateType">
+			<column name="InvoiceAmountSentDate" />
+		</property>
+		<property name="conversionRate" type ="java.lang.String">
+		<column name="ConversionRate"></column>
+		</property>
+
+		<property name="invoiceStatus" type="java.lang.String">
+			<column name="InvoiceStatus" />
+		</property>
+
+
+		<property name="writeoffAmount" type="java.lang.String">
+			<column name="writeoffAmount" />
+		</property>
+
+
+		<property name="receivedAmount" type="java.lang.String">
+			<column name="ReceivedAmount" />
+		</property>
+
+
+		<!-- <property name="invoiceStatus"> <column name="InvoiceStatus" /> <type 
+			name="org.hibernate.type.EnumType"> <param name="type">12</param> <param 
+			name="enumClass">com.raybiztech.projectmanagement.invoice.business.InvoiceStatus</param> 
+			</type> </property> -->
+
+		<property name="country" type="java.lang.String">
+			<column name="Country" />
+		</property>
+		
+		<property name="companyName" type="java.lang.String">
+	             <column name="CompanyName"></column>	
+		</property>
+		
+		<property name="companyAddress" type="java.lang.String">
+	             <column name="CompanyAddress"></column>	
+		</property>
+
+		<property name="invoiceFileName" type="java.lang.String">
+			<column name="InvoiceFileName" />
+		</property>
+
+		<property name="percentage" type="java.lang.String">
+			<column name="Percentage" />
+		</property>
+
+		<property name="poNumber" type="java.lang.String">
+			<column name="PONumber" />
+		</property>
+
+		<property name="StatusNotes" type="text">
+			<column name="StatusNotes" />
+		</property>
+
+		<property name="saltKey" type="text">
+			<column name="SaltKey" />
+		</property>
+
+		<property name="isAdjusted" type="java.lang.Boolean">
+			<column name="AdjustedInvoice" />
+		</property>
+
+
+		<property name="canBeAdjusted" type="java.lang.Boolean">
+			<column name="CanBeAdjusted" />
+		</property>
+
+		<property name="showTaxDetailsOnInvoice" type="java.lang.Boolean">
+			<column name="ShowTaxDetailsOnInvoice" />
+		</property>
+		
+		<property name="invoiceNumberFlag" type="java.lang.Boolean">
+			<column name="InvoiceNumberFlag" />
+		</property>
+		
+		
+		<property name="invoiceNumber" type="java.lang.String">
+			<column name="invoiceNumber" />
+		</property>
+		
+		<property name="invoiceReferenceNumber" type="java.lang.String">
+			<column name="InvoiceReferenceNumber" />
+		</property>
+		
+		<!-- <property name="invoiceReopenFlag" type="java.lang.Boolean">
+			<column name="InvoiceReopenFlag" default="false" not-null="true" />
+		</property>
+		 -->
+		 
+		 <property name="tdsAmount" type="java.lang.String">
+			<column name="TDSAmount" />
+		</property>
+
+		<property name="netAmount" type="java.lang.String">
+			<column name="NetAmount" />
+		</property>
+		
+		<property name="modifiedMilestoneName" type="java.lang.String">
+			<column name="ModifiedMilestoneName" />
+		</property>
+		
+		<property name="proformaInvoiceFlag" type="java.lang.Boolean">
+			<column name="ProformaInvoiceFlag" />
+		</property>
+	<many-to-one name="proformaReferenceNo"
+			class="com.raybiztech.projectmanagement.invoice.business.Invoice">
+			<column name="proformaReferenceNo" />
+		</many-to-one>
+
+		
+		
+		
+		
+
+	</class>
+</hibernate-mapping>

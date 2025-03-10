@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.recruitment.business.Interview" table="INTERVIEW">
+        <id name="InterviewId" type="java.lang.Long">
+            <column name="INTERVIEWID" />
+            <generator class="native" />
+        </id>
+        <!--        <set name="interviewers" table="EMPLOYEE" inverse="false" lazy="true">
+            <key>
+                <column name="INTERVIEWID" />
+            </key>
+            <one-to-many class="com.raybiztech.appraisals.business.Employee" />
+        </set>-->
+        
+        <set name="interviewers" table="EMPLOYEE_INTERVIEW" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="INTERVIEWID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="com.raybiztech.appraisals.business.Employee">
+                <column name="EmployeeId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="candidates" table="CANDIDATE" inverse="false" lazy="true">
+            <key>
+                <column name="INTERVIEWID" />
+            </key>
+            <one-to-many class="com.raybiztech.recruitment.business.Candidate" />
+        </set>
+        <property name="result" type="java.lang.String">
+            <column name="RESULT" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+        <property name="status">
+            <column name="STATUS" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.raybiztech.appraisals.business.Status</param>
+            </type>
+        </property>
+        <property name="round" type="java.lang.String">
+            <column name="ROUND" />
+        </property>
+        <property name="interviewType">
+            <column name="INTERVIEWTYPE" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.raybiztech.recruitment.business.InterviewType</param>
+            </type>
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

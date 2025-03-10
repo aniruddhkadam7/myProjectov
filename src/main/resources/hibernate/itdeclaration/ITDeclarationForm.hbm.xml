@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.itdeclaration.business.ITDeclarationForm"
+		table="it_form">
+		<id name="itDeclarationFormId" type="java.lang.Long">
+			<column name="form_id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="employee" class="com.raybiztech.appraisals.business.Employee"  cascade="all" fetch="join" >
+            <column name="employee_id" />
+        </many-to-one>
+        <many-to-one name="financeCycle" class="com.raybiztech.itdeclaration.business.FinanceCycle" cascade="all">
+            <column name="cycle_id" />
+        </many-to-one>
+        <set name="itSections" inverse="false" cascade="all" lazy="false">
+            <key column="form_id"/>
+            <one-to-many class="com.raybiztech.itdeclaration.business.ITDeclarationFormSections" />
+        </set>
+        <property name="createdBy" type="java.lang.Long">
+        	<column name="created_by"></column>
+        </property>
+		<property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_date"></column>
+		</property>
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="updated_by"></column>
+		</property>
+		<property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_date"></column>
+		</property>
+		<property name="organisationName" type="java.lang.String">
+			<column name="organisation_name"></column>
+		</property>
+		<property name="fromDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="from_date"></column>
+		</property>
+		<property name="toDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="to_date"></column>
+		</property>
+		<property name="isAgree" type="java.lang.Boolean">
+			<column name="is_agree"></column>
+		</property>
+		<property name="grandTotal" type="java.lang.Long">
+			<column name="total"></column>
+		</property>
+		<property name="filePath" type="java.lang.String">
+			<column name="file_path"></column>
+		</property>
+	</class>
+</hibernate-mapping>

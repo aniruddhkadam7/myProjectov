@@ -1,0 +1,122 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+       		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-3.1.xsd
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<cache:annotation-driven />
+
+	<beans:bean id="cacheManager"
+		class="org.springframework.cache.support.SimpleCacheManager">
+		<beans:property name="caches">
+			<beans:set>
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="vacanciesLookup" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="jobVacancies" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="categories" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="employees" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="otherEmployeeInformation" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="employeeAllocation" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="timeInOfficeCache" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="hiveCache" />
+				<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="payslips" />
+					<beans:bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="empAppraisals" />
+
+			</beans:set>
+
+		</beans:property>
+	</beans:bean>
+	<!-- Configures the annotation-driven Spring MVC Controller programming 
+		model. Note that, with Spring 3.0, this tag works in Servlet MVC only! -->
+	<mvc:annotation-driven />
+
+
+	<!-- <mvc:resources mapping="/js/**" location="/js/" /> -->
+	<!-- Scans the classpath for annotated components that will be auto-registered 
+		as Spring beans. For example @Controller and @Service. Make sure to set the 
+		correct base-package -->
+	<context:component-scan base-package="com.raybiztech.*" />
+
+
+	<!-- <beans:bean id="userDaoImpl" class="com.raybiztech.hrm.security.rest.dao.UserDaoImpl"> 
+		</beans:bean> <beans:bean class="com.raybiztech.hrm.security.rest.AuthenticationTokenProcessingFilter" 
+		id="authenticationTokenProcessingFilter"> <beans:constructor-arg ref="userDaoImpl" 
+		/> </beans:bean> -->
+
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix">
+			<beans:value>/WEB-INF/pages/</beans:value>
+		</beans:property>
+		<beans:property name="suffix">
+			<beans:value>.jsp</beans:value>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean name="propBean"
+		class="com.raybiztech.appraisals.properties.PropBean">
+		<beans:property name="propData">
+			<beans:bean
+				class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<beans:property name="location"
+					value="classpath:fileupload.properties" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+	
+	
+	<aop:aspectj-autoproxy proxy-target-class="false" />
+
+	<beans:bean id="aopAdvice"
+		class="com.raybiztech.appraisals.security.aop.LeaveManagementControllerAop"></beans:bean>
+	
+
+
+
+		
+	<beans:import resource="appraisals-context.xml" />
+	<beans:import resource="spring-sender.xml" />
+	<beans:import resource="spring-security.xml" />
+	<beans:import resource="spring-hibernate.xml" />
+	<beans:import resource="HiveIntegration.xml"/>
+</beans:beans>

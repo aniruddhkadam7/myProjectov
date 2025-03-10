@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.itdeclaration.business.ITDeclarationFormSections"
+		table="it_form_section"  >
+		<id name="itSectionsId" type="java.lang.Long">
+			<column name="form_section_id" />
+			<generator class="native" />
+		</id>
+        <set name="itInvests" inverse="false" lazy="false" cascade="all" >
+        	<key column="form_section_id"/>
+        	<one-to-many class="com.raybiztech.itdeclaration.business.ITDeclarationFormInvestments"/>
+        </set>
+        <many-to-one name="section"  fetch="join" class="com.raybiztech.itdeclaration.business.Section">
+           <column name="section_id"></column>
+           </many-to-one>
+		
+		<property name="isOld" type="java.lang.Boolean">
+			<column name="is_old"></column>
+		</property>
+	</class>
+</hibernate-mapping>

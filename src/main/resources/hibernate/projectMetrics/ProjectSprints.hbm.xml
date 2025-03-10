@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 Jan, 2015 1:06:57 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.projectMetrics.business.ProjectSprints" table="ProjectSprints" dynamic-update="true">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="versionId" type="java.lang.Integer">
+		<column name="Sprint_ID"></column>
+		</property> 
+		<property name="versionName" type="java.lang.String">
+		<column name="Sprint_Name"></column>
+		</property> 
+		<property name="startDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Baseline_Start_Date" length="19" />
+		</property>
+		<property name="effectiveDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Baseline_End_Date" length="19" />
+		</property>
+		<property name="plannedEffort" type="java.lang.String">
+			<column name="Planned_Effort" precision="12" scale="0" />
+		</property>
+		<property name="actuallEffort" type="java.lang.Double">
+			<column name="Actual_Effort" precision="12" scale="0" />
+		</property>
+		
+		 <property name="projectId" type="java.lang.Long">
+		<column name="Hive_ProjectId"></column>
+		</property> 
+		 <property name="projectName" type="java.lang.String">
+		<column name="Hive_ProjectName"></column>
+		</property> 
+		<property name="actualStartDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Actual_Start_Date" length="19" />
+		</property>
+		<property name="actualEndDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Actual_End_Date" length="19" />
+		</property>
+		<property name="status" type="java.lang.String">
+		<column name="Status"></column>
+		</property>
+		<property name="projectedStartDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Projected_Start_Date" length="19" />
+		</property>
+		<property name="projectedEndDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Projected_End_Date" length="19" />
+		</property>
+		<property name="percentageOfCompletion" type="java.lang.String">
+		<column name="Percentage_Of_Completion"></column>
+		</property>
+		<property name="createdDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+		<column name="createdDate" length="19"></column>
+		</property>
+		<property name="updatedDate" type="com.raybiztech.date.hibernate.type.DateUserType">
+		<column name="updatedDate" length="19"></column>
+		</property>
+			
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10 Dec, 2014 2:49:37 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.handbook.business.HandbookItem"
+		table="HANDBOOKITEM">
+		<id name="id" type="int">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="displayOrder" type="int">
+			<column name="DISPLAYORDER" />
+		</property>
+		<property name="title" type="java.lang.String">
+			<column name="TITLE" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="DESCRIPTION" />
+		</property>
+		<property name="pageName" type="java.lang.String">
+			<column name="PAGENAME" />
+		</property>
+		<many-to-one name="empDepartment"
+			class="com.raybiztech.appraisals.business.EmpDepartment" lazy="false">
+			<column name="DEPT_ID" />
+		</many-to-one>
+		<property name="type" type="java.lang.String">
+			<column name="Type" />
+		</property>
+		<many-to-one name="section"
+			class="com.raybiztech.checklist.business.ChecklistSection" lazy="false">
+			<column name="Section_ID" />
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

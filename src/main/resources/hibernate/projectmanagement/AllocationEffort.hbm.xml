@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.projectmanagement.business.AllocationEffort"
+		table="ALLOCATION_EFFORT">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="percentage"
+			type="com.raybiztech.commons.finance.hibernate.type.PercentageUserType">
+			<column name="PERCENTAGE" />
+		</property>
+		<component class="com.raybiztech.date.DateRange" name="period">
+			<property name="minimum" type="DateType" access="field">
+				<column name="FromDate" />
+			</property>
+			<property name="maximum" type="DateType" access="field">
+				<column name="ToDate" />
+			</property>
+		</component>
+		<property name="comments" type="java.lang.String">
+			<column name="COMMENTS" />
+		</property>
+		<property name="billable" type="java.lang.Boolean">
+			<column name="BILLABLE" />
+		</property>
+		<many-to-one name="project"
+			class="com.raybiztech.projectmanagement.business.Project" fetch="select">
+			<column name="Projectid" />
+		</many-to-one>
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="select">
+			<column name="EmployeeId" />
+		</many-to-one>
+		<property name="isAllocated" type="java.lang.Boolean">
+			<column name="ISALLOCATED" />
+		</property>
+		<!-- <property name="project" type="java.lang.Long"> <column name="projectid" 
+			/> </property> -->
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="CREATEDDATE"></column>
+		</property>
+
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="UPDATEDDATE"></column>
+		</property>
+
+	</class>
+
+</hibernate-mapping>

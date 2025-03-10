@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.mailtemplates.business.MailTemplate"
+		table="MailTemplates">
+
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="templateType" column="TemplateType"
+			lazy="false" class="com.raybiztech.mailtemplates.business.MailTemplateType">
+		</many-to-one>
+
+		<property name="templateName" type="text">
+			<column name="TemplateName" />
+		</property>
+
+		<property name="template" type="text">
+			<column name="Template" />
+		</property>
+
+
+		<property name="createdBy" type="java.lang.Long">
+			<column name="CreatedBy" />
+		</property>
+
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="UpdatedBy" />
+		</property>
+
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property>
+
+		<many-to-one class="com.raybiztech.assetmanagement.business.AssetType"
+			lazy="false" name="assetType">
+			<column name="AssetType_ID" />
+		</many-to-one>
+
+		<property name="email" type="java.lang.String">
+			<column name="Email_Id" />
+		</property>
+
+
+	</class>
+
+</hibernate-mapping>

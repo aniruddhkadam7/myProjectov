@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Dec, 2014 6:30:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+	<class name="com.raybiztech.projectmanagement.business.Client"
+		lazy="false" table="Client">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="clientCode" type="text">
+			<column name="ClientCode" unique="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="ClientName" unique="true" />
+		</property>
+
+		<property name="address" type="text">
+			<column name="ClientAddress" />
+		</property>
+
+		<property name="personName" type="string">
+			<column name="PersonName" />
+		</property>
+		<property name="email" type="string">
+			<column name="Email" />
+		</property>
+		<property name="phone" type="string">
+			<column name="Phone" />
+		</property>
+		<property name="description" type="text">
+			<column name="Description" />
+		</property>
+
+		<property name="organization" type="string">
+			<column name="Organization" unique="true" />
+		</property>
+
+		<many-to-one class="com.raybiztech.projectmanagement.business.Country"
+			fetch="join" name="country">
+			<column name="Country" />
+		</many-to-one>
+
+		<set name="projects">
+			<key>
+				<column name="Client" />
+			</key>
+			<one-to-many class="com.raybiztech.projectmanagement.business.Project" />
+		</set>
+		<!-- As per the new recquirement we need GST Code for Clients -->
+		<property name="gstCode" type="string">
+			<column name="gst_code"/>
+		</property>
+		<property name="clientStatus" type="java.lang.Boolean">
+			<column name="Client_Status"/>
+		</property>
+		
+
+
+	</class>
+</hibernate-mapping>

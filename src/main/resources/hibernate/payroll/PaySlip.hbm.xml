@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+
+<hibernate-mapping>
+	<class name="com.raybiztech.payslip.business.Payslip" table="Payslip">
+
+		<id name="paySlipId" type="java.lang.Long">
+			<column name="PAYSLIP_ID" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="join">
+			<column name="EMPLOYEE_ID" />
+		</many-to-one>
+
+
+		<component class="com.raybiztech.payslip.business.SalaryStructure"
+			name="salaryStructure">
+			<property name="serialNo"></property>
+			<property name="name"></property>
+			<property name="accountNo">
+			</property>
+			<property name="designation"></property>
+			<property name="joiningDate"></property>
+			<property name="grossSalary" type="string" length="1000"></property>
+			<property name="variablePay" type="string" length="1000"></property>
+			<property name="variablePayPercentage" type="string" length="1000"></property>
+			<property name="grossSalAfterVariablepay" type="string"
+				length="1000"></property>
+			<property name="basicSalary" type="string" length="1000"></property>
+			<property name="houseRentAllowance" type="string" length="1000"></property>
+			<property name="transportAllowance" type="string" length="1000"></property>
+			<property name="otherAllowance" type="string" length="1000"></property>
+			<property name="absent" type="string" length="1000"></property>
+			<property name="lossOfPay" type="string" length="1000"></property>
+			<property name="medicliam" type="string" length="1000"></property>
+			<property name="esi" type="string" length="1000"></property>
+			<property name="epf" type="string" length="1000"></property>
+			<property name="gratuity" type="string" length="1000"></property>
+			<property name="advArrears" type="string" length="1000"></property>
+			<property name="erc" type="string" length="1000"></property>
+			<property name="taxDeductionScheme" type="string" length="1000"></property>
+			<property name="professionalTax" type="string" length="1000"></property>
+			<property name="arrears" type="string" length="1000"></property>
+			<property name="incentive" type="string" length="1000"></property>
+			<property name="vpayable" type="string" length="1000"></property>
+			<property name="netSalary" type="string" length="1000"></property>
+			<property name="remarks"></property>
+			<property name="mealsCard" type="string" length="1000"></property>
+			<property name="donation" type="string" length="1000"></property>
+			<property name="specificDesignation"></property>
+
+		</component>
+
+
+		<property name="month"></property>
+		<property name="year"></property>
+		<property name="status"></property>
+		<property name="salt"></property>
+		<property name="payslipFileName"></property>
+	</class>
+
+</hibernate-mapping>

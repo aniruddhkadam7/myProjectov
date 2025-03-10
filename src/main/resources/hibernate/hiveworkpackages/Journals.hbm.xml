@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.Journals"
+		table="journals">
+		<id name="id" type="java.lang.Long">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+		
+	    <property name="journable_id" type="java.lang.Long">
+		<column name="journable_id"></column>
+		</property>
+
+		
+		<property name="journable_type" type="java.lang.String">
+		<column name="journable_type"></column>
+		</property>
+		
+		<many-to-one name="user_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.users">
+			<column name="user_id"></column>
+		</many-to-one>
+		
+		<property name="notes" type="java.lang.String">
+		<column name="notes"></column>
+		</property>
+		
+		<property name="created_at" type="com.raybiztech.date.hibernate.type.SecondUserType">
+		<column name="created_at"></column>
+		</property>
+		
+		<property name="version" >
+		<column name="version"></column>
+		</property>
+		
+		<property name="activity_type" type="java.lang.String">
+		<column name="activity_type"></column>
+		</property>		
+	</class>
+
+
+
+
+
+
+
+
+
+
+
+
+</hibernate-mapping>

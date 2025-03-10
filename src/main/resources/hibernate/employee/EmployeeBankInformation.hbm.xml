@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.appraisals.business.EmployeeBankInformation" table="EMPLOYEE_BANKDETAILS">
+        <id name="bankId" type="java.lang.Long">
+            <column name="BankId" />
+            <generator class="native" />
+        </id>
+
+        <property name="bankName" type="java.lang.String">
+            <column name="BANK_NAME" />
+        </property>
+        
+        <property name="bankAccountNumber" type="java.lang.String">
+            <column name="BANK_ACCOUNTNUMBER" />
+        </property>
+    
+        <many-to-one name="employee" class="com.raybiztech.appraisals.business.Employee" fetch="join">
+            <column name="EmployeeId" />
+        </many-to-one>
+         <property name="ifscCode" type="java.lang.String">
+            <column name="IFSC_Code"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+             name="DateType" />
+    <class name="com.raybiztech.projectmanagement.business.StatusReport" table="StatusReport">
+        <id name="id" type="java.lang.Long">
+            <column name="StatusReportID" />
+            <generator class="native" />
+        </id>
+       
+        <property name="prevstatus" type="text">
+            <column length="65535" name="PrevStatus" />
+        </property>
+        
+        <property name="prevDate" type="DateType">
+            <column length="19" name="PrevDate" />
+        </property>
+          
+        <property name="nextstatus" type="text">
+            <column length="65535" name="Nextstatus" />
+        </property>
+        
+        <property name="nextDate" type="DateType">
+            <column length="19" name="NextDate" />
+        </property>
+        
+        <many-to-one name="project" class="com.raybiztech.projectmanagement.business.Project" fetch="join">
+            <column name="ID" />
+        </many-to-one>
+  
+        <property name="addOn" type="DateType">
+            <column length="19" name="AddOn" />
+        </property>
+      
+        
+    </class>
+</hibernate-mapping>

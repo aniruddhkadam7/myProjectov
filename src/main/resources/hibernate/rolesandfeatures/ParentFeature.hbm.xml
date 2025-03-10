@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Nov, 2014 11:46:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.rolefeature.business.ParentFeature" table="PARENT_FEATURE">
+        <id name="id" type="java.lang.Long">
+            <column name="PARENT_FEATURE_ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        
+        <set  name="features"  inverse="false"
+                     lazy="true" table="FEATURE">
+            <key>
+                <column name="PARENT_FEATURE_ID" />
+            </key>
+            <one-to-many class="com.raybiztech.rolefeature.business.Feature"/>
+        </set>
+    </class>
+</hibernate-mapping>

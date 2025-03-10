@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.types"
+		table="types">
+		<id name="id" type="java.lang.Long">
+			<column name="id">
+			</column>
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="name"></column>
+		</property>
+
+		<property name="position" type="java.lang.Long">
+			<column name="position"></column>
+		</property>
+		<property name="is_in_roadmap" type="java.lang.Integer">
+			<column name="is_in_roadmap"></column>
+		</property>
+		<property name="in_aggregation" type="java.lang.Integer">
+			<column name="in_aggregation"></column>
+		</property>
+		<property name="is_milestone" type="java.lang.Integer">
+			<column name="is_milestone"></column>
+		</property>
+
+		<property name="is_default" type="java.lang.Integer">
+			<column name="is_default"></column>
+		</property>
+		<property name="color_id" type="java.lang.Long">
+			<column name="color_id"></column>
+		</property>
+		<property name="created_at"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_at"></column>
+		</property>
+		<property name="updated_at"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_at"></column>
+		</property>
+
+		<property name="is_standard" type="java.lang.Integer">
+			<column name="is_standard"></column>
+		</property>
+
+		<property name="attribute_groups" type="java.lang.String">
+			<column name="attribute_groups"></column>
+		</property>
+
+
+
+	</class>
+</hibernate-mapping>

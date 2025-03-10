@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.compliance.business.ComplianceTaskSubmit"
+		table="ComplianceTaskSubmit">
+		<id name="complianceTaskSubmitId" type="java.lang.Long">
+			<column name="compliance_task_submit_id"></column>
+			<generator class="native" />
+		</id>
+		<!-- <property name="complianceDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="compliance_date"></column>
+		</property> -->
+		<property name="actualSubmitDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="actual_submit_date"></column>
+		</property>
+		
+		<property name="comments" type="java.lang.String">
+			<column name="comments"></column>
+		</property>
+		
+		<!-- <many-to-one name ="compliance" column = "compliance_id" 
+         class="com.raybiztech.compliance.business.Compliance"/> -->
+         		
+		<property name="createdBy"
+			type="java.lang.Long">
+			<column name="created_by"></column>
+		</property>
+		
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_date"></column>
+		</property>
+		
+		<many-to-one name = "complianceTask" column = "compliance_task_id" unique="true" 
+         class="com.raybiztech.compliance.business.ComplianceTask"/> 
+		<!-- <one-to-one name="complianceTask" class="com.raybiztech.compliance.business.ComplianceTask"
+			constrained="true"></one-to-one> -->
+		
+	</class>
+</hibernate-mapping>

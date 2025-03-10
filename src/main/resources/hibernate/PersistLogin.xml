@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <typedef class="com.raybiztech.date.hibernate.type.SecondUserType" name="SecondType"/>
+    <class name="com.raybiztech.appraisals.business.PersistLogin" table="PERSIST_LOGIN">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+       
+        <property name="token" type="java.lang.String">
+            <column name="TOKEN" />
+        </property>
+        <property name="login_Time" type="SecondType">
+            <column name="LOGIN_TIME" />
+        </property>
+        <property name="last_Used" type="SecondType">
+            <column name="LAST_USED" />
+        </property>
+    </class>
+</hibernate-mapping>

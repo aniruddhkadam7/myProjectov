@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.appraisals.business.Finance" table="FINANCE">
+		<id name="financeId" type="java.lang.Long">
+			<column name="financeId" />
+			<generator class="native" />
+		</id>
+
+		<property name="pfAccountNumber" type="java.lang.String">
+			<column name="PF_ACCOUNTNUMBER" />
+		</property>
+
+		<property name="panCardAccountNumber" type="java.lang.String">
+			<column name="PANCARD_ACCOUNTNUMBER" />
+		</property>
+
+		<property name="uaNumber" type="java.lang.String">
+			<column name="UA_NUMBER" />
+		</property>
+
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="join">
+			<column name="EmployeeId" />
+		</many-to-one>
+
+		<property name="aadharCardNumber" type="java.lang.String">
+			<column name="AADHAR_CARDNUMBER" />
+		</property>
+
+		<property name="financeFilePath" type="java.lang.String">
+			<column name="file_path"></column>
+		</property>
+
+	</class>
+</hibernate-mapping>
+

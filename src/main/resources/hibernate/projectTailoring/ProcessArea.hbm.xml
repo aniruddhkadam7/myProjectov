@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.projecttailoring.business.ProcessArea"
+		table="ProcessArea">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		<property name="name">
+			<column name="Name"></column>
+		</property>
+		<many-to-one name="processHead"
+			class="com.raybiztech.projecttailoring.business.ProcessHead" lazy="false">
+			<column name="ProcessHeadId"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

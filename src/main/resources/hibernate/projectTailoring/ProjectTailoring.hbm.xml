@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.SecondUserType"
+		name="DateType" />
+	<class name="com.raybiztech.projecttailoring.business.ProjectTailoring"
+		table="ProjectTailoring">
+		<id name="id" type="java.lang.Long">
+			<column name="ProjectTailoring_Id" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="project" column="Project_ID"
+			class="com.raybiztech.projectmanagement.business.Project"></many-to-one>
+		<many-to-one name="createdBy" column="CreatedBy"
+			class="com.raybiztech.appraisals.business.Employee"></many-to-one>
+		<property name="createdDate" column="CreatedDate" type="DateType"></property>
+		<property name="updatedBy" column="UpdatedBy" type="java.lang.String"></property>
+		<property name="updatedDate" column="UpdatedDate" type="DateType"></property>
+		<set name="processHeadData" cascade="all">
+			<key column="ProjectTailoring_Id"></key>
+			<one-to-many
+				class="com.raybiztech.projecttailoring.business.ProcessHeadData" />
+		</set>
+		<property name="tailoringStatus" column="TailoringStatus"
+			type="java.lang.String"></property>
+			
+				<property name="rejectComments" column="RejectComments"
+			type="text"></property>
+	</class>
+</hibernate-mapping>

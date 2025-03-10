@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.recruitment.business.Panel" table="PANEL">
+        <id name="panelId" type="java.lang.Long">
+            <column name="PANELID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="employee" class="com.raybiztech.appraisals.business.Employee" fetch="join">
+            <column name="EMPLOYEE" />
+        </many-to-one>
+        <property name="panelLevel">
+            <column name="PANELLEVEL" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.raybiztech.recruitment.business.PanelLevel</param>
+            </type>
+        </property>
+        <property name="deptId" type="java.lang.String">
+            <column name="DEPT_ID" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="practice" type="java.lang.String">
+            <column name="PRACTICE" />
+        </property>
+    </class>
+</hibernate-mapping>

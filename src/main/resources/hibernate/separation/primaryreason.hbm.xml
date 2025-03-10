@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.raybiztech.separation.business.PrimaryReason" table="Separation_PrimaryReason">
+<id name="reasonId" type="java.lang.Long">
+<column name="Reason_Id"></column>
+<generator class="native"></generator>
+</id>
+<property name="reasonName" type="java.lang.String">
+<column name="Reason_Name"></column>
+</property>
+</class>
+</hibernate-mapping>

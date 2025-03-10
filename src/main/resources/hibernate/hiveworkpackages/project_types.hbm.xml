@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.project_types"
+		table="project_types">
+		<id name="id" type="java.lang.Long">
+			<column name="id"></column>
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="name"></column>
+		</property>
+		<property name="allows_association" type="java.lang.Integer">
+			<column name="allows_association"></column>
+		</property>
+		<property name="position" type="java.lang.Long">
+			<column name="position"></column>
+		</property>
+		<property name="created_at"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_at"></column>
+		</property>
+		<property name="updated_at"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_at"></column>
+		</property>
+
+
+
+	</class>
+
+</hibernate-mapping>

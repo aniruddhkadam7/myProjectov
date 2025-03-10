@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 May, 2015 2:20:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+             name="DateType" />
+    <class name="com.raybiztech.recruitment.business.NewJoinee"
+           table="NEWJOINEE">
+        <id name="id" type="java.lang.Long">
+            <column name="JOINEE_ID" />
+            <generator class="native" />
+        </id>
+        <property name="position" type="java.lang.String">
+            <column name="POSITION" />
+        </property>
+        <property name="joineeName" type="java.lang.String">
+            <column name="JOINEENAME" />
+        </property>
+        <property name="designation" type="java.lang.String">
+            <column name="DESIGNATION" />
+        </property>
+        <property name="dateOfJoining" type="DateType">
+            <column name="DATEOFJOINING" />
+        </property>
+        <property name="dateOfBirth" type="DateType">
+            <column name="DATE_OF_BIRTH" />
+        </property>
+        <property name="currentCTC" type="java.lang.String">
+            <column name="CURRENTCTC" />
+        </property>
+        <property name="employmentType" type="java.lang.String">
+            <column name="EMPLOYMENTTYPE" />
+        </property>
+        <property name="jobType" type="java.lang.String">
+            <column name="JOBTYPE" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+        <property name="attachedDocumentPath" type="java.lang.String">
+            <column name="ATTACHED_DOCUMENT_PATH" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL_ID" />
+        </property>
+        <property name="experience" type="java.lang.String">
+            <column name="EXPERIENCE" />
+        </property> 
+        <property name="candidateId" type="java.lang.Long">
+            <column name="CANDIDATE_ID" />
+        </property> 
+		  <property name="technology" type="java.lang.String">
+            <column name="TECHNOLOGY" />
+        </property>
+        <property name="candidateInterviewStatus" type="java.lang.String">
+            <column name="JOINING_STATUS" />
+        </property>
+        <property name="departmentName" type="java.lang.String">
+            <column length="45" name="DepartmentName" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

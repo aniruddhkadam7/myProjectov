@@ -1,0 +1,360 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="pendingResourceAllocationMailAlert"
+		class="com.raybiztech.projectmanagement.quartz.PendingResourceAllocationMailAlert" />
+
+	<bean name="pendingProjectClosedDateAlert"
+		class="com.raybiztech.projectmanagement.quartz.PendingProjectClosedDateAlert" />
+
+	<bean name="autoApprovalOfPendingLeaves"
+		class="com.raybiztech.leavemanagement.quartz.AutoApprovalOfPendingLeaves" />
+
+	<bean name="invoiceStatusValidator"
+		class="com.raybiztech.projectmanagement.invoice.quartz.InvoiceStatusValidator" />
+
+	<bean name="accessTicketEndDateAlert"
+		class=" com.raybiztech.supportmanagement.quartz.AccessTicketEndDateAlert"></bean>
+
+	<bean name="lateReportingTimeAlert"
+		class=" com.raybiztech.biometric.quartz.LateReportingTimeAlert"></bean>
+
+	<bean name="projectNotesUpdationAlert"
+		class="com.raybiztech.projectmanagement.quartz.ProjectNotesUpdationAlert" />
+
+	<bean name="assetWarrantyEndDateAlert"
+		class="com.raybiztech.assetmanagement.quartz.AssetWarrantyEndDateAlert" />
+
+	<bean name="sendProjectMetricsRemainder"
+		class="com.raybiztech.projectmetrics.quartz.ProjectMetricsRemainder" />
+
+	<bean name="sprintWiseActualEffort"
+		class="com.raybiztech.projectmetrics.quartz.ProjectSprintActualEffort" />
+
+	<bean name="ticketApprovalAlertForFood"
+		class=" com.raybiztech.supportmanagement.quartz.TicketApprovalAlertForFood"></bean>
+
+	<bean name="milestoneReminder"
+		class="com.raybiztech.projectmanagement.invoice.quartz.MilestoneReminder" />
+		
+	<bean name="closeProjectAlert"
+		class="com.raybiztech.projectmanagement.quartz.CloseProjectAlert"/>
+
+
+	<bean name="pendingAllocationDatesService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.projectmanagement.service.PendingAllocationDatesService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="pendingResourceAllocationMailAlert" value-ref="pendingResourceAllocationMailAlert" />
+
+			</map>
+		</property>
+
+	</bean>
+
+	<bean name="pendingProjectDatesService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.projectmanagement.service.PendingProjectDatesService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="pendingProjectClosedDateAlert" value-ref="pendingProjectClosedDateAlert" />
+
+			</map>
+		</property>
+
+	</bean>
+
+
+
+	<bean name="autoApprovalOfPendingLeavesService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.leavemanagement.service.AutoApprovalOfPendingLeavesService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="autoApprovalOfPendingLeaves" value-ref="autoApprovalOfPendingLeaves" />
+
+			</map>
+		</property>
+
+	</bean>
+
+	<bean name="autoUpdationOfInvoiceStatus" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.raybiztech.projectmanagement.invoice.service.InvoiceStatusValidatorService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="invoiceStatusValidator" value-ref="invoiceStatusValidator" />
+
+			</map>
+		</property>
+	</bean>
+
+
+
+	<bean name="accessTicketEndDateAlertService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.supportmanagement.service.AccessTicketEndDateAlertService"></property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="accessTicketEndDateAlert" value-ref="accessTicketEndDateAlert"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean name="lateReportingAlertService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.biometric.service.LateReportingAlertService"></property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="lateReportingTimeAlert" value-ref="lateReportingTimeAlert"></entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<bean name="ProjectNotesUpdationQuartzService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.projectmanagement.service.ProjectNotesUpdationQuartzService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="projectNotesUpdationAlert" value-ref="projectNotesUpdationAlert" />
+
+			</map>
+		</property>
+
+	</bean>
+
+
+	<bean name="assetWarrantyEndDatesService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.assetmanagement.service.AssetWarrantyEndDatesService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="assetWarrantyEndDateAlert" value-ref="assetWarrantyEndDateAlert" />
+
+			</map>
+		</property>
+
+	</bean>
+
+	<bean name="ProjectMetricsRemainderService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.projectmetrics.quartz.ProjectMetricsRemainderService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sendProjectMetricsRemainder" value-ref="sendProjectMetricsRemainder"></entry>
+			</map>
+
+		</property>
+
+	</bean>
+
+	<bean name="sprintActualEffortService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.projectmetrics.quartz.ProjectSprintActualEffortService" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sprintWiseActualEffort" value-ref="sprintWiseActualEffort"></entry>
+			</map>
+
+		</property>
+
+	</bean>
+
+	<bean name="ticketApprovalAlertForFoodService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.supportmanagement.service.TicketApprovalAlertForFoodService"></property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="ticketApprovalAlertForFood" value-ref="ticketApprovalAlertForFood"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean name="milestoneReminderService" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.raybiztech.projectmanagement.invoice.service.MilestoneReminderService"></property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="milestoneReminder" value-ref="milestoneReminder"></entry>
+			</map>
+
+		</property>
+	</bean>
+	
+	<bean name="closeProjecService" class="org.springframework.scheduling.quartz.JobDetailBean">
+	
+		<property name="jobClass" value="com.raybiztech.projectmanagement.service.CloseProjectService"></property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="closeProjectAlert" value-ref="closeProjectAlert"></entry>		
+			</map>		
+		</property>
+	
+	</bean>
+	
+	
+
+	<bean id="crontriggerForMilestoneReminder" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="milestoneReminderService" />
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? " /> -->
+		<property name="cronExpression" value="0 0 11 * * ? *" />
+
+
+	</bean>
+	<bean id="crontriggerForallocationdate" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="pendingAllocationDatesService" />
+		<!-- <property name="cronExpression" value="0/30 * * * * ?" /> -->
+		<property name="cronExpression" value="0 0 10 * * ? " />
+
+	</bean>
+
+	<bean id="crontriggerForprojectdate" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="pendingProjectDatesService" />
+		<!-- <property name="cronExpression" value="0/30 * * * * ?" /> -->
+		<property name="cronExpression" value="0 0 10 * * ? " />
+
+	</bean>
+
+
+
+	<bean id="crontriggerForAutoApprovals" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="autoApprovalOfPendingLeavesService" />
+		<property name="cronExpression" value="0 0 10 27 * ? " />
+	
+	</bean>
+
+
+	<bean id="crontriggerForInvoiceStatus" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="autoUpdationOfInvoiceStatus" />
+		<property name="cronExpression" value="0 0 9 * * ? " />
+
+	</bean>
+
+
+
+	<bean id="crontriggerForAccessEndDate" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="accessTicketEndDateAlertService"></property>
+		<property name="cronExpression" value="0 0 6 * * ? " />
+	</bean>
+
+	<bean id="crontriggerForLateReporting" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="lateReportingAlertService"></property>
+		<property name="cronExpression" value="0 0 0/6 * * ? " />
+	</bean>
+
+	<bean id="crontriggerForProjectNotesAlert" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="ProjectNotesUpdationQuartzService"></property>
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? " /> -->
+		<property name="cronExpression" value="0 0 10 * * ? " />
+	</bean>
+
+	<bean id="crontriggerForAssetWarrantyEndDateAlert" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="assetWarrantyEndDatesService" />
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? " /> -->
+		<property name="cronExpression" value="0 0 11 * * ? " />
+
+	</bean>
+
+	<bean id="crontriggerForProjectMetricsRemainder" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="ProjectMetricsRemainderService"></property>
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? " /> -->
+		<property name="cronExpression" value="0 0 9 1/15 * ?"></property>
+	</bean>
+
+	<bean id="crontriggerForUpdatingActualEffort" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="sprintActualEffortService"></property>
+		<property name="cronExpression" value="0 10 7 * * ?"></property>
+
+	</bean>
+
+
+	<bean id="crontriggerForFoodTicketApproval" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="ticketApprovalAlertForFoodService"></property>
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? " /> -->
+		<property name="cronExpression" value="0 35 17 * * ? " />
+	</bean>
+	
+	
+	<bean id="crontriggerForClosingProjectAfterCompletionofEndDate" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="closeProjecService"></property>
+		<!-- <property name="cronExpression" value="0 0/1 * * * ? " /> -->
+		<property name="cronExpression" value="0 0 10 * * ?"></property>
+
+	</bean>
+
+	<bean id="projectscheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+
+				<ref bean="pendingAllocationDatesService" />
+				<ref bean="pendingProjectDatesService" />
+				<ref bean="autoApprovalOfPendingLeavesService" />
+				<ref bean="autoUpdationOfInvoiceStatus" />
+				<ref bean="accessTicketEndDateAlertService" />
+				<ref bean="lateReportingAlertService" />
+				<ref bean="ProjectNotesUpdationQuartzService" />
+				<ref bean="assetWarrantyEndDatesService" />
+				<ref bean="ProjectMetricsRemainderService" />
+				<ref bean="sprintActualEffortService" />
+				<ref bean="ticketApprovalAlertForFoodService" />
+				<ref bean="milestoneReminderService" />
+				<ref bean="closeProjecService"/>
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+
+				<ref bean="crontriggerForallocationdate" />
+				<ref bean="crontriggerForprojectdate" />
+				<ref bean="crontriggerForAutoApprovals" />
+				<ref bean="crontriggerForInvoiceStatus" />
+				<ref bean="crontriggerForAccessEndDate" />
+				<ref bean="crontriggerForLateReporting" />
+				<ref bean="crontriggerForProjectNotesAlert" />
+				<ref bean="crontriggerForAssetWarrantyEndDateAlert" />
+				<ref bean="crontriggerForProjectMetricsRemainder" />
+				<ref bean="crontriggerForUpdatingActualEffort" />
+				<ref bean="crontriggerForFoodTicketApproval" />
+				<ref bean="crontriggerForMilestoneReminder"/>
+				<ref bean="crontriggerForClosingProjectAfterCompletionofEndDate"/>
+			</list>
+		</property>
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+	</bean>
+
+
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.itdeclaration.business.ITDeclarationFormInvestments"
+		table="it_form_investment" >
+		<id name = "formInvestmentId" type="java.lang.Long">
+			<column name="form_investment_id" />
+			<generator class="native" />
+		</id>
+		
+            <many-to-one name="investment"  fetch="join" class="com.raybiztech.itdeclaration.business.Investment">
+           <column name="investment_id"></column>
+           </many-to-one> 
+           <!--  <property name="investmentId" type="java.lang.Long">
+            	<column name="invest_id"></column>
+            </property>  -->
+		<property name="customAmount" type="java.lang.Long">
+			<column name="custom_amount"></column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.recruitment.business.Person" table="PERSON">
+		<id name="personId" type="java.lang.Long">
+			<column name="PERSONID" />
+			<generator class="native" />
+		</id>
+		<property name="firstName" type="java.lang.String">
+			<column name="FIRSTNAME" />
+		</property>
+		<property name="lastName" type="java.lang.String">
+			<column name="LASTNAME" />
+		</property>
+		<property name="middleName" type="java.lang.String">
+			<column name="MIDDLENAME" />
+		</property>
+		<property name="fullName" type="java.lang.String">
+			<column name="FULLNAME" />
+		</property>
+		<property name="mobile" type="java.lang.String">
+			<column name="MOBILE" />
+		</property>
+		<property name="phone" type="java.lang.String">
+			<column name="PHONE" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="EMAIL" />
+		</property>
+		<property name="qualification" type="java.lang.String">
+			<column name="QUALIFICATION" />
+		</property>
+
+		<property name="ctc" type="java.lang.String">
+			<column name="CTC" />
+		</property>
+		<property name="ectc" type="java.lang.String">
+			<column name="ECTC" />
+		</property>
+		<property name="np" type="java.lang.String">
+			<column name="NP" />
+		</property>
+		<property name="reason" type="text">
+			<column name="Reason" />
+		</property>
+		<property name="dob" type="DateType">
+			<column name="DOB" />
+		</property>
+		
+		<property name="currentEmployer" type="java.lang.String">
+            <column name="CURRENT_EMPLOYER"/>
+		</property>
+		<property name="currentLocation" type="java.lang.String">
+		    <column name="CURRENT_LOCATION"/>
+		</property>
+		<property name="skypeId" type="java.lang.String">
+		    <column name="SKYPE_ID"/>
+		</property>
+		<many-to-one name="address"
+			class="com.raybiztech.recruitment.business.Address" fetch="join">
+			<column name="ADDRESS" />
+		</many-to-one>
+		 <property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+	</class>
+</hibernate-mapping>

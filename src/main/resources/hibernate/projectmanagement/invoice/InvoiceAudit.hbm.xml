@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Sep, 2015 4:45:45 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+
+	<!-- <typedef class="com.raybiztech.date.hibernate.type.DateUserType" name="DateType" 
+		/> -->
+	<class name="com.raybiztech.projectmanagement.invoice.business.InvoiceAudit"
+		table="INVOICE_AUDIT">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+          <!-- below column invoice number is serial number -->
+		<property name="invoiceNumber" type="java.lang.String">
+			<column name="InvoiceNumber" />
+		</property>
+		<property name="modifiedBy" type="java.lang.String">
+			<column name="ModifiedBy" />
+		</property>
+
+		<property name="persistType" type="java.lang.String">
+			<column name="PersistType" />
+		</property>
+		<property name="invoiceId" type="java.lang.Long">
+			<column name="InvoiceId" />
+		</property>
+
+		<property name="saltKey" type="java.lang.String">
+			<column name="SaltKey" />
+		</property>
+
+
+		<set name="lineitems" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="InvoiceAudit_id" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.invoice.business.LineItemAudit" />
+		</set>
+
+
+
+		<set name="taxAudits" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Invoice_id" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.invoice.business.TaxAudit" />
+		</set>
+
+
+		<set name="amountAudits" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Invoice_id" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.invoice.business.ReceivedInvoiceAmountAudit" />
+		</set>
+
+		<property name="clientname" type="java.lang.String">
+			<column name="Clientname" />
+		</property>
+
+
+		<property name="projectName" type="java.lang.String">
+			<column name="ProjectName" />
+		</property>
+
+		<!-- <property name="invoiceDuration" type="java.lang.String"> <column 
+			name="InvoiceDuration" /> </property> <property name="invoiceCount" type="java.lang.String"> 
+			<column name="InvoiceCount" /> </property> <property name="invoiceRate" type="java.lang.String"> 
+			<column name="InvoiceRate" /> </property> -->
+
+		<property name="country" type="java.lang.String">
+			<column name="Country" />
+		</property>
+
+		<property name="bankName" type="java.lang.String">
+			<column name="BankName" />
+		</property>
+
+		<property name="currencyType" type="java.lang.String">
+			<column name="CurrencyType" />
+		</property>
+
+		<property name="wireTransferInstructions" type="text">
+			<column name="WireTransferInstructions" />
+		</property>
+
+		<property name="notes" type="text">
+			<column name="Notes" />
+		</property>
+
+		<property name="discountType" type="java.lang.String">
+			<column name="DiscountType" />
+		</property>
+
+		<property name="discountRate" type="java.lang.String">
+			<column name="DiscountRate" />
+		</property>
+
+		<property name="discountInAmount" type="java.lang.String">
+			<column name="Discount" />
+		</property>
+
+		<property name="taxType" type="java.lang.String">
+			<column name="TaxType" />
+		</property>
+
+		<property name="taxRate" type="java.lang.String">
+			<column name="TaxRate" />
+		</property>
+
+		<property name="taxAmount" type="text">
+			<column name="Tax_AMOUNT" />
+		</property>
+
+		<property name="milstoneTitle" type="java.lang.String">
+			<column name="MilstoneTitle" />
+		</property>
+
+		<!-- <property name="paymentTerm" type="java.lang.String"> <column name="PaymentTerm" 
+			/> </property> -->
+
+		<property name="invoiceStatus" type="java.lang.String">
+			<column name="InvoiceStatus" />
+		</property>
+
+		<property name="subTotal" type="text">
+			<column name="SubTotal" />
+		</property>
+
+		<property name="invoiceAmount" type="text">
+			<column name="Amount" />
+		</property>
+
+		<property name="totalAmount" type="java.lang.String">
+			<column name="TotalAmount" />
+		</property>
+
+		<property name="amountAfterDiscount" type="text">
+			<column name="TOTALINVOICEAMOUNT" />
+		</property>
+
+
+		<property name="invoiceDate" type="DateType">
+			<column name="INVOICEDATE" />
+		</property>
+
+		<property name="dueDate" type="DateType">
+			<column name="DUEDATE" />
+		</property>
+
+		<property name="invoiceAmountReceviedDate" type="DateType">
+			<column name="InvoiceAmountReceviedDate" />
+		</property>
+
+		<property name="invoiceSentDate" type="DateType">
+			<column name="InvoiceSentDate" />
+		</property>
+
+		<property name="modifiedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType" column="postDate" />
+
+		<property name="StatusNotes" type="text">
+			<column name="StatusNotes" />
+		</property>
+
+		<property name="adjustedInvoice" type="java.lang.Boolean">
+			<column name="IsAdjustedInvoice" />
+		</property>
+		
+		<property name="conversionRate" type="java.lang.String">
+		    <column name="ConversionRate"></column>
+		</property>
+		
+		<!-- below column number is invoice number -->
+		
+			<property name="number" type="java.lang.String">
+			<column name="number" />
+		</property>
+		
+		 <property name="tdsAmount" type="java.lang.String">
+			<column name="TDSAmount" />
+		</property>
+
+		<property name="netAmount" type="java.lang.String">
+			<column name="NetAmount" />
+		</property>
+		
+		<property name="modifiedMilestoneName" type="java.lang.String">
+			<column name="ModifiedMilestoneName" />
+		</property>
+		
+		<property name="proformaInvoiceFlag" type="java.lang.Boolean">
+			<column name="ProformaInvoiceFlag" />
+		</property>
+		
+		<many-to-one name="proformaReferenceNo"
+			class="com.raybiztech.projectmanagement.invoice.business.Invoice">
+			<column name="proformaReferenceNo" />
+		</many-to-one>
+
+
+
+
+
+	</class>
+</hibernate-mapping>

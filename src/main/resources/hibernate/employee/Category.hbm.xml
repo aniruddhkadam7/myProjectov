@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.appraisals.business.Category" table="CATEGORY">
+        <id name="categoryId" type="java.lang.Long">
+            <column name="categoryId" />
+            <generator class="native" />
+        </id>
+        <property name="categoryType" type="java.lang.String">
+            <column name="CATEGORYTYPE" />
+        </property>
+        <set name="employeeSkill" table="EMPLOYEESKILLLOOKUP" inverse="true"  lazy="true" cascade="delete-orphan">
+            <key>
+                <column name="categoryId" />
+            </key>
+            <one-to-many class="com.raybiztech.appraisals.business.EmployeeSkillLookUp" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.appraisals.business.Qualification"
+		table="Qualification">
+
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		<!-- <many-to-one name="pgLookUp"
+			class="com.raybiztech.appraisals.business.QualificationLookUp" lazy="false">
+			<column name="PgLookUp_ID" />
+		</many-to-one>
+		<many-to-one name="graduationLookUp"
+			class="com.raybiztech.appraisals.business.QualificationLookUp" lazy="false">
+			<column name="GraduationLookUp_ID" />
+		</many-to-one>
+		<many-to-one name="hscLookUp"
+			class="com.raybiztech.appraisals.business.QualificationLookUp" lazy="false">
+			<column name="HscLookUp_ID" />
+		</many-to-one> -->
+		<property name="qualificationDetails" type="java.lang.String">
+			<column name="Qualification_Details" />
+		</property>
+		<property name="others" type="java.lang.String">
+			<column name="Others" />
+		</property>
+		<property name="hscName" type="java.lang.String">
+			<column name="Hsc_Name" />
+		</property>
+		<property name="sscName" type="java.lang.String">
+			<column name="Ssc_Name" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="CreatedBy" />
+		</property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="UpdatedBy" />
+		</property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property>
+		<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			name="employee" lazy="false">
+			<column name="Employee_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

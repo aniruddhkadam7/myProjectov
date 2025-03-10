@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.appraisalmanagement.business.KRA"
+           table="KRA_LOOKUP" lazy="false">
+        <id name="id" type="java.lang.Long">
+            <column name="KRA_ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="description" type="text">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="designationKraPercentage" type="java.lang.Double">
+            <column name="Desig_KraPercentage"/>
+        </property>
+        <set name="kpiLookps" cascade="all">
+            <key column="KRA_ID" />
+            <one-to-many class="com.raybiztech.appraisalmanagement.business.KPI"  />
+        </set>
+        
+        <many-to-one name="empDepartment" lazy="false"
+			class="com.raybiztech.appraisals.business.EmpDepartment">
+        </many-to-one>
+                
+         <many-to-one name="designation" lazy="false"
+			class="com.raybiztech.appraisalmanagement.business.Designation">
+        </many-to-one>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+       
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>       
+        
+<!--        <one-to-many name="empDepartment" class="com.raybiztech.appraisals.business.EmpDepartment" 
+			cascade="none" lazy="false"/>
+         <one-to-many name="designation" class="com.raybiztech.appraisalmanagement.business.Designation" 
+			cascade="none" lazy="false"/>-->
+ 
+<!--         <set name="designationWiseKRAs" inverse="false" cascade="all" lazy="false">
+            <key column="KRA_ID" />
+            <one-to-many class="com.raybiztech.appraisalmanagement.business.DesignationWiseKRA"  />
+        </set>-->
+
+    </class>
+</hibernate-mapping>

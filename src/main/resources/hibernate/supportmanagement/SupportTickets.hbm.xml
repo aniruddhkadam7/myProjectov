@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.raybiztech.supportmanagement.business.SupportTickets" table="support_tickets">
+        <id name="id" type="java.lang.Long">
+            <column name="ID"/>
+            <generator class="native"/>
+        </id>
+        <many-to-one name="ticketsSubCategory"
+                     class="com.raybiztech.supportmanagement.business.TicketsSubCategory" 
+                     lazy="false">
+            <column name="TicketsSubCategory_ID" />
+        </many-to-one>
+        
+        <property name="subject" type="java.lang.String">
+            <column name="Subject"/>
+        </property>
+        <property name="description" type="text">
+            <column name="Description"/>
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="Status"/>
+        </property>
+        <property name="priority" type="java.lang.String">
+            <column name="Priority"/>
+        </property>
+        <property name="startDate" type="DateType">
+            <column name="StartDate"/>
+        </property>
+        <property name="endDate" type="DateType">
+            <column name="EndDate"/>
+        </property>
+        <many-to-one class="com.raybiztech.appraisals.business.Employee" lazy="false" name="assignee">
+        <column name="AssigneeEmp_ID"/>
+    </many-to-one>
+        <property name="percentageDone" type="java.lang.Integer">
+            <column name="PercentageDone"  />
+        </property>
+        <property name="actualTime" type="java.lang.String">
+            <column name="ActualTime"  />
+        </property>
+        <property name="documentsPath" type="java.lang.String">
+            <column name="DocumentsPath"/>
+        </property>
+        <property name="approvalStatus" type="java.lang.String">
+            <column name="ApprovalStatus"/>
+        </property>
+         <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UpdatedBy"  />
+        </property>
+       
+        <property name="updatedDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Updated_Date"/>
+        </property>
+         <property name="managesList" type="java.lang.String">
+            <column name="ListOf_Manager"/>
+        </property>
+        
+        
+<!--        <set name="ticketsWatchers" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Ticket_ID" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.supportmanagement.business.SupportTicketsWatchers" />
+	</set>-->
+        <property name="ticketWatchers" type="text">
+            <column name="TicketWatchers"/>
+        </property>
+           <many-to-one name="tracker"
+                     class="com.raybiztech.supportmanagement.business.Tracker" 
+                     lazy="false">
+            <column name="Tracker_ID" />
+        </many-to-one>
+          <property name="accessStartDate" type="DateType">
+            <column name="AccessStartDate"/>
+        </property>
+        <property name="accessEndDate" type="DateType">
+            <column name="AccessEndDate"/>
+        </property>
+    </class>
+
+</hibernate-mapping>

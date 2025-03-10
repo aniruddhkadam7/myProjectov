@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="com.raybiztech.supportmanagement.business.TicketsSubCategory" table="tickets_subcategory">
+        <id name="id" type="java.lang.Long">
+        <column name="ID"/>
+        <generator class="native"/>
+        </id>
+        <many-to-one name="ticketsCategory"
+              class="com.raybiztech.supportmanagement.business.TicketsCategory" 
+              lazy="false">
+            <column name="TicketsCategory_ID" />
+        </many-to-one>
+        
+        <property name="subCategoryName" type="java.lang.String">
+            <column name="SubCategoryName"/>
+        </property>
+        <property name="estimatedTime" type="java.lang.String">
+            <column name="EstimatedTime"/>
+        </property>
+        <property name="workFlow" type="java.lang.Boolean">
+            <column name="WorkFlow"/>
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CreatedBy"  />
+        </property>
+         <property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+            <column name="Created_Date"/>
+        </property>
+        <property name="levelOfHierarchy" type="java.lang.Integer">
+            <column name="LevelOfHierarchy"  />
+        </property>
+        
+    </class>
+
+</hibernate-mapping>

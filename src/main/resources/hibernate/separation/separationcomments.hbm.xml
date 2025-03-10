@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.separation.business.SeparationComments"
+		table="SeparationComments">
+
+		<id name="commentId" type="java.lang.Long">
+			<column name="Comment_Id"></column>
+			<generator class="native"></generator>
+		</id>
+		<property name="comments" type="text">
+			<column name="Comments"></column>
+		</property>
+		<property name="withdrawComments" type="text">
+		  <column name="WithdrawComments"></column>
+		
+		</property>
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="join">
+			<column name="Employee" />
+		</many-to-one>
+		<property name="relievingDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Relieving_Date" />
+		</property>
+
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date"></column>
+		</property>
+
+		<property name="status">
+			<column name="Status" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.separation.business.SeparationStatus</param>
+			</type>
+		</property>
+
+
+
+	</class>
+
+
+
+
+
+
+
+</hibernate-mapping>

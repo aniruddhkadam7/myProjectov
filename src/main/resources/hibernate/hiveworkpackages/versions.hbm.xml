@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.hiveworkpackages.business.versions"
+		table="versions">
+
+		<id name="id" type="java.lang.Long">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="project_id" cascade="all" lazy="false"
+			class="com.raybiztech.hiveworkpackages.business.projects">
+			<column name="project_id"></column>
+		</many-to-one>
+
+
+		<property name="name" type="java.lang.String">
+			<column name="name"></column>
+		</property>
+
+		<property name="description" type="java.lang.String">
+			<column name="description"></column>
+		</property>
+		<property name="effective_date"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="effective_date"></column>
+		</property>
+		<property name="created_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_on"></column>
+		</property>
+		<property name="updated_on"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_on"></column>
+		</property>
+		<property name="wiki_page_title" type="java.lang.String">
+			<column name="wiki_page_title"></column>
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="status"></column>
+		</property>
+		<property name="sharing" type="java.lang.String">
+			<column name="sharing"></column>
+		</property>
+		<property name="start_date"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="start_date"></column>
+		</property>
+
+
+
+
+	</class>
+
+</hibernate-mapping>

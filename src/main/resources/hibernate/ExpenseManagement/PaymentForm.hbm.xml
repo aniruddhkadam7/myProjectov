@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.expenseManagement.business.PaymentForm"
+		table="PaymentForm" dynamic-update="true">
+		<id name="Id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="expenseId"
+			class="com.raybiztech.expenseManagement.business.ExpenseForm">
+			<column name="ExpenseId"></column>
+		</many-to-one>
+		<property name="modeOfPayment" type="java.lang.String">
+			<column name="Mode_of_Payment"></column>
+		</property>
+		<property name="paidAmount" type="java.lang.String">
+			<column name="AmountPaid"></column>
+		</property>
+		<property name="chequeNumber" type="java.lang.String">
+			<column name="Cheque_Number" />
+		</property>
+		<property name="chequeDate" type="DateType">
+			<column length="19" name="Cheque_Date" />
+		</property>
+		<property name="rtgsDate" type="DateType">
+			<column length="19" name="RTGS_NEFT_Date" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="Status"></column>
+		</property>
+		<property name="saltKey" type="text">
+			<column name="SaltKey" />
+		</property>
+		<many-to-one name="createdBy"
+			class="com.raybiztech.appraisals.business.Employee">
+			<column name="Created_By" />
+		</many-to-one>
+		<property name="createdDate" type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+		
+
+	</class>
+</hibernate-mapping>

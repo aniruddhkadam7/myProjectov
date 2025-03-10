@@ -1,0 +1,76 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="alertService" class="com.raybiztech.appraisals.alerts.service.AlertServiceImpl" />
+
+    <bean id="timeInofficeAlertService" class="com.raybiztech.appraisals.alerts.service.TimeInofficeAlertService" />
+
+    
+    <!-- Hive Spring Quartz -->
+    <bean name="runMeJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+        <property name="jobClass" value="com.raybiztech.appraisals.alerts.quartzScheduler.HiveQuartzScheduler" />
+
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="alertService" value-ref="alertService" />
+            </map>
+        </property>
+
+    </bean>
+    
+    <!-- Time Spring Quartz -->
+    <bean name="TimerunMeJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+        <property name="jobClass" value="com.raybiztech.appraisals.alerts.quartzScheduler.TimeQuartzScheduler" />
+
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="timeInofficeAlertService" value-ref="timeInofficeAlertService" />
+            </map>
+        </property>
+
+    </bean>
+    
+    
+        
+    <!-- Cron Trigger, run every 14 Hours -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+        <property name="jobDetail" ref="runMeJob" />
+        <!--        <property name="cronExpression" value="0 0 6 * * ?" />-->
+        <property name="cronExpression" value="0 0/5 * * * ?" />
+
+    </bean>
+    
+    
+    <!-- Cron Trigger, run every 14 Hours -->
+    <bean id="TimeTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+        <property name="jobDetail" ref="TimerunMeJob" />
+        <!--        <property name="cronExpression" value="0 0 6 * * ?" />-->
+        <property name="cronExpression" value="0 0/5 * * * ?" />
+
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+<!--                <ref bean="runMeJob" />
+                <ref bean="TimerunMeJob" />-->
+            </list>
+        </property>
+
+        <property name="triggers">
+            <list>
+<!--                <ref bean="cronTrigger" />
+                <ref bean="TimeTrigger" />-->
+            </list>
+        </property>
+        
+    </bean>
+
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10 March, 2017 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+	<class name="com.raybiztech.projectmanagement.business.ProjectRequestMail"
+		table="ProjectRequestMailIds">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="cc" type="java.lang.String">
+			<column name="CC" />
+		</property>
+		<property name="bcc" type="java.lang.String">
+			<column name="BCC" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="CreatedBy" />
+		</property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="CreatedDate" />
+		</property>
+	</class>
+</hibernate-mapping>

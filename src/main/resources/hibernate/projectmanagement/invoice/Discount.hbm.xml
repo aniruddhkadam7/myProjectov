@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Sep, 2015 4:45:45 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.projectmanagement.invoice.business.Discount"
+		table="DISCOUNT">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="discountType">
+			<column name="DISCOUNTTYPE" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.projectmanagement.invoice.business.DiscountType</param>
+			</type>
+		</property>
+		<property name="discountRate" type="text">
+			<column name="DISCOUNTRATE" />
+		</property>
+		<property name="discount" type="text">
+			<column name="DISCOUNT" />
+		</property>
+		<property name="saltKey" type="text">
+			<column name="SaltKey" />
+		</property>
+	</class>
+</hibernate-mapping>

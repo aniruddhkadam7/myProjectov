@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Dec, 2014 6:30:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.appraisals.certification.business.Certification"
+		table="Certifications">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="code" type="java.lang.String">
+			<column name="code" />
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+		<property name="completedDate" type="DateType">
+			<column name="completedDate" />
+		</property>
+		<property name="expiryDate" type="DateType">
+			<column name="expiryDate" />
+		</property>
+		<property name="skill" type="java.lang.String">
+			<column name="skill" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="description" />
+		</property>
+		<property name="percentage" type="java.lang.Double">
+			<column name="percentage" />
+		</property>
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="join">
+			<column name="EmployeeId" />
+		</many-to-one>
+		
+		<property name="technology" type="java.lang.String">
+			<column name="Technology" />
+		</property>
+		
+		<property name="certificateType" type="java.lang.String">
+			<column name="CertificationType" />
+		</property>
+
+	</class>
+</hibernate-mapping>

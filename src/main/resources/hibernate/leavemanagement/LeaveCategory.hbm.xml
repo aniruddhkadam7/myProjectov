@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.leavemanagement.business.LeaveCategory"
+		table="LeaveCategory">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column unique="true" not-null="true" name="LeaveCategory_Name" />
+		</property>
+		<property name="leaveType">
+			<column name="LeaveType" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.leavemanagement.business.LeaveType</param>
+			</type>
+		</property>
+
+	</class>
+</hibernate-mapping>
+

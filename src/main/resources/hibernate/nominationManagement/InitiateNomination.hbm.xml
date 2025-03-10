@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="com.raybiztech.achievementNomination.business.InitiateNomination"
+		table="NominationCycleConfiguration">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one
+			class="com.raybiztech.achievementNomination.business.NominationCycle"
+			lazy="false" name="nominationCycle">
+			<column name="Nomination_Cycle" />
+		</many-to-one>
+
+
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+
+
+		<set name="nominationQuestions" cascade="all" table="Nomination_Question_Cycle_Mapping">
+			<key column="NomiationCycleConfiguration_ID" />
+			<many-to-many
+				class="com.raybiztech.achievementNomination.business.NominationQuestion"
+				column="Question_ID" />
+		</set>
+
+
+
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+
+	<!-- This is where we configure Spring-Security -->
+	<security:http auto-config="true" use-expressions="true"
+		access-denied-page="/auth/denied" create-session="never">
+		
+		
+		<security:custom-filter ref="authenticationTokenProcessingFilter"
+			after="FORM_LOGIN_FILTER" />
+
+		<security:intercept-url pattern="/auth/login" access="permitAll" />
+		<!-- <security:intercept-url pattern="/main/admin"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/main/common"
+			access="hasRole('ROLE_USER')" />
+
+		<security:intercept-url pattern="/biometricController/bioAdminManager/*"
+			access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" />
+		<security:intercept-url pattern="/leave/bioAdminManager/*"
+			access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" />
+		<security:intercept-url pattern="/leaveSetup/bioAdmin/*"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/jobapplicant/jobAdmin/*"
+			access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER','ROLE_USER','ROLE_FINANCE')" />
+		<security:intercept-url pattern="/jobvacancy/jobAdmin/*"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url
+			pattern="/payslip/payrolladmin/generatePayslipAndDownloadPayslip" />
+		<security:intercept-url pattern="/payslip/payrolladmin/"
+			access="hasAnyRole('ROLE_ADMIN','ROLE_FINANCE')" /> -->
+
+
+
+
+
+		<security:http-basic entry-point-ref="authenticationEntryPoint" />
+		<security:form-login login-page="/auth/login"
+			authentication-failure-url="/auth/login?error=true"
+			default-target-url="/main/common" />
+
+		<security:logout invalidate-session="true"
+			logout-success-url="/auth/login" logout-url="/auth/logout" />
+
+	</security:http>
+
+
+
+	<bean id="userDaoImpl" class="com.raybiztech.hrm.security.rest.dao.UserDaoImpl">
+	</bean>
+
+	<bean
+		class="com.raybiztech.hrm.security.rest.AuthenticationTokenProcessingFilter"
+		id="authenticationTokenProcessingFilter">
+		<constructor-arg ref="userDaoImpl" />
+	</bean>
+
+	<bean id="authenticationEntryPoint"
+		class="com.raybiztech.hrm.security.rest.HRMAuthenticationEntryPoint">
+		<constructor-arg value="RealmName" />
+	</bean>
+        
+
+	<!-- <bean id="hrmMds" class="HRMFilterInvocationSecurityMetadataSourceBeanPostProcessor"> 
+		<property name="metadataSource"> <bean id="hrmFilterSecurityMetadataSource" 
+		class="com.raybiztech.hrm.security.rest.HRMFilterSecurityMetadataSource" 
+		/> </property> </bean> -->
+
+
+	<!-- For authentication: user-search-filter: the attribute name that contains 
+		the user name user-search-base: the base path where to find user information 
+		For authorization: group-search-filter: the attribute name that contains 
+		the full dn of a user group-search-base: the base path where to find role 
+		information group-role-attribute: the attribute name that contains the role 
+		type role-prefix: the prefix to be added when retrieving role values For 
+		server access: manager-dn: the full dn of the person that has access to an 
+		LDAP server manager-password: the password of the person that has access 
+		to an LDAP server -->
+                
+                <!--For ldap server starts here -->
+	<!-- <security:authentication-manager>
+		 <security:ldap-authentication-provider user-search-filter="(uid={0})" 
+			user-search-base="ou=people" group-search-filter="(uniqueMember={0})" group-search-base="ou=groups" 
+			group-role-attribute="cn" role-prefix="ROLE_"> </security:ldap-authentication-provider> 
+		<security:ldap-authentication-provider
+			user-dn-pattern="uid={0},ou=people,dc=raybiztech,dc=com">
+		</security:ldap-authentication-provider>
+		<security:ldap-authentication-provider
+			user-dn-pattern="uid={0},ou=people,dc=aibridgeml,dc=com">
+		</security:ldap-authentication-provider>
+	</security:authentication-manager>
+
+	<security:ldap-server url="ldap://mail.raybiztech.com:389"
+		manager-dn="uid=mailer,ou=people,dc=raybiztech,dc=com" manager-password="R@ytech1@3" />
+	<security:ldap-server url="ldap://mail.aibridgeml.com:389"
+		manager-dn="uid=mailer,ou=people,dc=aibridgeml,dc=com" manager-password="R@ytech1@3" /> -->
+                
+                   <!--For ldap server ends here -->
+                
+                
+            <!-- custom password start here -->     
+    <bean id="userDetailsServiceImpl"
+               class="com.raybiztech.appraisals.security.utils.UserDetailsServiceImpl" />
+    <bean id="customUserDetails" class="com.raybiztech.appraisals.security.utils.CustomUserDetails" />
+
+    <bean id="daoAuthenticationProvider"
+          class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+
+        <property name="userDetailsService" ref="userDetailsServiceImpl" />   
+
+    </bean>
+
+
+    <bean id="authenticationManager"
+          class="org.springframework.security.authentication.ProviderManager">
+        <property name="providers">
+            <list>
+                <ref local="daoAuthenticationProvider" />
+            </list>
+        </property>
+    </bean>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userDetailsServiceImpl">
+        </security:authentication-provider>
+    </security:authentication-manager>
+     <!-- custom password end here -->      
+                
+
+</beans>

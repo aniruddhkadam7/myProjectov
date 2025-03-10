@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.achievement.business.Leadership"
+		table="Leadership">
+		
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		 
+	<many-to-one class="com.raybiztech.appraisals.business.Employee"
+			name="employee" lazy="false">
+			<column name="Employee_ID" />
+		</many-to-one>
+		
+		<property name="leader" type="java.lang.Boolean">
+			<column name="isLeader" />
+		</property>
+		
+		<property name="communicate" type="java.lang.Boolean">
+			<column name="isCommunicate" />
+		</property>
+		<property name="initiative" type="java.lang.Boolean">
+			<column name="isInitiative" />
+		</property>
+		<property name="teamWorker" type="java.lang.Boolean">
+			<column name="isTeamWorker" />
+		</property>
+		<property name="constructiveCriticism" type="java.lang.Boolean">
+			<column name="ConstructiveCriticism" />
+		</property>
+		<property name="helper" type="java.lang.Boolean">
+			<column name="isHelper" />
+		</property>
+		<property name="directlyWorking" type="java.lang.Boolean">
+			<column name="isDirectlyWorking" />
+		</property>
+		<property name="travelOnsite" type="java.lang.Boolean">
+			<column name="travelOnsite" />
+		</property>
+		
+		<property name="innovationAndResearch" type="java.lang.Boolean">
+			<column name="InnovationAndResearch" />
+		</property>
+		
+		<property name="reasonDetails" type="java.lang.String">
+			<column name="Reason_Details" />
+		</property>
+		
+		<property name="expectationsExample" type="java.lang.String">
+			<column name="Expectations_Example" />
+		</property>
+	
+		<property name="status" type="java.lang.String">
+			<column name="Status" />
+		</property>
+		
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" />
+		</property>
+		
+		<property name="createdDate" type="DateType">
+			<column name="Created_Date" />
+		</property>
+		
+		<property name="updatedDate" type="DateType">
+			<column name="Updated_Date" />
+		</property>
+		
+		<property name="acceptance" type="java.lang.Boolean">
+			<column name="Acceptance" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

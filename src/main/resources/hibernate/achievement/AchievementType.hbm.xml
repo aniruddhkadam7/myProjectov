@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.achievement.business.AchievementType"
+		table="AchievementType">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="achievementType" type="java.lang.String">
+			<column name="Achievement_Type" />
+		</property>
+		<property name="createdBy" type="java.lang.Long">
+			<column name="Created_By" />
+		</property>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+		<property name="updatedBy" type="java.lang.Long">
+			<column name="Updated_By" />
+		</property>
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Updated_Date" />
+		</property>
+		<property name="status" type="java.lang.Boolean">
+		<column name="Status"></column>
+		</property>
+		<property name="order" type="java.lang.Long">
+		<column name="Type_Order"></column>
+		</property>
+		<property name="timePeriodRequired" type="java.lang.Boolean">
+		<column name="timePeriodRequired"></column>
+		</property>
+		<property name="fromMonthToMontRequired" type="java.lang.Boolean">
+		<column name="fromMonthToMontRequired"></column>
+		</property>
+	</class>
+</hibernate-mapping>

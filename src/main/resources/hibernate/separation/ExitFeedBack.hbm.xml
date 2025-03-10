@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.separation.business.ExitFeedBack"
+		table="Separation_ExitFeedback" lazy="false">
+		<id name="id" type="java.lang.Long">
+			<column name="ExitFeedBack_ID"></column>
+			<generator class="native" />
+		</id>
+		
+		<property name="otherCommnets" type="text">
+			<column name="Other_Comments"></column>
+		</property>
+		
+		
+		<property name="salary" type="text">
+			<column name="Salary"></column>
+		</property>
+		
+		
+		<property name="opportunityForGrowth" type="text">
+			<column name="Opportunity_For_Growth"></column>
+		</property>
+		
+		
+		<property name="recognitionOfwork" type="text">
+			<column name="Recognition_Of_work"></column>
+		</property>
+		
+		
+		<property name="promotion" type="text">
+			<column name="Promotion"></column>
+		</property>
+		
+		
+		<property name="educationalBackground" type="text">
+			<column name="Educational_Background"></column>
+		</property>
+		
+		
+		<property name="personelPolicies" type="text">
+			<column name="Personel_Policies"></column>
+		</property>
+		
+		
+		<property name="organisationCulture" type="text">
+			<column name="Organisation_Culture"></column>
+		</property>
+		
+		
+		<property name="roleClarity" type="text">
+			<column name="Role_Clarity"></column>
+		</property>
+		
+		
+		<property name="superiorGuidance" type="text">
+			<column name="Superior_Guidance"></column>
+		</property>
+		
+		
+		<property name="expectations" type="text">
+			<column name="Expectations"></column>
+		</property>
+		
+		
+		<property name="expectationsFulfilled" type="text">
+			<column name="Expectations_Fulfilled"></column>
+		</property>
+		
+			<property name="likeAboutCompany" type="text">
+			<column name="Like_About_Company"></column>
+		</property>
+		
+			<property name="dislikeAboutCompany" type="text">
+			<column name="Dislike_About_Company"></column>
+		</property>
+		
+			<property name="joinLater" type="text">
+			<column name="Join_Later"></column>
+		</property>
+		
+			<property name="relievingLetter" type="text">
+			<column name="relievingLetter"></column>
+		</property>
+		<property name="exitFeedbackForm" type="text">
+		<column name="exitFeedbackForm"></column>
+		</property>
+		
+		<property name="isPIP" type="java.lang.Boolean" not-null="true">
+		<column name="isPIP" not-null="true"></column>
+		</property>
+		
+		
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" lazy="false">
+			<column name="Employee"></column>
+		</many-to-one>
+		<many-to-one name="separation"
+			class="com.raybiztech.separation.business.Separation" lazy="false">
+			<column name="separation"></column>
+		</many-to-one>
+		<many-to-one name="primaryReason"
+			class="com.raybiztech.separation.business.PrimaryReason" lazy="false">
+			<column name="primaryReason"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

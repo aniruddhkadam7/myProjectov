@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.appraisals.business.DesignationKras"
+		table="DesignationKras">
+		<id name="designationKRAsId" type="java.lang.Long">
+			<column name="DESIGNATION_KRAs_ID" />
+			<generator class="native" />
+		</id>
+		<property name="designationCode" type="java.lang.String">
+			<column length="10" name="DesignationCode" not-null="true"
+				unique="true" />
+		</property>
+
+		<property name="designationName" type="java.lang.String">
+			<column length="30" name="DesignationName" not-null="true"
+				unique="true" />
+		</property>
+
+		<property name="comments" type="java.lang.String">
+			<column length="40" name="Comments" />
+		</property>
+
+	</class>
+</hibernate-mapping>
+

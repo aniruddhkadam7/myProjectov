@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+  <hibernate-mapping>
+  <class name="com.raybiztech.projectmanagement.business.ProjectInitiationChecklist"
+  table="PROJECT_INITIATION_CHECKLIST">
+  
+  <id name="id" type="java.lang.Long">
+  <column name="Id"></column>
+  <generator class="native"></generator>
+  </id>
+  
+  <property name="answer" type="java.lang.String">
+  <column name="Answer"></column></property>
+  
+  <property name="comments" type="java.lang.String">
+  <column name="Comments"></column>
+  </property>
+  
+  <many-to-one name="checklist" lazy="false"
+  class="com.raybiztech.projectmanagement.business.ProjectCheckList">
+  <column name="Checklist_Id"></column>
+  </many-to-one>
+  </class>
+  
+  </hibernate-mapping>

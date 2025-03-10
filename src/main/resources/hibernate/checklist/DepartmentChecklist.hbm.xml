@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.checklist.business.DepartmentChecklist"
+		table="dept_section_checklist">
+		<id name="deptChecklistId" type="java.lang.Long">
+			<column name="dept_Checklist_Id" />
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="Checklist_Name" />
+		</property>
+		<property name="deptChecklistStatus" type="java.lang.Boolean">
+            <column name="Status" />
+        </property> 
+		<property name="comments" type="java.lang.String">
+			<column name="Checklist_Comments" />
+		</property>
+		
+	</class>
+
+</hibernate-mapping>

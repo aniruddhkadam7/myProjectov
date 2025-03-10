@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.projectMetrics.business.ScheduleVariance"
+		table="Schedule_Variance">
+		<id name="id" type="java.lang.Long">
+			<column name="Id"></column>
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="project"
+		class="com.raybiztech.projectmanagement.business.Project">
+		<column name="Project_Id"></column>
+		</many-to-one>
+		<property name="baselineStartdate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Baseline_StartDate"></column>
+		</property>
+		<property name="baselineEnddate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Baseline_EndDate"></column>
+		</property>
+		<property name="actualStartdate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Actual_StartDate"></column>
+		</property>
+		<property name="actualEnddate" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Actual_EndDate"></column>
+		</property>
+		<property name="scheduleVariance" type="java.lang.Double">
+			<column name="Schedule_Variance"></column>
+		</property>
+		<property name="comments" type="java.lang.String">
+			<column name="Comments"></column>
+		</property>
+		<many-to-one name="createdBy"
+			class="com.raybiztech.appraisals.business.Employee" fetch="join">
+			<column name="Created_By" />
+		</many-to-one>
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date"></column>
+		</property>
+		
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.projectmanagement.business.MilestoneAudit"
+		table="Milestone_Audit">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="title" type="java.lang.String">
+			<column name="Title" />
+		</property>
+		<property name="milestonePercentage" type="java.lang.String">
+			<column name="MilestonePercentage" />
+		</property>
+
+		<property name="planedDate" type="DateType">
+			<column length="19" name="PlanedDate" />
+		</property>
+
+		<property name="actualDate" type="DateType">
+			<column length="19" name="ActualDate" />
+		</property>
+		<property name="billable" type="java.lang.Boolean">
+			<column name="Billable" />
+		</property>
+
+		<property name="comments" type="text">
+			<column length="65535" name="Comments" />
+		</property>
+
+		<property name="modifiedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType" column="postDate" />
+
+		<property name="modifiedBy" type="java.lang.String">
+			<column name="Modified_By" />
+		</property>
+
+		<property name="persistType" type="java.lang.String">
+			<column name="Persist_Type" />
+		</property>
+
+		<property name="milestoneId" type="java.lang.Long">
+			<column name="Milestone_Id" />
+		</property>
+		<set name="milestonePeopleAudit" inverse="false" cascade="all"
+			lazy="false">
+			<key>
+				<column name="MilestoneAuditID" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.business.MilestonePeopleAudit" />
+		</set>
+		
+		
+		<property name="milestoneTypeFlag" type="java.lang.Boolean">
+			<column name="MilestoneTypeFlag" default="false"  />
+		</property>
+
+	</class>
+</hibernate-mapping>

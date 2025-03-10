@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 Jan, 2015 1:06:57 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.projectMetrics.business.ProjectSprintsAudit"
+		table="ProjectSprintsAudit">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="versionId" type="java.lang.Integer">
+			<column name="Sprint_ID"></column>
+		</property>
+		<property name="versionName" type="java.lang.String">
+			<column name="Sprint_Name"></column>
+		</property>
+
+		<property name="projectId" type="java.lang.Long">
+			<column name="Hive_ProjectId"></column>
+		</property>
+		<property name="projectName" type="java.lang.String">
+			<column name="Hive_ProjectName"></column>
+		</property>
+		<property name="columnName" type="java.lang.String">
+			<column name="Column_Name"></column>
+		</property>
+		<property name="oldValue" type="java.lang.String">
+			<column name="Old_Value"></column>
+		</property>
+		<property name="newValue" type="java.lang.String">
+			<column name="New_Value"></column>
+		</property>
+		<property name="modifiedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType" column="ModifiedDate">
+		</property>
+
+	</class>
+</hibernate-mapping>
+		

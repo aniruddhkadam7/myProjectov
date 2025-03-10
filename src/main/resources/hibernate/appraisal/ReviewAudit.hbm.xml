@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 Jun, 2014 6:29:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.raybiztech.appraisalmanagement.business.ReviewAudit"
+		table="ReviewAudit" lazy="false">
+		<id name="id" type="java.lang.Long">
+			<column name="ReviewAudit_ID" />
+			<generator class="native" />
+		</id>
+
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="Status" />
+		</property>
+		<property name="kpiName" type="java.lang.String">
+			<column name="KPI_Name" />
+		</property>
+		<property name="oldValue" type="java.lang.String">
+			<column name="OldValue" />
+		</property>
+		<property name="newValue" type="java.lang.String">
+			<column name="NewValue" />
+		</property>
+		
+
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date" />
+		</property>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" cascade="all"
+			fetch="join">
+			<column name="createdBy" />
+		</many-to-one>
+
+		<many-to-one name="appraisalForm" cascade="all"
+			column="APPRAISALFORM_ID" class="com.raybiztech.appraisalmanagement.business.AppraisalForm">
+		</many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Jun, 2014 3:40:18 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.appraisals.business.Employee" table="EMPLOYEE" dynamic-update="true">
+		<id name="employeeId" type="java.lang.Long">
+			<column name="EmployeeId" />
+			<generator class="assigned" />
+		</id>
+		<property name="firstName" type="java.lang.String">
+			<column name="FirstName" />
+		</property>
+		<property name="lastName" type="java.lang.String">
+			<column name="LastName" />
+		</property>
+
+		<property name="middleName" type="java.lang.String">
+			<column length="50" name="MiddleName" />
+		</property>
+		<property name="employeeFullName" type="java.lang.String">
+			<column length="50" name="EmployeeFullName" />
+		</property>
+		<property name="userName" type="java.lang.String">
+			<column length="50" name="UserName" />
+		</property>
+		<property name="nickName" type="java.lang.String">
+			<column length="50" name="NickName" />
+		</property>
+		<property name="dob" type="DateType">
+			<column length="19" name="DOB" />
+		</property>
+		<property name="maritalStatus" type="java.lang.String">
+			<column length="15" name="MaritalStatus" />
+		</property>
+		<property name="marriageDate" type="DateType">
+			<column length="19" name="MarriageDate" />
+		</property>
+		<property name="nationalityName" type="java.lang.String">
+			<column length="50" name="NationalityName" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column length="50" name="Email" not-null="true" />
+		</property>
+		<property name="alternateEmail" type="java.lang.String">
+			<column length="50" name="AlternateEmail" />
+		</property>
+		<property name="pan" type="java.lang.String">
+			<column length="15" name="PAN" />
+		</property>
+		<property name="statusName" type="java.lang.String">
+			<column length="50" name="StatusName" />
+		</property>
+		<property name="passportNumber" type="java.lang.String">
+			<column length="15" name="PassportNumber" />
+		</property>
+		<property name="passportExpDate" type="DateType">
+			<column length="19" name="PassportExpDate" />
+		</property>
+		<property name="passportIssuedPlace" type="java.lang.String">
+			<column length="500" name="PassportIssuedPlace" />
+		</property>
+		<property name="passportIssuedDate" type="DateType">
+			<column length="19" name="PassportIssuedDate" />
+		</property>
+		<property name="currentLocation" type="java.lang.String">
+			<column length="16" name="CurrentLocation" />
+		</property>
+		<property name="passwordHash" type="java.lang.String">
+			<column length="250" name="PasswordHash" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column length="250" name="Password" />
+		</property>
+		<property name="saltKey" type="java.lang.String">
+			<column length="250" name="SaltKey" />
+		</property>
+		<property name="bloodgroup" type="java.lang.String">
+			<column length="5" name="Blood_Group" />
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column length="6" name="Gender" />
+		</property>
+		<property name="siteUrl" type="java.lang.String">
+			<column length="45" name="SiteURL" />
+		</property>
+		<property name="aboutMe" type="java.lang.String">
+			<column length="65535" name="AboutME" />
+		</property>
+		<property name="emergencyContactName" type="java.lang.String">
+			<column length="45" name="EmergencyContactName" />
+		</property>
+		<property name="phone" type="java.lang.String">
+			<column length="45" name="Phone" />
+		</property>
+		<property name="relationship" type="java.lang.String">
+			<column length="45" name="Relationship" />
+		</property>
+		<property name="createdDate" type="DateType">
+			<column length="19" name="CreatedDate" />
+		</property>
+		<property name="employmentTypeName" type="java.lang.String">
+			<column length="50" name="EmploymentTypeName" />
+		</property>
+		<property name="jobTypeName" type="java.lang.String">
+			<column length="50" name="JobTypeName" />
+		</property>
+		<property name="realDob" type="DateType">
+			<column length="19" name="RealDOB" />
+		</property>
+		<property name="baseLocation" type="java.lang.String">
+			<column length="45" name="BaseLocation" />
+		</property>
+		<property name="workLocation" type="java.lang.String">
+			<column length="45" name="WorkLocation" />
+		</property>
+		<property name="grade" type="java.lang.String">
+			<column length="45" name="Grade" />
+		</property>
+		<property name="departmentName" type="java.lang.String">
+			<column length="45" name="DepartmentName" />
+		</property>
+		<property name="profilePicture" type="java.lang.String">
+			<column length="100" name="ProfilePicture" />
+		</property>
+		<property name="thumbPicture" type="java.lang.String">
+			<column length="250" name="ThumbPicture" />
+		</property>
+		<property name="joiningDate" type="DateType">
+			<column length="19" name="JoiningDate" />
+		</property>
+		<property name="releavingDate" type="DateType">
+			<column length="19" name="ReleavingDate" />
+		</property>
+		<property name="underNoticeDate" type="DateType">
+			<column length="19" name="UnderNoticeDate" />
+		</property>
+		<property name="modifiedBy" type="java.lang.String">
+			<column length="45" name="ModifiedBY" />
+		</property>
+		<property name="onlineStatus" type="java.lang.String">
+			<column length="45" name="OnlineStatus" />
+		</property>
+		<property name="role" type="java.lang.String">
+			<column length="45" name="Role" />
+		</property>
+
+		<property name="employeeSubmitted" type="java.lang.Boolean">
+			<column name="EMPLOYEESUBMITTED" />
+		</property>
+		<property name="managerSubmitted" type="java.lang.Boolean">
+			<column name="MANAGERSUBMITTED" />
+		</property>
+		<property name="acknowledged" type="java.lang.Boolean">
+			<column name="ACKNOWLEDGED" />
+		</property>
+
+		<property name="profilePicPath" type="java.lang.String">
+			<column length="250" name="PROFILE_PIC_NAME" />
+		</property>
+		<property name="profilePicGeneratedPath" type="java.lang.String">
+			<column length="250" name="PROFILE_PIC_GENERATED_NAME" />
+		</property>
+
+		<property name="homePhoneNumber" type="java.lang.String">
+			<column length="250" name="HOMEPHONENUMBER" />
+		</property>
+		<property name="officePhoneNumber" type="java.lang.String">
+			<column length="250" name="WORK" />
+		</property>
+		<property name="presentAddress" type="java.lang.String">
+			<column length="250" name="PRESENT_ADDRESS" />
+		</property>
+		<property name="presentCity" type="java.lang.String">
+			<column length="250" name="PRESENT_CITY" />
+		</property>
+		<property name="presentZip" type="java.lang.String">
+			<column length="250" name="PRESENT_ZIP" />
+		</property>
+		<property name="presentLandMark" type="java.lang.String">
+			<column length="250" name="PRESENT_LANDMARK" />
+		</property>
+
+		<property name="permanentAddress" type="java.lang.String">
+			<column length="250" name="PERMANENT_ADDRESS" />
+		</property>
+		<property name="permanentCity" type="java.lang.String">
+			<column length="250" name="PERMANENT_CITY" />
+		</property>
+		<property name="permanentZip" type="java.lang.String">
+			<column length="250" name="PERMANENT_ZIP" />
+		</property>
+		<property name="permanentLandMark" type="java.lang.String">
+			<column length="250" name="PERMANENT_LANDMARK" />
+		</property>
+		<property name="homeCode" type="java.lang.String">
+			<column length="250" name="HOME_CODE" />
+		</property>
+		<property name="workCode" type="java.lang.String">
+			<column length="250" name="WORK_CODE" />
+		</property>
+		<property name="designation" type="java.lang.String">
+			<column length="250" name="DESIGNATION" />
+		</property>
+
+		<property name="alternativeMobile" type="java.lang.String">
+			<column length="250" name="ALTERNATIVE_MOBILE" />
+		</property>
+		<property name="emergencyPhone" type="java.lang.String">
+			<column length="250" name="EMERGENCY_PHONE" />
+		</property>
+		<property name="candidateId" type="java.lang.Long">
+			<column length="250" name="CANDIDATE_ID" />
+		</property>
+		<many-to-one name="empRole"
+			class="com.raybiztech.rolefeature.business.Role" fetch="join" lazy="false">
+			<column name="EMP_ROLE" />
+		</many-to-one>
+		<many-to-one name="manager"
+			class="com.raybiztech.appraisals.business.Employee">
+		</many-to-one>
+		<many-to-one name="designationKras"
+			class="com.raybiztech.appraisals.business.DesignationKras" fetch="join"
+			lazy="false">
+			<column name="Designation_Kras" />
+		</many-to-one>
+
+		<set name="interviewEmployees" table="EMPLOYEE_INTERVIEW" inverse="true"
+			lazy="true" fetch="select" cascade="all">
+			<key>
+				<column name="EmployeeId" not-null="true" />
+			</key>
+			<many-to-many entity-name="com.raybiztech.recruitment.business.Interview">
+				<column name="INTERVIEWID" not-null="true" />
+			</many-to-many>
+		</set>
+
+		<set name="employeeSkills" table="EMPLOYEESKILL" inverse="false"
+			lazy="false">
+			<key>
+				<column name="EmployeeId" />
+			</key>
+			<one-to-many class="com.raybiztech.appraisals.business.Skill" />
+		</set>
+
+		<set name="employeeFamilyDetails" table="EMPLOYEE_FAMILYDETAILS"
+			inverse="false" lazy="false">
+			<key>
+				<column name="EmployeeId" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.appraisals.business.EmployeeFamilyInformation" />
+		</set>
+
+		<set name="bankInformations" table="EMPLOYEE_BANKDETAILS" inverse="false"
+			lazy="true">
+			<key>
+				<column name="EmployeeId" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.appraisals.business.EmployeeBankInformation" />
+		</set>
+
+		<map cascade="all" name="allocations" lazy="true">
+			<key column="EmployeeId" />
+			<map-key-many-to-many
+				class="com.raybiztech.projectmanagement.business.Project" column="projectid">
+			</map-key-many-to-many>
+			<one-to-many
+				class="com.raybiztech.projectmanagement.business.AllocationDetails" />
+		</map>
+		<set name="observation" cascade="all">
+			<key column="EmployeeId" />
+			<one-to-many
+				class="com.raybiztech.appraisals.observation.business.Observation" />
+		</set>
+		<property name="skypeId" type="java.lang.String">
+			<column length="50" name="skypeId" />
+		</property>
+		<set name="certifications" inverse="false" lazy="true">
+			<key>
+				<column name="EmployeeId" />
+			</key>
+			<one-to-many
+				class="com.raybiztech.appraisals.certification.business.Certification" />
+		</set>
+		<property name="underNotice" type="java.lang.Boolean">
+			<column name="UNDERNOTICE" />
+		</property>
+		<property name="rbtCvPath" type="java.lang.String">
+			<column name="RBTCV_PATH" />
+		</property>
+		<many-to-one class="com.raybiztech.appraisals.business.TimeSlot"
+			fetch="join" name="timeSlot">
+			<column name="TimeSlotId" />
+		</many-to-one>
+		<property name="technology" type="java.lang.String">
+			<column name="Technology" />
+		</property>
+		<many-to-one name="hrAssociate"
+			class="com.raybiztech.appraisals.business.Employee">
+		</many-to-one>
+		 <property name="passportFrontPagePath" type="java.lang.String">
+			<column name="Passport_FrontPage_Path" />
+		</property>
+		<property name="passportBackPagePath" type="java.lang.String">
+			<column name="Passport_BackPage_Path" />
+		</property> 
+		<many-to-one name="projectManager"
+			class="com.raybiztech.appraisals.business.Employee">
+		</many-to-one>
+		<!-- <property name="isAbsconded" type="java.lang.Boolean">
+			<column name="isAbsconded" default="false" />
+		</property>  -->
+		<property name="contractExists" type="java.lang.Boolean">
+			<column name="contractExists" default="false" />
+		</property> 
+		<property name="contractStartDate" type="DateType">
+			<column length="19" name="ContractStartDate" />
+		</property>
+		<property name="contractEndDate" type="DateType">
+			<column length="19" name="ContractEndDate" />
+		</property>
+	 <property name="personalEmail" type="java.lang.String">
+			<column length="50" name="personalEmail"  />
+		</property> 
+		<property name="experience" type="java.lang.Double">
+			<column length="50" name="Experience" />
+		</property>
+		<property name="companyExperience" type="java.lang.Double">
+			<column length="50" name="CompanyExperience" />
+		</property>
+		<property name="country" type="java.lang.String">
+			<column name="emp_Country"  />
+		</property>
+		 <property name="workStatus" type="java.lang.String">
+			<column name="workStatus"  />
+		</property> 
+		<property name="comments" type="java.lang.String">
+			<column name="comments"  />
+		</property> 
+		<many-to-one name="vendor"
+                     class="com.raybiztech.assetmanagement.business.VendorDetails" 
+                     fetch="join" lazy="false">
+            <column name="Vendor_Id" />
+        </many-to-one>
+        <property name="countryCodeWork" type="java.lang.Integer">
+			<column name="countryCode_Work"  />
+		</property> 
+        <property name="countryCodeMobile" type="java.lang.Integer">
+			<column name="countryCode_Mobile"  />
+		</property> 
+        <property name="countryCodeHome" type="java.lang.Integer">
+			<column name="countryCode_Home"  />
+		</property> 
+        <property name="countryCodeEmergency" type="java.lang.Integer">
+			<column name="countryCode_Emergency"  />
+		</property> 
+        <property name="countryCodeAlternative" type="java.lang.Integer">
+			<column name="countryCode_Alternative"  />
+		</property> 
+		
+	</class>
+</hibernate-mapping>

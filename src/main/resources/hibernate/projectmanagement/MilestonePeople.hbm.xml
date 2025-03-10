@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class name="com.raybiztech.projectmanagement.business.MilestonePeople"
+		table="MilestonePeople" lazy="true">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="select">
+			<column name="EmployeeId" />
+		</many-to-one>
+
+
+		<property name="isBillable" type="java.lang.Boolean">
+			<column name="Billable" />
+		</property>
+
+		<property name="startDate" type="DateType">
+			<column length="19" name="StartDate" />
+		</property>
+
+		<property name="endDate" type="DateType">
+			<column length="19" name="EndDate" />
+		</property>
+		<property name="count" type="java.lang.String">
+			<column name="Count" />
+		</property>
+
+		<property name="monthWorkingDays" type="java.lang.String">
+			<column name="MonthWorkingDays" />
+		</property>
+
+		<property name="holidays" type="java.lang.String">
+			<column name="Holidays" />
+		</property>
+
+		<property name="leaves" type="java.lang.String">
+			<column name="Leaves" />
+		</property>
+
+		<property name="totalDays" type="java.lang.String">
+			<column name="TotalDays" />
+		</property>
+		<property name="comments" type="java.lang.String">
+			<column name="Comments" />
+		</property>
+		<property name="hours" type="java.lang.String">
+			<column name="Hours" />
+		</property>
+
+		<property name="totalValue" type="java.lang.String">
+			<column name="TotalValue" />
+		</property>
+		
+		<property name="role" type="java.lang.String">
+			<column name="Role" />
+		</property>
+
+
+	</class>
+
+
+</hibernate-mapping>

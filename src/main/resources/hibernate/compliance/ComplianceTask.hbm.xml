@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.compliance.business.ComplianceTask"
+		table="ComplianceTask">
+		<id name="complianceTaskId" type="java.lang.Long">
+			<column name="compliance_task_id"></column>
+			<generator class="native" />
+		</id>
+		
+		<property name="complianceName" type="java.lang.String">
+			<column name="compliance_name"></column>
+		</property>
+		
+		 <property name="complianceTaskStatus">
+			<column name="compliance_task_status" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.compliance.business.ComplianceTaskStatus</param>
+			</type>
+		</property> 
+		
+		<property name="createdBy"
+			type="java.lang.Long">
+			<column name="created_by"></column>
+		</property>
+		
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_date"></column>
+		</property>
+		        
+        <!--  <one-to-one name="complianceTaskSubmit" class="com.raybiztech.compliance.business.ComplianceTaskSubmit"
+			cascade="all">
+			
+			</one-to-one> -->
+		<many-to-one name="compliance" class="com.raybiztech.compliance.business.Compliance"  fetch="join" >
+			<column name="compliance_id"/>
+		</many-to-one>
+		
+		<property name="complianceDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="compliance_date"></column>
+		</property>
+	</class>
+</hibernate-mapping>

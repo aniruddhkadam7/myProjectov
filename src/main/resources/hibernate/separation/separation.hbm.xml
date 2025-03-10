@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.separation.business.Separation"
+		table="Separation" lazy="false">
+		<id name="separationId" type="java.lang.Long">
+			<column name="Separation_Id"></column>
+			<generator class="native" />
+		</id>
+
+		<property name="resignationDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Resignation_Date"></column>
+		</property>
+
+		<property name="isRevoked" type="java.lang.Boolean">
+			<column name="IsRevoked"></column>
+		</property>
+
+		<property name="isprocessInitiated" type="java.lang.Boolean">
+			<column name="IsProcessInitiated"></column>
+		</property>
+
+		<property name="relievingDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Relieving_Date"></column>
+		</property>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" lazy="false">
+			<column name="Employee"></column>
+		</many-to-one>
+
+		<set name="comments" inverse="false" cascade="all" lazy="false">
+			<key>
+				<column name="Separation_Id"></column>
+			</key>
+			<one-to-many class="com.raybiztech.separation.business.SeparationComments"></one-to-many>
+		</set>
+
+		<many-to-one name="primaryReason" cascade="all" lazy="false"
+			class="com.raybiztech.separation.business.PrimaryReason">
+			<column name="Primary_Reason"></column>
+		</many-to-one>
+
+		<property name="reasonComments" type="text">
+			<column name="ReasonComments"></column>
+		</property>
+
+		<property name="employeeComments" type="text">
+			<column name="employeeComments"></column>
+		</property>
+
+
+		<property name="status">
+			<column name="Status" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.separation.business.SeparationStatus</param>
+			</type>
+		</property>
+
+		<set name="certificate" lazy="false" cascade="all">
+			<key>
+				<column name="Separation_Id"></column>
+			</key>
+			<one-to-many
+				class="com.raybiztech.separation.business.ClearanceCertificate"></one-to-many>
+		</set>
+
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Created_Date"></column>
+		</property>
+		
+			<!-- <property name="abscondedDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Absconded_Date"></column>
+		</property> -->
+		
+		<property name="initiatedDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="Initiated_Date"></column>
+		</property>
+		
+
+	</class>
+</hibernate-mapping>

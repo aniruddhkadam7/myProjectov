@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.SQAAudit.business.SQAAuditTimeline"
+		table="SQAAuditTimeline">
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+		<property name="auditId" type="java.lang.Long">
+			<column name="AuditId"/>
+		</property>
+		<property name="auditType" type="java.lang.String">
+			<column name="AuditType" />
+		</property>
+		<many-to-one name="project"
+			class="com.raybiztech.projectmanagement.business.Project">
+			<column name="Project" />
+		</many-to-one>
+		<property name="auditors" type="text">
+			<column name="Auditors"></column>
+		</property>
+		<property name="auditees" type="text">
+			<column name="Auditees"></column>
+		</property>
+		<property name="auditDate" type="DateType">
+			<column length="19" name="AuditDate" />
+		</property>
+		<property name="startTime"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="StartTime" />
+		</property>
+		<property name="endTime"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="EndTime" />
+		</property>
+		<property name="auditStatus" type="java.lang.String">
+			<column name="AuditStatus" />
+		</property>
+		<property name="formStatus" type="java.lang.String">
+			<column name="FormStatus" />
+		</property>
+		<property name="auditRescheduleStatus" type="java.lang.Boolean">
+			<column name="AuditRescheduleStatus" default="false" not-null="true"/>
+		</property>
+		<property name="pci" type="java.lang.String">
+			<column name="PCI"></column>
+		</property>
+		<property name="followUpDate" type="DateType">
+			<column length="19" name="FollowUpDate"></column>
+		</property>
+		<property name="sqaComments" type="text">
+			<column name="SQAComments"></column>
+		</property>
+		<property name="sqaFilesPath" type="text">
+			<column name="SQAFilesPath"></column>
+		</property>
+		<property name="pmComments" type="text">
+			<column name="PMComments"></column>
+		</property>
+		<property name="pmFilesPath" type="text">
+			<column name="PMFilesPath"></column>
+		</property>
+		<many-to-one name="modifiedBy" class="com.raybiztech.appraisals.business.Employee">
+			<column name="Modified_By" />
+		</many-to-one>
+		<property name="modifiedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="Modified_Date" />
+		</property>
+		<property name="persistType" type="java.lang.String">
+			<column name="Persist_Type" />
+		</property>
+		<property name="projectName" type ="java.lang.String">
+		<column name="Project_Name"></column>
+		</property>
+		
+		<property name="projectManager" type ="java.lang.String">
+		<column name="Project_Manager"></column>
+		</property>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.raybiztech.compliance.business.Compliance"
+		table="Compliance">
+		<id name="complianceId" type="java.lang.Long">
+			<column name="compliance_id"></column>
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="department"
+			class="com.raybiztech.appraisals.business.EmpDepartment" lazy="false">
+			<column name="Department"></column>
+		</many-to-one>
+		
+		<property name="emailTo" type="java.lang.String">
+			<column name="email_to"></column>
+		</property>
+		
+		<property name="complianceName" type="java.lang.String">
+			<column name="compliance_name"></column>
+		</property>
+		
+		<property name="complianceDate"
+			type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="compliance_date"></column>
+		</property>
+		
+		<property name="beforeNotification"
+			type="java.lang.Byte">
+			<column name="before_notification"></column>
+		</property>
+		
+		<property name="recurring">
+			<column name="recurring" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.compliance.business.Recurring</param>
+			</type>
+		</property>
+		
+		<property name="escalation"
+			type="java.lang.Byte">
+			<column name="escalation"></column>
+		</property>
+		
+		<property name="escalationEmail"
+			type="java.lang.String">
+			<column name="escalation_email"></column>
+		</property>
+			
+		<set name="complianceTasks" lazy="false" cascade="all">
+			<key column="compliance_id"/>
+			<one-to-many class="com.raybiztech.compliance.business.ComplianceTask"/>
+		</set>
+		
+		<property name="description"
+			type="java.lang.String">
+			<column name="description"></column>
+		</property>
+		<property name="priority">
+			<column name="priority" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.compliance.business.Priority</param>
+			</type>
+		</property>
+		<property name="createdBy"
+			type="java.lang.Long">
+			<column name="created_by"></column>
+		</property>
+		
+		<property name="createdDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="created_date"></column>
+		</property>
+		<property name="updatedBy"
+			type="java.lang.Long">
+			<column name="updated_by"></column>
+		</property>
+		
+		<property name="updatedDate"
+			type="com.raybiztech.date.hibernate.type.SecondUserType">
+			<column name="updated_date"></column>
+		</property>
+		
+	</class>
+</hibernate-mapping>

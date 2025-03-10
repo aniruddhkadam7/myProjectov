@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <typedef name="DAYOFWEEK" class="org.hibernate.type.EnumType">
+        <param name="enumClass">com.raybiztech.date.DayOfWeek</param>
+        <param name="type">12</param>
+    </typedef>
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+             name="DateType" />
+    <typedef class="com.raybiztech.date.hibernate.type.SecondUserType"
+             name="SecondType" />
+    
+    <class name="com.raybiztech.businesscalendar.BusinessCalendar" table="BUSINESSCALENDAR">
+        <id name="id" type="java.lang.Long">
+            <column name="CALENDAR_ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="BUSINESS_NAME" />
+        </property>
+        
+        <component class="com.raybiztech.date.DateRange" name="forTimeInterval">
+            <property name="minimum" type="DateType" access="field" >
+                <column name="FromDate" />
+            </property>
+            <property name="maximum" type="DateType" access="field" >
+                <column name="ToDate" />
+            </property>
+        </component>
+       
+        
+        <component class="com.raybiztech.date.SecondRange" name="workTime">
+            <property name="minimum" type="SecondType" access="field" >
+                <column name="FromTime" />
+            </property>
+            <property name="maximum" type="SecondType" access="field" >
+                <column name="ToTime" />
+            </property>
+        </component>
+        
+        
+        <set name="workingDaysOfWeek" table="DAYSOFWEEK" inverse="false" lazy="false">
+            <key>
+                <column name="CALENDAR_ID" />
+            </key>
+            <element column="WEEK_TypeID" type="DAYOFWEEK"/>
+        </set>
+        
+        
+        <map cascade="all" name="holidays" table="BusinessCalender_Holidays" lazy="false">
+            
+            <key column="CALENDAR_ID"/>
+            <index column="Holiday_Date" type="DateType"/>
+            <element column="Holiday_Name" type="java.lang.String"/>
+
+        </map>
+        
+      
+    </class>
+</hibernate-mapping>

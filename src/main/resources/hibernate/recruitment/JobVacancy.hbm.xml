@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 Sep, 2014 2:21:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    
+    <typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+             name="DateType" />
+    <class name="com.raybiztech.recruitment.business.JobVacancy" table="JOBVACANCY">
+        <id name="jobVacancyId" type="java.lang.Long">
+            <column name="JOBVACANCYID" />
+            <generator class="native" />
+        </id>
+        <property name="jobCode" type="java.lang.String">
+            <column name="JOBCODE" />
+        </property>
+        <property name="positionVacant" type="java.lang.String">
+            <column name="POSITIONVACANT" />
+        </property>
+        <property name="noOfRequirements" >
+            <column name="NOOFREQUIREMENTS" />
+        </property>
+        <property name="minimumExperience" type="java.lang.String">
+            <column name="MINIMUMEXPERIENCE" />
+        </property>
+        <property name="description" type="text">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="expiryDate" type="DateType">
+            <column name="EXPIRYDATE" />
+        </property>
+        <property name="openedDate" type="DateType">
+            <column length="19" name="OpenedDate" />
+        </property>
+        <property name="offered" >
+            <column name="OFFERED" />
+        </property>
+        <property name="status" type="java.lang.Boolean">
+            <column name="STATUS" />
+        </property>
+    </class>
+</hibernate-mapping>

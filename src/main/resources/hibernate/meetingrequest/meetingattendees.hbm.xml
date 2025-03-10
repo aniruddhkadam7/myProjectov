@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.raybiztech.meetingrequest.business.MeetingAttendees"
+		table="MeetingAttendees">
+
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" fetch="select"
+			lazy="false">
+			<column name="EmployeeId" />
+		</many-to-one>
+
+
+		<many-to-one name="meetingRequest"
+			class="com.raybiztech.meetingrequest.business.MeetingRequest" fetch="select">
+			<column name="meetingRequestId" />
+		</many-to-one>
+		
+		<property name="employeeAvailability" type="java.lang.String">
+			<column name="EmployeeAvailability" />
+		</property>
+
+
+	</class>
+
+</hibernate-mapping>

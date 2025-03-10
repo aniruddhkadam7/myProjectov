@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17 Nov, 2014 11:46:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.rolefeature.business.Feature" table="FEATURE">
+        <id name="featureId" type="java.lang.Long">
+            <column name="FEATURE_ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="viewaccess" type="java.lang.Boolean">
+            <column name="view_access" />
+        </property>
+        <property name="createaccess" type="java.lang.Boolean">
+            <column name="create_access" />
+        </property>
+        <property name="updateaccess" type="java.lang.Boolean">
+            <column name="update_access" />
+        </property>
+        <property name="deleteaccess" type="java.lang.Boolean">
+            <column name="delete_access" />
+        </property>
+        
+         <many-to-one name="parentFeature" class="com.raybiztech.rolefeature.business.ParentFeature" fetch="join">
+            <column name="PARENT_FEATURE_ID" />
+        </many-to-one> 
+        
+          <many-to-one name="referenceFeature"
+                             class="com.raybiztech.rolefeature.business.Feature">
+              <column name="REF_FEATURE_ID"/>
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>

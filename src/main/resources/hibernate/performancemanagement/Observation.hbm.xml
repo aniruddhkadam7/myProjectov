@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Feb, 2015 3:01:35 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raybiztech.appraisals.observation.business.Observation" table="OBSERVATION">
+        <id name="id" type="java.lang.Long">
+            <column name="ObservationId" />
+            <generator class="native" />
+        </id>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="date" type="com.raybiztech.date.hibernate.type.DateUserType">
+            <column name="DATE" />
+        </property>
+        <many-to-one name="employee" class="com.raybiztech.appraisals.business.Employee" fetch="join">
+            <column name="EmployeeId" />
+        </many-to-one>
+        <many-to-one name="addedBy" class="com.raybiztech.appraisals.business.Employee" fetch="join">
+            <column name="ADDEDBY" />
+        </many-to-one>
+        <property name="rating" type="java.lang.Integer">
+            <column name="RATING" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+        <property name="obsFilePath" type="java.lang.String">
+			<column name="File_PATH" />
+		</property>
+		<property name="observationMonth" type="com.raybiztech.date.hibernate.type.DateUserType">
+			<column name="OBSERVATION_MONTH"></column>
+		</property>
+    </class>
+</hibernate-mapping>

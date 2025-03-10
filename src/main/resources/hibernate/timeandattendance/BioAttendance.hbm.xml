@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<typedef class="com.raybiztech.date.hibernate.type.SecondUserType"
+		name="SecondType" />
+	<class name="com.raybiztech.biometric.business.BioAttendance"
+		table="BioAttendance">
+		<id name="id" type="java.lang.Long">
+			<column name="BioAttendance_ID" />
+			<generator class="native" />
+		</id>
+		<property name="unusedId" type="java.lang.Long">
+			<column name="ID" />
+		</property>
+
+		<property name="inTime" type="SecondType">
+			<column name="InTime" />
+		</property>
+
+		<property name="outTime" type="SecondType">
+			<column name="OutTime" />
+		</property>
+
+		<property name="attendanceDate" type="DateType">
+			<column name="AttendanceDate" />
+		</property>
+		
+		<property name="lateReport" type="java.lang.Boolean">
+			<column name="LateReport" />
+		</property>
+
+		<many-to-one name="employee"
+			class="com.raybiztech.appraisals.business.Employee" column="EMP_ID"
+			not-null="true" cascade="none" />
+
+		<property name="attendanceStatus">
+			<column name="AttendanceStatus" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="type">12</param>
+				<param name="enumClass">com.raybiztech.biometric.business.AttendanceStatus</param>
+			</type>
+		</property>
+
+	</class>
+</hibernate-mapping>

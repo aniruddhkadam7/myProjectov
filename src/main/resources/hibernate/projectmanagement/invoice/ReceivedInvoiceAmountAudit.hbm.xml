@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<typedef class="com.raybiztech.date.hibernate.type.DateUserType"
+		name="DateType" />
+	<class
+		name="com.raybiztech.projectmanagement.invoice.business.ReceivedInvoiceAmountAudit"
+		table="INVOICE_RECEIVEDAMOUNTLIST_AUDIT">
+
+		<id name="id" type="java.lang.Long">
+			<column name="Id" />
+			<generator class="native" />
+		</id>
+
+		<property name="receivedAmount" type="text">
+			<column name="ReceivedAmount" />
+		</property>
+
+		<property name="receivedDate" type="DateType">
+			<column name="ReceivedDate" />
+		</property>
+
+		<property name="saltkey" type="text">
+			<column name="Saltkey" />
+		</property>
+		
+		<property name="tdsAmount" type="text">
+			<column name="TDSAmount" />
+		</property>
+		
+		<property name="netAmount" type="text">
+			<column name="NetAmount" />
+		</property>
+
+	</class>
+</hibernate-mapping>
